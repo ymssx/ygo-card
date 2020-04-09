@@ -4,6 +4,7 @@ This is a javascript template library of Yu-Gi-Oh!
 这是一个游戏王制卡器的javascript库，你只需要在你的网站引入card.js，就可以轻松地使用标准的游戏王卡图
 
 ## demo
+[在线演示demo](https://ymssx.gitee.io/ygo)
 
 <div align=left>
     <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoCn.jpg" height="200" />
