@@ -12,7 +12,7 @@ This is a javascript template library of Yu-Gi-Oh!
 </div>
 
 ## 使用方式
-#### html
+#### ES Module
 
 `import Card from './card.js'`
 
