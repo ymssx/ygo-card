@@ -150,7 +150,6 @@ CardDrawer.prototype = {
     }, 0);
   },
   _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style) {
-    console.log(1111)
     const r = size[0] / config.moldSize[0];
     const c = this.canvas;
 

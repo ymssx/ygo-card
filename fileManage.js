@@ -7,7 +7,6 @@ export const FileManage = function (cardData, cardDrawer, admin) {
   cardData.caller = this;
   this.cardData = cardData;
   this.cardDrawer = cardDrawer;
-  // this.fontLoader = new FontLoader('https://cose.xyz/font');
 
   this.fileContent = {};
   this.bounce = this.bounceFont(100);

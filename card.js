@@ -1,14 +1,13 @@
 import {CardDrawer} from "./cardDrawer.js";
 import {CardData} from "./cardData.js";
 import {FileManage} from "./fileManage.js";
-import {Cloud} from "./lib/ajax.js";
 import defaultConfig from "./config/defaultConfig.js";
 
 let defaultEvent = function (e) {
   return e;
 };
 
-export const Card = function ({
+const Card = function ({
   dbData, canvas,
   size = [813, 1185],
   lang = 'cn',
@@ -146,3 +145,6 @@ Card.prototype = {
     this.cardData.flash = 0;
   }
 };
+
+
+export default Card;
