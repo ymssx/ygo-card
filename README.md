@@ -20,25 +20,49 @@ This is a javascript template library of Yu-Gi-Oh!
 
 `let card = new Card.Card({ cardData, canvas, size })`
 
-    · cardData -- 卡片信息，包括名字、密码、效果等
-        
-        例如 
-        let cardData = { 
-            name: '青眼的白龍',
-            _id: '89631139',
-            type: 'monster',
-            type2: 'tc',
-            type3: '',
-            type4: '',
-            attack: 3000,
-            defend: 2500,
-            level: 8,
-            desc: '以高攻擊力著稱的傳說之龍。任何對手都能被粉碎，其破壞力不可估量。',
-            race: '龍族',
-            attribute: 'light' 
-        }
-        
-    · canvas -- canvas对象
+> cardData -- 卡片信息，包括名字、密码、效果等
+  
+例如 
+
+`let cardData = { 
+    name: '青眼的白龍',
+    _id: '89631139',
+    type: 'monster',
+    type2: 'tc',
+    type3: '',
+    type4: '',
+    attack: 3000,
+    defend: 2500,
+    level: 8,
+    desc: '以高攻擊力著稱的傳說之龍。任何對手都能被粉碎，其破壞力不可估量。',
+    race: '龍族',
+    attribute: 'light' 
+}`
+  
+> canvas -- canvas对象
+
+ ## 生命周期
+ 通过传入事件来自定义卡片渲染的生命周期钩子函数
+
+ > fontLoaded
+
+ >> 单个字体文件加载完成
+ 
+ > fontsLoaded
+
+ >> 所有字体文件加载完成
+
+ > imageLoaded
+
+ >> 单个图片资源加载完成
+
+ > imagesLoaded
+
+ >> 单个图片资源加载完成
+
+ > loaded
+
+ >> 卡片渲染完毕
  
  ## 扩展
  
@@ -49,10 +73,10 @@ This is a javascript template library of Yu-Gi-Oh!
  cardData | 卡片信息 | Object
  canvas | canvas对象 | DOM
  size | 卡图尺寸 | Array
- config | 配置信息 |  Jason
+ config | 配置信息 |  Json
  
 #### config
-    更改config文件，可以自由地调整卡片的样式，具体配置请参考`config/defaultConfig.js`
+更改config文件，可以自由地调整卡片的样式，具体配置请参考`config/defaultConfig.js`
 
 `card.changeConfig(config)`
 
@@ -63,16 +87,16 @@ This is a javascript template library of Yu-Gi-Oh!
 
 > Card.feedData
 
-    调整卡片信息
+调整卡片信息
 
 `card.feedData(cardData)`
 
-    或者直接
-    card.cardData.name = 'Blue Eyes'
+或者直接
+card.cardData.name = 'Blue Eyes'
 
 > Card.save
 
-    保存卡图
+保存卡图
 
 ## 实现方式
 
