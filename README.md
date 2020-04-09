@@ -2,6 +2,12 @@
 
 这是一个游戏王卡片渲染工具，你只需要在你的网站引入card.js，就可以轻松地渲染出标准的游戏王卡图！
 
+## 为什么使用card.js
+
+card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此您不用过多的担心性能问题。
+
+card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
+
 ## demo
 [在线演示demo](https://ymssx.gitee.io/ygo)
 
@@ -14,11 +20,11 @@
 ## 使用方式
 #### ES Module
 
-`import Card from './card.js'`
+```javascript
+import Card from './card.js'
 
-#### javascript
-
-`let card = new Card({ cardData, canvas, size })`
+let card = new Card({ cardData, canvas, size })
+```
 
 > cardData -- 卡片信息，包括名字、密码、效果等
   
