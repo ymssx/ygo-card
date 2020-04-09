@@ -1,7 +1,6 @@
 # card.js
-This is a javascript template library of Yu-Gi-Oh!
 
-这是一个游戏王制卡器的javascript库，你只需要在你的网站引入card.js，就可以轻松地使用标准的游戏王卡图
+这是一个游戏王卡片渲染工具，你只需要在你的网站引入card.js，就可以轻松地渲染出标准的游戏王卡图！
 
 ## demo
 [在线演示demo](https://ymssx.gitee.io/ygo)
