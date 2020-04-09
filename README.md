@@ -18,7 +18,7 @@ This is a javascript template library of Yu-Gi-Oh!
 
 #### javascript
 
-`let card = new Card.Card({ cardData, canvas, size })`
+`let card = new Card({ cardData, canvas, size })`
 
 > cardData -- 卡片信息，包括名字、密码、效果等
   
