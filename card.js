@@ -47,14 +47,6 @@ const Card = function ({
   size = [size[0]*2, size[1]*2];
   this.cardData = new CardData(dbData, this);
 
-  if (canvas) {
-    canvas.width = size[0];
-    canvas.height = size[1];
-    this.canvas = canvas;
-    this.cardDrawer = new CardDrawer(canvas, this);
-    this.fileManage = new FileManage(this.cardData, this.cardDrawer, this);
-  }
-
   this.size = size;
   this.lang = lang;
 
@@ -66,6 +58,14 @@ const Card = function ({
   this.holo = holo;
   this.cardbagSwitch = cardbagSwitch;
   this.translate = translate;
+
+  if (canvas) {
+    canvas.width = size[0];
+    canvas.height = size[1];
+    this.canvas = canvas;
+    this.cardDrawer = new CardDrawer(canvas, this);
+    this.fileManage = new FileManage(this.cardData, this.cardDrawer, this);
+  }
 };
 
 Card.prototype = {
