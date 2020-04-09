@@ -24,7 +24,8 @@ This is a javascript template library of Yu-Gi-Oh!
   
 例如 
 
-`let cardData = { 
+```javascript
+let cardData = { 
     name: '青眼的白龍',
     _id: '89631139',
     type: 'monster',
@@ -37,7 +38,8 @@ This is a javascript template library of Yu-Gi-Oh!
     desc: '以高攻擊力著稱的傳說之龍。任何對手都能被粉碎，其破壞力不可估量。',
     race: '龍族',
     attribute: 'light' 
-}`
+}
+```
   
 > canvas -- canvas对象
 
@@ -45,35 +47,41 @@ This is a javascript template library of Yu-Gi-Oh!
  通过传入事件来自定义卡片渲染的生命周期钩子函数
 
  > fontLoaded
-
  >> 单个字体文件加载完成
  
  > fontsLoaded
-
  >> 所有字体文件加载完成
 
  > imageLoaded
-
  >> 单个图片资源加载完成
 
  > imagesLoaded
-
  >> 单个图片资源加载完成
 
  > loaded
-
  >> 卡片渲染完毕
  
  ## 扩展
  
-`let card = new Card.Card({ cardData, canvas, size, config })`
-
- name | detail | type
- ---- | ---- | ----
- cardData | 卡片信息 | Object
- canvas | canvas对象 | DOM
- size | 卡图尺寸 | Array
- config | 配置信息 |  Json
+```javascript
+const Card = function ({
+  dbData, // 卡片数据  - object
+  canvas, // canvas对象 - dom
+  size = [813, 1185], // 绘制尺寸，[宽, 高] - array
+  lang = 'cn', // 语言 cn、jp、en - string
+  config = defaultConfig, // 配置信息 - object
+  fastFont = true, // 精简字体 - boolean
+  fontLoaded = defaultEvent, // 事件 - function
+  imageLoaded = defaultEvent,
+  fontsLoaded = defaultEvent,
+  imagesLoaded = defaultEvent,
+  loaded = defaultEvent,
+  recover = false, // 是否缓存配置与数据 - boolean
+  holo = true, // 是否显示防伪标志 - boolean
+  cardbagSwitch = false, // 是否显示卡包信息 - boolean
+  translate = false // 是否自动繁简转换 - boolean
+})
+```
  
 #### config
 更改config文件，可以自由地调整卡片的样式，具体配置请参考`config/defaultConfig.js`
