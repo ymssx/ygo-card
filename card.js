@@ -8,7 +8,7 @@ let defaultEvent = function (e) {
 };
 
 const Card = function ({
-  dbData, canvas,
+  cardData, canvas,
   size = [813, 1185],
   lang = 'cn',
   config = defaultConfig,
@@ -35,7 +35,7 @@ const Card = function ({
   }
 
   this.config = tempConfig || config;
-  this.key = dbData._id;
+  this.key = cardData._id;
   this.fastFont = fastFont;
 
   this.fontLoaded = fontLoaded;
@@ -45,7 +45,7 @@ const Card = function ({
   this.loaded = loaded;
 
   size = [size[0]*2, size[1]*2];
-  this.cardData = new CardData(dbData, this);
+  this.cardData = new CardData(cardData, this);
 
   this.size = size;
   this.lang = lang;
