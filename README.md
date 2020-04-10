@@ -76,7 +76,7 @@ let cardData = {
  
 ```javascript
 const Card = function ({
-  dbData, // 卡片数据  - object
+  cardData, // 卡片数据  - object
   canvas, // canvas对象 - dom
   size = [813, 1185], // 绘制尺寸，[宽, 高] - array
   lang = 'cn', // 语言 cn、jp、en - string
