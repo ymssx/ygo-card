@@ -18,7 +18,7 @@ card.js十分容易使用，您只需要短短的一行代码，就能将一张c
 </div>
 
 ## 使用方式
-#### ES Module
+### ES Module
 
 ```javascript
 import Card from './card.js'
@@ -94,12 +94,12 @@ const Card = function ({
 })
 ```
  
-#### config
+## config
 更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/config)
 
 `card.changeConfig(config)`
 
-### API
+## API
 > Card.changeConfig
 
 `card.changeConfig(config)`
