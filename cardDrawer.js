@@ -261,8 +261,8 @@ CardDrawer.prototype = {
       }
 
       // draw pendulum desc
-      if (cardData.type3 === 'lb') {
-        let pendulumDescParts = this.descSplit(cardData.lb_desc, config.desc.lbFontSize, config.desc.font, 5, 556);
+      if (cardData.type3 === 'lb' && cardData.lb_desc) {
+        let pendulumDescParts = this.descSplit(cardData.lb_desc, config.monsterDesc.lbFontSize, config.monsterDesc.font, 5, 556);
         c.fillStyle = '#000000';
         c.font=config.desc.lbFontSize*r + "px " + config.desc.font + fontPlus;
         for (let index in pendulumDescParts) {

@@ -143,11 +143,13 @@ CardData.prototype = {
       const trans = this.admin.config.translate;
       return trans.attribute[attribute];
   },
-	get _desc_() {
+  get _desc_() {
 		const desc = this.desc;
 		if (this.type3 === 'lb') {
 			var lb_num = parseInt(desc.substr(1));
-			let temp = desc.split("→")[1];
+      let temp = desc.split("→")[1];
+      if (!temp) return desc;
+
 			var lb_desc = temp.split("【")[0].replace("\r", "").replace("\n", "").replace(" ", "");
 			var desc_ = temp.split("】")[1].replace("\r", "").replace("\n", "").replace(" ", "");
 			this.lb_num = lb_num;
@@ -217,7 +219,8 @@ CardData.prototype = {
 		if (this.type2 !== "lj") {
 			this.link_num = 0;
 			return [false, false, false, false, false, false, false, false, false];
-		}
+    }
+    
 		let link = this.defend;
 		let link_ = link.toString(2);
 		if (link_.length>9) {
@@ -237,7 +240,7 @@ CardData.prototype = {
 	},
   get defaultColor() {
     if (this.type === 'monster') {
-      if (this.type2 === 'cl') {
+      if (this.type2 === 'cl' || this.type2 === 'lj') {
         return '#fff'
       } else {
         return '#000'
