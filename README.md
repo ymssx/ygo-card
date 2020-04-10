@@ -95,7 +95,7 @@ const Card = function ({
 ```
  
 #### config
-更改config文件，可以自由地调整卡片的样式，具体配置请参考`config/defaultConfig.js`
+更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/config)
 
 `card.changeConfig(config)`
 
