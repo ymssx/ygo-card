@@ -76,6 +76,22 @@ Card.prototype = {
     this.cardDrawer = new CardDrawer(canvas, this);
     this.fileManage = new FileManage(this.cardData, this.cardDrawer, this);
   },
+  get promise() {
+    return new Promise((resolve, reject) => {
+      this.rendered = () => {
+        let renderedEvent = {
+          type: 'draw',
+          status: true,
+          content: 'ok'
+        };
+        
+        this.loaded(renderedEvent);
+        resolve(renderedEvent);
+      };
+  
+      this.failed = reject;
+    });
+  },
   feed(img, imgStatus = false) {
     this.fileManage.fileContent.pic = img;
     this.imgStatus = imgStatus;

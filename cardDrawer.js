@@ -147,7 +147,7 @@ CardDrawer.prototype = {
 
     this.drawer = setTimeout(() => {
       this._draw_(...args);
-    }, 0);
+    }, 10);
   },
   _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style) {
     const r = size[0] / config.moldSize[0];
@@ -264,11 +264,11 @@ CardDrawer.prototype = {
       if (cardData.type3 === 'lb' && cardData.lb_desc) {
         let pendulumDescParts = this.descSplit(cardData.lb_desc, config.monsterDesc.lbFontSize, config.monsterDesc.font, 5, 556);
         c.fillStyle = '#000000';
-        c.font=config.desc.lbFontSize*r + "px " + config.desc.font + fontPlus;
+        c.font=config.monsterDesc.lbFontSize*r + "px " + config.monsterDesc.font + fontPlus;
         for (let index in pendulumDescParts) {
           let descPart = pendulumDescParts[index];
-          let left = config.desc.lbPosition[0];
-          let top = config.desc.lbPosition[1] + index * config.desc.lbLineHeight;
+          let left = config.monsterDesc.lbPosition[0];
+          let top = config.monsterDesc.lbPosition[1] + index * config.monsterDesc.lbLineHeight;
           c.fillText(descPart,left*r,top*r,556*r);
           if (index === 4) {
             let tempWidth = c.measureText(descPart).width;
@@ -333,10 +333,6 @@ CardDrawer.prototype = {
       this.admin.saveToCache();
     }
 
-    this.admin.loaded({
-      type: 'draw',
-      status: true,
-      content: 'ok'
-    })
+    this.admin.rendered();
   }
 };

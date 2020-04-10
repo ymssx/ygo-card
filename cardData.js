@@ -2,6 +2,7 @@ import {FileManage} from "./fileManage.js";
 import {translate} from "./lib/translate.js";
 
 export const CardData = function(dbData, admin, color) {
+  this.dbData = dbData;
   this.admin = admin;
 
   if (admin.recover) {
@@ -41,6 +42,23 @@ export const CardData = function(dbData, admin, color) {
       }
     })
   }
+
+  Object.defineProperty(this, 'lb_desc', {
+    get() {
+      if (dbData.lb_desc) return dbData.lb_desc;
+      
+      let desc = this._desc_;
+      return this._lb_desc;
+    },
+    set(value) {
+      if (this.admin.translate) {
+        value = translate(value)
+      }
+
+      dbData.lb_desc = value;
+      this.draw(['text'], 'lb_desc');
+    }
+  })
 
   Object.defineProperty(this, 'type', {
     get() {
@@ -153,7 +171,7 @@ CardData.prototype = {
 			var lb_desc = temp.split("【")[0].replace("\r", "").replace("\n", "").replace(" ", "");
 			var desc_ = temp.split("】")[1].replace("\r", "").replace("\n", "").replace(" ", "");
 			this.lb_num = lb_num;
-			this.lb_desc = lb_desc;
+			this._lb_desc = lb_desc;
 		} else {
 			var desc_ = desc.replace("\r", "").replace("\n", "").replace(" ", "");
 		}
@@ -216,6 +234,15 @@ CardData.prototype = {
     return type;
   },
 	get _link_() {
+    if (this.dbData.link instanceof Array && this.dbData.link.length >= 8) {
+      this.link_num = this.dbData.link.reduce((num, item) => {
+        num += (item? 1 : 0);
+        return num;
+      }, 0)
+
+      return this.dbData.link;
+    }
+
 		if (this.type2 !== "lj") {
 			this.link_num = 0;
 			return [false, false, false, false, false, false, false, false, false];
