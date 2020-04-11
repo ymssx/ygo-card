@@ -92,23 +92,23 @@ let cardData = {
  
  ## 扩展
  
-```javascript
+```typescript
 const Card = function ({
-  cardData, // 卡片数据  - object
-  canvas, // canvas对象 - dom
-  size = [813, 1185], // 绘制尺寸，[宽, 高] - array
-  lang = 'cn', // 语言 cn、jp、en - string
-  config = defaultConfig, // 配置信息 - object
-  fastFont = true, // 精简字体 - boolean
-  fontLoaded = defaultEvent, // 事件 - function
-  imageLoaded = defaultEvent,
-  fontsLoaded = defaultEvent,
-  imagesLoaded = defaultEvent,
-  loaded = defaultEvent,
-  recover = false, // 是否缓存配置与数据 - boolean
-  holo = true, // 是否显示防伪标志 - boolean
-  cardbagSwitch = false, // 是否显示卡包信息 - boolean
-  translate = false // 是否自动繁简转换 - boolean
+  cardData: object,                       // 卡片数据
+  canvas: HTMLElement,                    // canvas对象
+  size: number[] = [813, 1185],           // 绘制尺寸，[宽, 高]
+  lang:'cn' | 'jp' | 'en' = 'cn',         // 语言 cn、jp、en
+  config: object = defaultConfig,         // 配置信息 - object
+  fastFont: boolean = true,               // 精简字体 - boolean
+  fontLoaded: function = defaultEvent,    // 事件 - function
+  imageLoaded: function = defaultEvent,
+  fontsLoaded: function = defaultEvent,
+  imagesLoaded: function = defaultEvent,
+  loaded: function = defaultEvent,
+  recover: boolean = false,               // 是否缓存配置与数据 - boolean
+  holo: boolean = true,                   // 是否显示防伪标志 - boolean
+  cardbagSwitch: boolean = false,         // 是否显示卡包信息 - boolean
+  translate: boolean = false              // 是否自动繁简转换 - boolean
 })
 ```
  
