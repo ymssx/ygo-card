@@ -7,6 +7,32 @@ let defaultEvent = function (e) {
   return e;
 };
 
+
+/*
+- cardData: card information
+
+  interface cardData = {
+    name: string,                          // card name
+    _id: string,                           // card id
+    type: 'monster' | 'magic' | 'tragic',  // first type
+    type2: type,                           // secend type
+    type3: type,                           // third type
+    type4: type,                           // fourth type
+    desc: string                           // card describe
+    ?attribute: 'light' | 'dark' | 'fire' | 'water' | 'wind' | 'ground' | 'god'
+                                           // monster attribute
+    ?race: string                          // monster race
+    ?attack: number                        // monster attack
+    ?defend: number                        // monster defend
+    ?level: number                         // monster level
+  }
+
+  typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同調', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '靈魂', "fz": '反轉', "ts": '特殊召喚', "zb": '裝備', "sg": '速攻', "cd": '場地', "fj": '反擊', "yx": '永續' }
+
+
+- canvas: HTMLElement
+*/
+
 const Card = function ({
   cardData, canvas,
   size = [813, 1185],

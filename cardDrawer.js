@@ -307,6 +307,7 @@ CardDrawer.prototype = {
     }
 
     // pendulum number
+    if (cardData.type3 === 'lb') {}
 
     // link arrows
 
