@@ -75,20 +75,20 @@ let cardData = {
  ## 生命周期
  通过传入事件来自定义卡片渲染的生命周期钩子函数
 
- > fontLoaded
- >> 单个字体文件加载完成
+ #### fontLoaded
+ > 单个字体文件加载完成
  
- > fontsLoaded
- >> 所有字体文件加载完成
+ #### fontsLoaded
+ > 所有字体文件加载完成
 
- > imageLoaded
- >> 单个图片资源加载完成
+ #### imageLoaded
+ > 单个图片资源加载完成
 
- > imagesLoaded
- >> 单个图片资源加载完成
+ #### imagesLoaded
+ > 单个图片资源加载完成
 
- > loaded
- >> 卡片渲染完毕
+ #### loaded
+ > 卡片渲染完毕
  
  ## 扩展
  
