@@ -53,8 +53,8 @@ const Card = function ({
   cardbagSwitch = false,
   translate = false
 }) {
+  // recover config from localStorage
   this.recover = recover;
-
   if (recover) {
     var tempConfig = Object.create(config);
     for (let key in config) {
@@ -68,6 +68,7 @@ const Card = function ({
   this.key = cardData._id;
   this.fastFont = fastFont;
 
+  // events register
   this.fontLoaded = fontLoaded;
   this.imageLoaded = imageLoaded;
   this.fontsLoaded = fontsLoaded;
@@ -76,14 +77,11 @@ const Card = function ({
 
   size = [size[0]*2, size[1]*2];
   this.cardData = new CardData(cardData, this);
-
   this.size = size;
+
   this.lang = lang;
-
   this.imgStatus = false;
-
   this.db_id = null;
-
   this.flashImg = null;
   this.holo = holo;
   this.cardbagSwitch = cardbagSwitch;

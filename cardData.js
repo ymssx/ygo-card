@@ -13,20 +13,20 @@ export const CardData = function(dbData, admin, color) {
     }
   }
 
-	let textUpdate = ['type4', 'level', 'attack', 'defend', 'cardbag'];
-	for (let key of textUpdate) {
-		Object.defineProperty(this, key, {
-			get() {
-				return dbData[key];
-			},
-			set(value) {
-			  dbData[key] = value;
-				this.draw();
-			}
-		})
-	}
+  let textUpdate = ['type4', 'level', 'attack', 'defend', 'cardbag'];
+  for (let key of textUpdate) {
+    Object.defineProperty(this, key, {
+      get() {
+        return dbData[key];
+      },
+      set(value) {
+        dbData[key] = value;
+        this.draw();
+      }
+    })
+  }
 
-	let fontUpdate = ['name', 'desc', 'race'];
+  let fontUpdate = ['name', 'desc', 'race'];
   for (let key of fontUpdate) {
     Object.defineProperty(this, key, {
       get() {
@@ -77,7 +77,7 @@ export const CardData = function(dbData, admin, color) {
     }
   });
 
-	let moldUpdate = ['type2', 'type3'];
+  let moldUpdate = ['type2', 'type3'];
   for (let key of moldUpdate) {
     Object.defineProperty(this, key, {
       get() {
@@ -139,7 +139,7 @@ export const CardData = function(dbData, admin, color) {
     }
   });
 
-	this.caller = null;
+  this.caller = null;
   this.getData = function() {
     let res = {};
     for (let key in dbData) {
