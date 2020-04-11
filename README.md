@@ -8,8 +8,8 @@ card.js会追踪数据的变动，自动地更新卡图，这在与表单交互�
 
 card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
 
-## demo
-[在线演示demo](https://ymssx.gitee.io/ygo)
+## 演示
+[在线演示](https://ymssx.gitee.io/ygo)
 
 <div align=left>
     <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoCn.jpg" height="200" />
@@ -26,7 +26,7 @@ import Card from './card.js'
 let card = new Card({ cardData, canvas, size })
 ```
 
-> cardData -- 卡片信息，包括名字、密码、效果等
+#### cardData -- 卡片信息，包括名字、密码、效果等
 ```typescript
 interface cardData = {
   name: string,                          // card name
@@ -70,7 +70,7 @@ let cardData = {
 }
 ```
   
-> canvas -- canvas对象
+#### canvas -- canvas对象
 
  ## 生命周期
  通过传入事件来自定义卡片渲染的生命周期钩子函数
@@ -118,11 +118,11 @@ const Card = function ({
 `card.changeConfig(config)`
 
 ## API
-> Card.changeConfig
+#### Card.changeConfig
 
 `card.changeConfig(config)`
 
-> Card.feedData
+#### Card.feedData
 
 调整卡片信息
 
@@ -131,7 +131,7 @@ const Card = function ({
 或者直接
 `card.cardData.name = 'Blue Eyes'`
 
-> Card.save
+#### Card.save
 
 保存卡图
 
@@ -139,12 +139,12 @@ const Card = function ({
 
 Card.js
 
-> cardData.js 
->> 管理卡片数据，监听数据变动，当数据更新之后，cardData会自动分析需要更新哪些文件，然后告知fileManage
+### cardData.js 
+>管理卡片数据，监听数据变动，当数据更新之后，cardData会自动分析需要更新哪些文件，然后告知fileManage
 
-> fileManage.js
->> 管理文件的更新与缓存，当收到cardData的更新请求后，会自动从缓存或者网络调用图片，在文件更新之后会自动告知cardDrawer
+### fileManage.js
+> 管理文件的更新与缓存，当收到cardData的更新请求后，会自动从缓存或者网络调用图片，在文件更新之后会自动告知cardDrawer
 
-> cardDrawer.js
->> 管理绘图功能，在收到fileManage的绘图请求后，会按照cardData的数据以及fileManage提供的文件进行绘图
+### cardDrawer.js
+> 管理绘图功能，在收到fileManage的绘图请求后，会按照cardData的数据以及fileManage提供的文件进行绘图
  
