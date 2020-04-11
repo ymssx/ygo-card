@@ -129,7 +129,7 @@ const Card = function ({
 `card.feedData(cardData)`
 
 或者直接
-card.cardData.name = 'Blue Eyes'
+`card.cardData.name = 'Blue Eyes'`
 
 > Card.save
 
