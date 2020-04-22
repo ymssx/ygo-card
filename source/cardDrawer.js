@@ -307,7 +307,12 @@ CardDrawer.prototype = {
     }
 
     // pendulum number
-    if (cardData.type3 === 'lb') {}
+    if (cardData.type3 === 'lb') {
+      c.fillStyle = '#000000';
+      c.font = config.pendulumNumber.fontSize * r + "px " + config.pendulumNumber.font;
+      console.log(cardData.lb_num)
+      c.fillText(cardData.lb_num, config.pendulumNumber.positonLeft[0], config.pendulumNumber.positonLeft[1] * r, 72 * r);
+    }
 
     // link arrows
 
@@ -333,7 +338,9 @@ CardDrawer.prototype = {
     if (this.admin.recover) {
       this.admin.saveToCache();
     }
-
-    this.admin.rendered();
+    
+    if (this.admin.rendered instanceof Function) {
+      this.admin.rendered();
+    }
   }
 };

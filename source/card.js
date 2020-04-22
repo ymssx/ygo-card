@@ -7,7 +7,6 @@ let defaultEvent = function (e) {
   return e;
 };
 
-
 /*
 - cardData: card information
 
@@ -53,6 +52,15 @@ const Card = function ({
   cardbagSwitch = false,
   translate = false
 }) {
+  // current path
+  let moldPath = import.meta.url.split('/');
+  if (moldPath.length > 1) {
+    moldPath[moldPath.length - 1] = 'mold';
+    this.moldPath = moldPath.join('/');
+  } else {
+    this.moldPath = '/';
+  }
+  
   // recover config from localStorage
   this.recover = recover;
   if (recover) {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DEMO</title>
+</head>
+<body>
+  <canvas id="card"></canvas>
+</body>
+<script type="module">
+  import Card from './source/card.js';
+
+  let canvas = document.getElementById('card');
+  let cardData = {
+    name: '幽鬼兔',
+    _id: '59438930',
+    type: 'monster',
+    type2: 'cl',
+    type3: '',
+    type4: '',
+    attack: 0,
+    defend: 1800,
+    level: 3,
+    desc: '「浮幽櫻」的效果1回合只能使用1次。\n' +
+      '①：對方場上的怪獸數量比自己場上的怪獸多的場合，把這張卡從手卡丟棄才能發動。選自己的額外卡組1張卡給雙方確認。那之後，把對方的額外卡組確認，有選的卡的同名卡的場合，那些對方的同名卡全部除外。這個效果在對方回合也能發動。',
+    race: '不死族',
+    attribute: 'dark'
+  };
+
+  let card = new Card({ cardData, canvas, size: [200, 292], lang: 'cn'});
+</script>
+</html>

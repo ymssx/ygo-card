@@ -60,6 +60,19 @@ export const CardData = function(dbData, admin, color) {
     }
   })
 
+  Object.defineProperty(this, 'lb_num', {
+    get() {
+      if (dbData.lb_num) return dbData.lb_num;
+      
+      let desc = this._desc_;
+      return this._lb_num;
+    },
+    set(value) {
+      dbData.lb_num = value;
+      this.draw(['text'], 'lb_num');
+    }
+  })
+
   Object.defineProperty(this, 'type', {
     get() {
       return dbData.type;
@@ -170,7 +183,7 @@ CardData.prototype = {
 
 			var lb_desc = temp.split("【")[0].replace("\r", "").replace("\n", "").replace(" ", "");
 			var desc_ = temp.split("】")[1].replace("\r", "").replace("\n", "").replace(" ", "");
-			this.lb_num = lb_num;
+			this._lb_num = lb_num;
 			this._lb_desc = lb_desc;
 		} else {
 			var desc_ = desc.replace("\r", "").replace("\n", "").replace(" ", "");

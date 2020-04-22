@@ -68,7 +68,7 @@ FileManage.prototype = {
     }
   },
   get fileList() {
-    const path = this.admin.config.moldUrl;
+    const path = this.admin.moldPath + '/';
     let res= {};
     if (this.cardData.type === 'monster') {
         if (this.cardData.type3 !== 'lb') {
@@ -200,7 +200,13 @@ FileManage.prototype = {
 
     for (let fontName in fonts) {
       if (!window.fontMap[fontName]) {
-        let path = fonts[fontName];
+        let path;
+        if (fonts[fontName]['type'] === 'relative') {
+          path = this.admin.moldPath + '/font/' + fonts[fontName]['name'];
+        } else {
+          path = fonts[fontName]['name'];
+        }
+
         await fontLoader.getFull(path, fontName);
 
         setTimeout(() => {

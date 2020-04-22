@@ -2,9 +2,18 @@ export default {
   "moldName": "default",
   "moldUrl": "./mold/",
   "fonts": {
-    "jp": "https://xmg520-1257059753.cos.ap-guangzhou.myqcloud.com/jp.ttf",
-    "number": "https://xmg520-1257059753.cos.ap-guangzhou.myqcloud.com/number.ttf",
-    "link": "https://xmg520-1257059753.cos.ap-guangzhou.myqcloud.com/link.ttf"
+    "jp": {
+      "name": "jp.ttf",
+      "type": "relative"
+    },
+    "number": {
+      "name": "number.ttf",
+      "type": "relative"
+    },
+    "link": {
+      "name": "link.ttf",
+      "type": "relative"
+    }
   },
   "pic": function(id) {
     // 'https://ymssx.gitee.io/pics/500/'+this.cardData._id + '.jpg';
