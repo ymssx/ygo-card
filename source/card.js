@@ -96,6 +96,8 @@ const Card = function ({
   this.translate = translate;
 
   if (canvas) {
+    canvas.style.maxWidth = 0.5 * size[0] + 'px';
+    canvas.style.maxHeight = 0.5 * size[1] + 'px';
     canvas.width = size[0];
     canvas.height = size[1];
     this.canvas = canvas;
