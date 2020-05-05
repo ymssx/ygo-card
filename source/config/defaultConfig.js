@@ -92,10 +92,11 @@ export default {
     },
     "pendulumNumber": {
       "font": "number",
-      "fontSize": 40,
-      "positonLeft": [300,300],
-      "positonRight": [700,300]
-    }
+      "fontSize": 60,
+      "positonLeft": [86, 854],
+      "positonRight": [718, 854]
+    },
+    "linkArrows": {}
   },
   "translate": {
     "attribute": {

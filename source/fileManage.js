@@ -26,6 +26,9 @@ export const FileManage = function (cardData, cardDrawer, admin) {
 };
 
 FileManage.prototype = {
+  log(...content) {
+    this.admin.log(this, ...content);
+  },
   async refresh() {
     this.fileContent = await this.getFiles(this.fileList);
     // await this.bounce(this.cardData.name + this.cardData.desc + this.cardData._ifm_cn);
@@ -77,6 +80,13 @@ FileManage.prototype = {
           res.mold = path + this.cardData.type + '_' + this.cardData.type2 + '_' + 'lb' + '.jpg';
         }
 
+        if (this.cardData.type2 === 'lj') {
+          res.arrow1_0 = path + 'arrow1_0.png';
+          res.arrow1_1 = path + 'arrow1_1.png';
+          res.arrow2_0 = path + 'arrow2_0.png';
+          res.arrow2_1 = path + 'arrow2_1.png';
+        }
+
         res.attribute = path + 'attribute/' + this.cardData.attribute + '.png';
         if (this.cardData.type2 === 'cl') {
           res.level = path + 'level.png';
@@ -102,7 +112,7 @@ FileManage.prototype = {
     return new Promise((resolve, reject) => {
       let res = localStorage.getItem(name);
       if (res) {
-        console.log(name, 'load localstorage');
+        this.log(name, 'load localstorage');
         let img = document.createElement('img');
         img.src = res;
         img.setAttribute("crossOrigin",'anonymous');
@@ -170,10 +180,10 @@ FileManage.prototype = {
     let data = canvas.toDataURL("image/png");
     try {
       localStorage.setItem(key, data);
-      console.log(key, 'successful save the image');
+      this.log(key, 'successful save the image');
     }
     catch (e) {
-      console.log("Storage failed: " + e);
+      this.log("Storage failed: " + e);
     }
   },
   async getFont(text) {

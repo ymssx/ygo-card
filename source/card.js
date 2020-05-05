@@ -50,7 +50,8 @@ const Card = function ({
   recover = false,
   holo = true,
   cardbagSwitch = false,
-  translate = false
+  translate = true,
+  verbose = false
 }) {
   // current path
   let moldPath = import.meta.url.split('/');
@@ -94,6 +95,7 @@ const Card = function ({
   this.holo = holo;
   this.cardbagSwitch = cardbagSwitch;
   this.translate = translate;
+  this.verbose = verbose;
 
   if (canvas) {
     canvas.style.maxWidth = 0.5 * size[0] + 'px';
@@ -107,6 +109,11 @@ const Card = function ({
 };
 
 Card.prototype = {
+  log(origin, ...content) {
+    if (this.verbose) {
+      console.log(...content);
+    }
+  },
   bind(canvas) {
     this.canvas = canvas;
     canvas.width = this.size[0];

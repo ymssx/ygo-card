@@ -195,7 +195,7 @@ CardDrawer.prototype = {
     // draw card name
     if (window.fontMap[config.name.font]) {
       c.fillStyle = cardData.color;
-      c.font=config.name.fontSize*r + "px " + config.name.font + fontPlus;
+      c.font = config.name.fontSize*r + "px " + config.name.font + fontPlus;
       c.fillText(cardData.name,config.name.position[0] * r,config.name.position[1] * r,config.name.maxWidth * r);
     }
 
@@ -252,7 +252,7 @@ CardDrawer.prototype = {
       }
 
       c.fillStyle = '#000000';
-      c.font=descConfig.fontSize*r + "px " + descConfig.font + fontPlus;
+      c.font = descConfig.fontSize*r + "px " + descConfig.font + fontPlus;
 
       if (descConfig.splitMode === 'cn') {
         this.drawDesc(descParts, descConfig, r);
@@ -263,25 +263,36 @@ CardDrawer.prototype = {
       // draw pendulum desc
       if (cardData.type3 === 'lb' && cardData.lb_desc) {
         let pendulumDescParts = this.descSplit(cardData.lb_desc, config.monsterDesc.lbFontSize, config.monsterDesc.font, 5, 556);
-        c.fillStyle = '#000000';
-        c.font=config.monsterDesc.lbFontSize*r + "px " + config.monsterDesc.font + fontPlus;
+        c.fillStyle = 'rgba(0,0,0,0.7)';
+        c.font = config.monsterDesc.lbFontSize*r + "px " + config.monsterDesc.font + fontPlus;
         for (let index in pendulumDescParts) {
           let descPart = pendulumDescParts[index];
           let left = config.monsterDesc.lbPosition[0];
           let top = config.monsterDesc.lbPosition[1] + index * config.monsterDesc.lbLineHeight;
-          c.fillText(descPart,left*r,top*r,556*r);
+          c.fillText(descPart, left*r, top*r, 556*r);
           if (index === 4) {
             let tempWidth = c.measureText(descPart).width;
             if (tempWidth < 556*r) {
-              c.fillText(descPart,left*r,top*r,c.measureText(descPart.slice(0, -1)).width);
+              c.fillText(descPart, left*r, top*r, c.measureText(descPart.slice(0, -1)).width);
             } else {
-              c.fillText(descPart,left*r,top*r,556*r);
+              c.fillText(descPart, left*r, top*r, 556*r);
             }
           } else {
-            c.fillText(descPart,left*r,top*r,556*r);
+            c.fillText(descPart, left*r, top*r, 556*r);
           }
         }
       }
+    }
+
+    // pendulum number
+    if (cardData.type3 === 'lb' && cardData.lb_num) {
+      c.fillStyle = '#000000';
+      c.font = config.pendulumNumber.fontSize * r + "px " + config.pendulumNumber.font;
+      let numWidth = 0.5 * Math.min(c.measureText(cardData.lb_num).width, 50);
+      let leftPosition = config.pendulumNumber.positonLeft[0] - numWidth;
+      let rightPosition = config.pendulumNumber.positonRight[0] - numWidth;
+      c.fillText(cardData.lb_num, leftPosition, config.pendulumNumber.positonLeft[1] * r, 50 * r);
+      c.fillText(cardData.lb_num, rightPosition, config.pendulumNumber.positonRight[1] * r, 50 * r);
     }
 
     // draw ATK/DEF
@@ -306,15 +317,10 @@ CardDrawer.prototype = {
       }
     }
 
-    // pendulum number
-    if (cardData.type3 === 'lb') {
-      c.fillStyle = '#000000';
-      c.font = config.pendulumNumber.fontSize * r + "px " + config.pendulumNumber.font;
-      console.log(cardData.lb_num)
-      c.fillText(cardData.lb_num, config.pendulumNumber.positonLeft[0], config.pendulumNumber.positonLeft[1] * r, 72 * r);
-    }
-
     // link arrows
+    if (cardData.type2 === 'lj') {
+      c.drawImage(fileContent.arrow1_1, 334, 823)
+    }
 
     // draw holo
     if (fileContent.holo && this.admin.holo) {
