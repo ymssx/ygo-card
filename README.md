@@ -142,6 +142,12 @@ const Card = function ({
  ### fontLoaded
 
  单个字体文件加载完成
+
+ ```javascript
+ card.fontLoaded = function(e) {
+   console.log(e);
+ }
+ ```
  
  ### fontsLoaded
 
@@ -164,14 +170,14 @@ const Card = function ({
 ## 🧰 config
 更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
 
-`card.changeConfig(config)`
+`card.changeConfig(config);`
 
 <br/>
 
 ## 🧮 API
 ### Card.render
 
-`await card.render()`
+`await card.render();`
 
 初始渲染，返回一个promise对象，当绘制完毕时变为fulfilled状态
 
@@ -179,7 +185,7 @@ const Card = function ({
 
 你可以自由的使用与更换自定义的中间卡图
 
-比如当你想把【真红眼黑龙】的卡图换成【青眼白龙】的
+比如当你想把【真红眼黑龙】的卡图换成【青眼白龙】
 ```javascript
 const pic = document.getElementById('blueEyes');
 card.feed(pic);
@@ -187,20 +193,28 @@ card.feed(pic);
 
 ### Card.changeConfig
 
-`card.changeConfig(config)`
+`card.changeConfig(config);`
 
 ### Card.feedData
 
 调整卡片信息
 
-`card.feedData(data)`
+```javascript
+card.feedData(data);
+```
 
 或者直接
-`card.data.name = 'Blue Eyes'`
+```javascript
+card.data.name = 'Blue Eyes';
+```
 
 ### Card.save
 
-保存卡图
+保存卡图到本地，你可以指定保存时**文件名称**和**图片尺寸**
+```javascript
+card.save('青眼白龙', [1626, 2370]);
+```
+也可以不指定参数，card.js会自动使用卡名作为文件名，尺寸会使用默认值1626 × 2370
 
 <br/>
 
@@ -218,5 +232,5 @@ Card.js
 
 * 🎨 cardDrawer.js
 
-管理绘图功能，在收到fileManage的绘图请求后，会按照cardData的数据以及cardFile提供的文件进行绘图
+管理绘图功能，在收到cardFile的绘图请求后，会按照cardData的数据以及cardFile提供的文件进行绘图
  

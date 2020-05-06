@@ -165,11 +165,11 @@ export default class Card {
     }
   }
 
-  save(saveName) {
+  save(saveName, size = [1626, 2370]) {
     let [w ,h] = [this.canvas.width, this.canvas.height];
-    this.canvas.width = 1626;
-    this.canvas.height = 2370;
-    this.cardDrawer.draw(this.data, this.cardFile.fileContent, [1626, 2370]);
+    this.canvas.width = size[0];
+    this.canvas.height = size[1];
+    this.cardDrawer.draw(this.data, this.cardFile.fileContent, size);
 
     let dataURI = this.canvas.toDataURL('image/png');
 
