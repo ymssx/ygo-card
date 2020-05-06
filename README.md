@@ -8,6 +8,8 @@
 
 * 🎨 card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
 
+<br/>
+
 ## 🎈 演示
 [🔗 在线演示](https://ymssx.gitee.io/ygo)
 
@@ -16,6 +18,8 @@
     <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoJp.jpg" height="200" />
     <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoEn.jpg" height="200" />
 </div>
+
+<br/>
 
 ## 📦 安装
 
@@ -27,6 +31,8 @@ $ git clone https://gitee.com/ymssx/cardjs.git
 ```shell
 $ npm i ygo-card
 ```
+
+<br/>
 
 ## 🚀 使用方式
 ``` html
@@ -83,6 +89,8 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 ```
   
 * #### canvas -- canvas对象
+
+<br/>
  
  ## 🎉 扩展
  
@@ -106,6 +114,8 @@ const Card = function ({
 })
 ```
 
+<br/>
+
  ## 🌴 生命周期
  通过传入事件来自定义卡片渲染的生命周期钩子函数
 
@@ -128,11 +138,15 @@ const Card = function ({
  * loaded
 
  卡片渲染完毕
+
+<br/>
  
 ## 🧰 config
 更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
 
 `card.changeConfig(config)`
+
+<br/>
 
 ## 🧮 API
 * Card.render
@@ -157,6 +171,8 @@ const Card = function ({
 * Card.save
 
 保存卡图
+
+<br/>
 
 ## 🧶 实现方式
 
