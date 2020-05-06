@@ -4,9 +4,9 @@
 
 ## 为什么使用card.js
 
-card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此您不用过多的担心性能问题。
+· 📦card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此您不用过多的担心性能问题。
 
-card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
+· 🎨card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
 
 ## 演示
 [在线演示](https://ymssx.gitee.io/ygo)
@@ -29,7 +29,7 @@ card.render();
 
 #### data -- 卡片信息，包括名字、密码、效果等
 ```typescript
-interface cardData = {
+interface data = {
   name: string,                          // card name
   _id: string,                           // card id
   type: 'monster' | 'magic' | 'tragic',  // first type
