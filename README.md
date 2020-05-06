@@ -17,6 +17,13 @@
     <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoEn.jpg" height="200" />
 </div>
 
+## 📦 安装
+`npm i ygo-card`
+
+或者
+
+`git clone https://gitee.com/ymssx/cardjs.git`
+
 ## 🚀 使用方式
 ``` html
 <canvas id="card"></canvas>
