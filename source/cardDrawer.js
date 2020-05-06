@@ -1,9 +1,9 @@
-export const CardDrawer = function(canvas, admin) {
-	this.canvas = canvas.getContext('2d');
-	this.admin = admin;
-};
-
-CardDrawer.prototype = {
+export class CardDrawer {
+  constructor(canvas, admin) {
+    this.canvas = canvas.getContext('2d');
+    this.admin = admin;
+  }
+  
   descSplit(desc, fontSize, font, maxLines = 6, maxWidth = 683) {
     const c = this.canvas;
     c.font=fontSize + "px " + font;
@@ -30,7 +30,8 @@ CardDrawer.prototype = {
     }
 
     return res;
-  },
+  }
+  
   descSplitEn(desc, fontSize, font, maxLines = 6, maxWidth = 683) {
     let words = desc.split(' ');
     const c = this.canvas;
@@ -102,7 +103,8 @@ CardDrawer.prototype = {
     }
 
     return result;
-  },
+  }
+  
   drawDesc(descParts, descConfig, r) {
     const c = this.canvas;
 
@@ -121,7 +123,8 @@ CardDrawer.prototype = {
         c.fillText(descPart,left*r,top*r,683*r);
       }
     }
-  },
+  }
+  
   drawEnDesc(descParts, descConfig, r) {
     const c = this.canvas;
 
@@ -138,7 +141,8 @@ CardDrawer.prototype = {
         c.fillText(word,left*r,top*r,width*r);
       }
     }
-  },
+  }
+  
   draw(...args) {
     // debounce
     if (this.drawer) {
@@ -147,9 +151,11 @@ CardDrawer.prototype = {
 
     this.drawer = setTimeout(() => {
       this._draw_(...args);
-    }, 10);
-  },
+    }, 100);
+  }
+  
   _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style) {
+    console.log(111)
     const r = size[0] / config.moldSize[0];
     const c = this.canvas;
 

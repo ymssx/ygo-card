@@ -1,179 +1,179 @@
-import {FileManage} from "./fileManage.js";
 import {translate} from "./lib/translate.js";
 
-export const CardData = function(dbData, admin, color) {
-  this.dbData = dbData;
-  this.admin = admin;
+export class CardData {
+  constructor(dbData, admin, color) {
+    this.dbData = dbData;
+    this.admin = admin;
 
-  if (admin.recover) {
-    for (let key in dbData) {
-      if (localStorage.getItem(key)) {
-        dbData[key] = localStorage.getItem(key);
+    if (admin.recover) {
+      for (let key in dbData) {
+        if (localStorage.getItem(key)) {
+          dbData[key] = localStorage.getItem(key);
+        }
       }
     }
-  }
 
-  let textUpdate = ['type4', 'level', 'attack', 'defend', 'cardbag'];
-  for (let key of textUpdate) {
-    Object.defineProperty(this, key, {
-      get() {
-        return dbData[key];
-      },
-      set(value) {
-        dbData[key] = value;
-        this.draw();
-      }
-    })
-  }
+    let textUpdate = ['type4', 'level', 'attack', 'defend', 'cardbag'];
+    for (let key of textUpdate) {
+      Object.defineProperty(this, key, {
+        get() {
+          return dbData[key];
+        },
+        set(value) {
+          dbData[key] = value;
+          this.draw();
+        }
+      })
+    }
 
-  let fontUpdate = ['name', 'desc', 'race'];
-  for (let key of fontUpdate) {
-    Object.defineProperty(this, key, {
+    let fontUpdate = ['name', 'desc', 'race'];
+    for (let key of fontUpdate) {
+      Object.defineProperty(this, key, {
+        get() {
+          return dbData[key];
+        },
+        set(value) {
+          if (this.admin.translate) {
+            value = translate(value)
+          }
+
+          dbData[key] = value;
+          this.draw(['text'], key);
+        }
+      })
+    }
+
+    Object.defineProperty(this, 'lb_desc', {
       get() {
-        return dbData[key];
+        if (dbData.lb_desc) return dbData.lb_desc;
+        
+        let desc = this._desc_;
+        return this._lb_desc;
       },
       set(value) {
         if (this.admin.translate) {
           value = translate(value)
         }
 
-        dbData[key] = value;
-        this.draw(['text'], key);
+        dbData.lb_desc = value;
+        this.draw(['text'], 'lb_desc');
       }
     })
-  }
 
-  Object.defineProperty(this, 'lb_desc', {
-    get() {
-      if (dbData.lb_desc) return dbData.lb_desc;
-      
-      let desc = this._desc_;
-      return this._lb_desc;
-    },
-    set(value) {
-      if (this.admin.translate) {
-        value = translate(value)
-      }
-
-      dbData.lb_desc = value;
-      this.draw(['text'], 'lb_desc');
-    }
-  })
-
-  Object.defineProperty(this, 'lb_num', {
-    get() {
-      if (dbData.lb_num) return dbData.lb_num;
-      
-      let desc = this._desc_;
-      return this._lb_num;
-    },
-    set(value) {
-      dbData.lb_num = value;
-      this.draw(['text'], 'lb_num');
-    }
-  })
-
-  Object.defineProperty(this, 'type', {
-    get() {
-      return dbData.type;
-    },
-    set(value) {
-      let update = ['mold', 'level', 'attribute'];
-      if ((value === 'monster' && dbData.type !== 'monster') || (value !== 'monster' && dbData.type === 'monster')) {
-        dbData.type2 = 'tc';
-        dbData.type3 = null;
-        dbData.type4 = null;
-        update.push('type');
-      }
-      dbData.type = value;
-      this.draw(update);
-    }
-  });
-
-  let moldUpdate = ['type2', 'type3'];
-  for (let key of moldUpdate) {
-    Object.defineProperty(this, key, {
+    Object.defineProperty(this, 'lb_num', {
       get() {
-        return dbData[key];
+        if (dbData.lb_num) return dbData.lb_num;
+        
+        let desc = this._desc_;
+        return this._lb_num;
       },
       set(value) {
-        dbData[key] = value;
-        if (dbData['type'] === 'monster') {
-          this.draw(['mold', 'level', 'attribute']);
-        } else {
-          this.draw(['mold', 'level', 'attribute', 'icon']);
-        }
+        dbData.lb_num = value;
+        this.draw(['text'], 'lb_num');
       }
     })
-  }
 
-  Object.defineProperty(this, 'attribute', {
-    get() {
-      return dbData['attribute'];
-    },
-    set(value) {
-      dbData['attribute'] = value;
-      this.draw(['attribute']);
-    }
-  })
-
-  Object.defineProperty(this, '_id', {
-    get() {
-      return dbData['_id'];
-    },
-    set(value) {
-      dbData['_id'] = value;
-      //this.admin.key = value;
-      this.draw(['pic']);
-    }
-  });
-
-  Object.defineProperty(this, 'color', {
-    get() {
-      if (!color) {
-        return this.defaultColor;
+    Object.defineProperty(this, 'type', {
+      get() {
+        return dbData.type;
+      },
+      set(value) {
+        let update = ['mold', 'level', 'attribute'];
+        if ((value === 'monster' && dbData.type !== 'monster') || (value !== 'monster' && dbData.type === 'monster')) {
+          dbData.type2 = 'tc';
+          dbData.type3 = null;
+          dbData.type4 = null;
+          update.push('type');
+        }
+        dbData.type = value;
+        this.draw(update);
       }
-      return color;
-    },
-    set(value) {
-      color = value;
-      this.draw();
-    }
-  });
+    });
 
-  var flash = 0;
-  Object.defineProperty(this, 'flash', {
-    get() {
-      return flash;
-    },
-    set(value) {
-      flash = value;
-      this.draw();
+    let moldUpdate = ['type2', 'type3'];
+    for (let key of moldUpdate) {
+      Object.defineProperty(this, key, {
+        get() {
+          return dbData[key];
+        },
+        set(value) {
+          dbData[key] = value;
+          if (dbData['type'] === 'monster') {
+            this.draw(['mold', 'level', 'attribute']);
+          } else {
+            this.draw(['mold', 'level', 'attribute', 'icon']);
+          }
+        }
+      })
     }
-  });
 
-  this.caller = null;
-  this.getData = function() {
-    let res = {};
-    for (let key in dbData) {
-      res[key] = dbData[key];
+    Object.defineProperty(this, 'attribute', {
+      get() {
+        return dbData['attribute'];
+      },
+      set(value) {
+        dbData['attribute'] = value;
+        this.draw(['attribute']);
+      }
+    })
+
+    Object.defineProperty(this, '_id', {
+      get() {
+        return dbData['_id'];
+      },
+      set(value) {
+        dbData['_id'] = value;
+        //this.admin.key = value;
+        this.draw(['pic']);
+      }
+    });
+
+    Object.defineProperty(this, 'color', {
+      get() {
+        if (!color) {
+          return this.defaultColor;
+        }
+        return color;
+      },
+      set(value) {
+        color = value;
+        this.draw();
+      }
+    });
+
+    var flash = 0;
+    Object.defineProperty(this, 'flash', {
+      get() {
+        return flash;
+      },
+      set(value) {
+        flash = value;
+        this.draw();
+      }
+    });
+
+    this.caller = null;
+    this.getData = function() {
+      let res = {};
+      for (let key in dbData) {
+        res[key] = dbData[key];
+      }
+      return res;
     }
-    return res;
+
+    this.saveToCache = function () {
+      for (let key in dbData) {
+        localStorage.setItem(key, dbData[key]);
+      }
+    }
   }
-
-  this.saveToCache = function () {
-    for (let key in dbData) {
-      localStorage.setItem(key, dbData[key]);
-    }
-  }
-};
-
-CardData.prototype = {
+  
   get _attribute_() {
       const attribute = this.attribute;
       const trans = this.admin.config.translate;
       return trans.attribute[attribute];
-  },
+  }
+  
   get _desc_() {
 		const desc = this.desc;
 		if (this.type3 === 'lb') {
@@ -189,7 +189,8 @@ CardData.prototype = {
 			var desc_ = desc.replace("\r", "").replace("\n", "").replace(" ", "");
 		}
 		return desc_;
-	},
+  }
+  
 	get _ifm_() {
 		const race = this.race;
 		const trans = this.admin.config.translate;
@@ -226,7 +227,8 @@ CardData.prototype = {
 		} else {
 			return brackets[0] + trans.tragic + brackets[1];
 		}
-	},
+  }
+  
   get _magicType_() {
     let type;
     let brackets = this.admin.config.translate.brackets;
@@ -245,7 +247,8 @@ CardData.prototype = {
     }
 
     return type;
-  },
+  }
+  
 	get _link_() {
     if (this.dbData.link instanceof Array && this.dbData.link.length >= 8) {
       this.link_num = this.dbData.link.reduce((num, item) => {
@@ -277,7 +280,8 @@ CardData.prototype = {
 		}
 		this.link_num = num;
 		return res;
-	},
+  }
+  
   get defaultColor() {
     if (this.type === 'monster') {
       if (this.type2 === 'cl' || this.type2 === 'lj') {
@@ -288,12 +292,9 @@ CardData.prototype = {
     } else {
       return '#fff'
     }
-  },
+  }
+  
 	draw(key, who) {
-		if (this.caller instanceof FileManage) {
-			this.caller.update(key, who);
-		} else {
-			console.error('you need bind a drawer first');
-		}
+    this.admin.cardFile.update(key, who);
 	}
 }

@@ -23,10 +23,10 @@ card.js十分容易使用，您只需要短短的一行代码，就能将一张c
 ```javascript
 import Card from './card.js'
 
-let card = new Card({ cardData, canvas, size })
+let card = new Card({ data, canvas, size })
 ```
 
-#### cardData -- 卡片信息，包括名字、密码、效果等
+#### data -- 卡片信息，包括名字、密码、效果等
 ```typescript
 interface cardData = {
   name: string,                          // card name
@@ -54,7 +54,7 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 例如 
 
 ```javascript
-let cardData = { 
+let data = { 
     name: '青眼的白龍',
     _id: '89631139',
     type: 'monster',
@@ -94,7 +94,7 @@ let cardData = {
  
 ```typescript
 const Card = function ({
-  cardData: object,                       // 卡片数据
+  data: object,                       // 卡片数据
   canvas: HTMLElement,                    // canvas对象
   size: number[] = [813, 1185],           // 绘制尺寸，[宽, 高]
   lang:'cn' | 'jp' | 'en' = 'cn',         // 语言 cn、jp、en
@@ -126,10 +126,10 @@ const Card = function ({
 
 调整卡片信息
 
-`card.feedData(cardData)`
+`card.feedData(data)`
 
 或者直接
-`card.cardData.name = 'Blue Eyes'`
+`card.data.name = 'Blue Eyes'`
 
 #### Card.save
 
@@ -142,7 +142,7 @@ Card.js
 ### cardData.js 
 >管理卡片数据，监听数据变动，当数据更新之后，cardData会自动分析需要更新哪些文件，然后告知fileManage
 
-### fileManage.js
+### cardFile.js
 > 管理文件的更新与缓存，当收到cardData的更新请求后，会自动从缓存或者网络调用图片，在文件更新之后会自动告知cardDrawer
 
 ### cardDrawer.js

@@ -1,6 +1,6 @@
 import {CardDrawer} from "./cardDrawer.js";
 import {CardData} from "./cardData.js";
-import {FileManage} from "./fileManage.js";
+import {CardFile} from "./cardFile.js";
 import defaultConfig from "./config/defaultConfig.js";
 
 let defaultEvent = function (e) {
@@ -8,9 +8,9 @@ let defaultEvent = function (e) {
 };
 
 /*
-- cardData: card information
+- data: card information
 
-  interface cardData = {
+  interface data = {
     name: string,                          // card name
     _id: string,                           // card id
     type: 'monster' | 'magic' | 'tragic',  // first type
@@ -36,91 +36,93 @@ let defaultEvent = function (e) {
 - canvas: HTMLElement
 */
 
-const Card = function ({
-  cardData, canvas,
-  size = [813, 1185],
-  lang = 'cn',
-  config = defaultConfig,
-  fastFont = true,
-  fontLoaded = defaultEvent,
-  imageLoaded = defaultEvent,
-  fontsLoaded = defaultEvent,
-  imagesLoaded = defaultEvent,
-  loaded = defaultEvent,
-  recover = false,
-  holo = true,
-  cardbagSwitch = false,
-  translate = true,
-  verbose = false
-}) {
-  // current path
-  let moldPath = import.meta.url.split('/');
-  if (moldPath.length > 1) {
-    moldPath[moldPath.length - 1] = 'mold';
-    this.moldPath = moldPath.join('/');
-  } else {
-    this.moldPath = '/';
-  }
-  
-  // recover config from localStorage
-  this.recover = recover;
-  if (recover) {
-    var tempConfig = Object.create(config);
-    for (let key in config) {
-      if (localStorage.getItem(key)) {
-        tempConfig[key] = JSON.parse(localStorage.getItem(key))
+export default class Card {
+  constructor({
+    data, canvas,
+    size = [813, 1185],
+    lang = 'cn',
+    config = defaultConfig,
+    fastFont = true,
+    fontLoaded = defaultEvent,
+    imageLoaded = defaultEvent,
+    fontsLoaded = defaultEvent,
+    imagesLoaded = defaultEvent,
+    loaded = defaultEvent,
+    recover = false,
+    holo = true,
+    cardbagSwitch = false,
+    translate = true,
+    verbose = false
+  }) {
+    // current path
+    let moldPath = import.meta.url.split('/');
+    if (moldPath.length > 1) {
+      moldPath[moldPath.length - 1] = 'mold';
+      this.moldPath = moldPath.join('/');
+    } else {
+      this.moldPath = '/';
+    }
+    
+    // recover config from localStorage
+    this.recover = recover;
+    if (recover) {
+      var tempConfig = Object.create(config);
+      for (let key in config) {
+        if (localStorage.getItem(key)) {
+          tempConfig[key] = JSON.parse(localStorage.getItem(key))
+        }
       }
+    }
+
+    this.config = tempConfig || config;
+    this.key = data._id;
+    this.fastFont = fastFont;
+
+    // events register
+    this.fontLoaded = fontLoaded;
+    this.imageLoaded = imageLoaded;
+    this.fontsLoaded = fontsLoaded;
+    this.imagesLoaded = imagesLoaded;
+    this.loaded = loaded;
+
+    size = [size[0]*2, size[1]*2];
+    this.data = new CardData(data, this);
+    this.size = size;
+
+    this.lang = lang;
+    this.imgStatus = false;
+    this.db_id = null;
+    this.flashImg = null;
+    this.holo = holo;
+    this.cardbagSwitch = cardbagSwitch;
+    this.translate = translate;
+    this.verbose = verbose;
+
+    if (canvas) {
+      canvas.style.maxWidth = 0.5 * size[0] + 'px';
+      canvas.style.maxHeight = 0.5 * size[1] + 'px';
+      canvas.width = size[0];
+      canvas.height = size[1];
+      this.canvas = canvas;
+      this.cardDrawer = new CardDrawer(canvas, this);
+      this.cardFile = new CardFile(this);
     }
   }
 
-  this.config = tempConfig || config;
-  this.key = cardData._id;
-  this.fastFont = fastFont;
-
-  // events register
-  this.fontLoaded = fontLoaded;
-  this.imageLoaded = imageLoaded;
-  this.fontsLoaded = fontsLoaded;
-  this.imagesLoaded = imagesLoaded;
-  this.loaded = loaded;
-
-  size = [size[0]*2, size[1]*2];
-  this.cardData = new CardData(cardData, this);
-  this.size = size;
-
-  this.lang = lang;
-  this.imgStatus = false;
-  this.db_id = null;
-  this.flashImg = null;
-  this.holo = holo;
-  this.cardbagSwitch = cardbagSwitch;
-  this.translate = translate;
-  this.verbose = verbose;
-
-  if (canvas) {
-    canvas.style.maxWidth = 0.5 * size[0] + 'px';
-    canvas.style.maxHeight = 0.5 * size[1] + 'px';
-    canvas.width = size[0];
-    canvas.height = size[1];
-    this.canvas = canvas;
-    this.cardDrawer = new CardDrawer(canvas, this);
-    this.fileManage = new FileManage(this.cardData, this.cardDrawer, this);
-  }
-};
-
-Card.prototype = {
   log(origin, ...content) {
     if (this.verbose) {
       console.log(...content);
     }
-  },
+  }
+
   bind(canvas) {
     this.canvas = canvas;
     canvas.width = this.size[0];
     canvas.height = this.size[1];
     this.cardDrawer = new CardDrawer(canvas, this);
-    this.fileManage = new FileManage(this.cardData, this.cardDrawer, this);
-  },
+    this.cardFile = new CardFile(this);
+  }
+
   get promise() {
     return new Promise((resolve, reject) => {
       this.rendered = () => {
@@ -136,24 +138,28 @@ Card.prototype = {
   
       this.failed = reject;
     });
-  },
+  }
+
   feed(img, imgStatus = false) {
-    this.fileManage.fileContent.pic = img;
+    this.cardFile.fileContent.pic = img;
     this.imgStatus = imgStatus;
     this.draw();
-  },
+  }
+
   changeConfig(config) {
     this.config = config;
     this.draw();
-  },
+  }
+
   draw() {
-    this.cardDrawer.draw(this.cardData, this.fileManage.fileContent);
-  },
+    this.cardDrawer.draw(this.data, this.cardFile.fileContent);
+  }
+
   save(saveName) {
     let [w ,h] = [this.canvas.width, this.canvas.height];
     this.canvas.width = 1626;
     this.canvas.height = 2370;
-    this.cardDrawer.draw(this.cardData, this.fileManage.fileContent, [1626, 2370]);
+    this.cardDrawer.draw(this.data, this.cardFile.fileContent, [1626, 2370]);
 
     let dataURI = this.canvas.toDataURL('image/png');
 
@@ -169,7 +175,7 @@ Card.prototype = {
 
     var objurl = URL.createObjectURL(blob);
     var link = document.createElement("a");
-    link.download = saveName || this.cardData.name + '.png';
+    link.download = saveName || this.data.name + '.png';
     link.href = objurl;
     link.click();
 
@@ -177,22 +183,26 @@ Card.prototype = {
     this.canvas.width = w;
     this.canvas.height = h;
     this.draw();
-  },
+  }
+
   autoDraw() {
     setInterval(() => {
       this.draw();
     },200)
-  },
+  }
+
   feedData(data) {
     for (let key in data) {
-      this.cardData[key] = data[key];
+      this.data[key] = data[key];
     }
-  },
-  get data() {
-    return this.cardData.getData();
-  },
+  }
+
+  get getData() {
+    return this.data.getData();
+  }
+
   saveToCache() {
-    this.cardData.saveToCache();
+    this.data.saveToCache();
 
     for (let key in this.config) {
       let json = JSON.stringify(this.config[key]);
@@ -200,12 +210,10 @@ Card.prototype = {
     }
 
     localStorage.setItem('lang', this.lang);
-  },
+  }
+
   feedFlash(img) {
     this.flashImg = img;
-    this.cardData.flash = 0;
+    this.data.flash = 0;
   }
 };
-
-
-export default Card;
