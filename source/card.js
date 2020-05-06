@@ -86,7 +86,6 @@ export default class Card {
     this.loaded = loaded;
 
     size = [size[0]*2, size[1]*2];
-    this.data = new CardData(data, this);
     this.size = size;
 
     this.lang = lang;
@@ -97,7 +96,9 @@ export default class Card {
     this.cardbagSwitch = cardbagSwitch;
     this.translate = translate;
     this.verbose = verbose;
+    this.renderState = false;
 
+    this.data = new CardData(data, this);
     if (canvas) {
       canvas.style.maxWidth = 0.5 * size[0] + 'px';
       canvas.style.maxHeight = 0.5 * size[1] + 'px';
@@ -121,6 +122,12 @@ export default class Card {
     canvas.height = this.size[1];
     this.cardDrawer = new CardDrawer(canvas, this);
     this.cardFile = new CardFile(this);
+  }
+
+  async render() {
+    await this.cardFile.loadAll();
+    this.renderState = true;
+    this.draw();
   }
 
   get promise() {
@@ -152,7 +159,9 @@ export default class Card {
   }
 
   draw() {
-    this.cardDrawer.draw(this.data, this.cardFile.fileContent);
+    if (this.renderState) {
+      this.cardDrawer.draw(this.data, this.cardFile.fileContent);
+    }
   }
 
   save(saveName) {

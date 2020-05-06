@@ -19,8 +19,6 @@ export class CardFile {
         window.fontMap[fontName] = false;
       }
     }
-
-    this.loadAll();
   }
 
   log(...content) {

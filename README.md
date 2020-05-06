@@ -21,9 +21,10 @@ card.js十分容易使用，您只需要短短的一行代码，就能将一张c
 ### ES Module
 
 ```javascript
-import Card from './card.js'
+import Card from './card.js';
 
-let card = new Card({ data, canvas, size })
+let card = new Card({ data, canvas, size });
+card.render();
 ```
 
 #### data -- 卡片信息，包括名字、密码、效果等
@@ -76,19 +77,19 @@ let data = {
  通过传入事件来自定义卡片渲染的生命周期钩子函数
 
  #### fontLoaded
- > 单个字体文件加载完成
+ 单个字体文件加载完成
  
  #### fontsLoaded
- > 所有字体文件加载完成
+ 所有字体文件加载完成
 
  #### imageLoaded
- > 单个图片资源加载完成
+ 单个图片资源加载完成
 
  #### imagesLoaded
- > 单个图片资源加载完成
+ 单个图片资源加载完成
 
  #### loaded
- > 卡片渲染完毕
+ 卡片渲染完毕
  
  ## 扩展
  
@@ -146,5 +147,5 @@ Card.js
 管理文件的更新与缓存，当收到cardData的更新请求后，会自动从缓存或者网络调用图片，在文件更新之后会自动告知cardDrawer
 
 ### cardDrawer.js
-管理绘图功能，在收到fileManage的绘图请求后，会按照cardData的数据以及fileManage提供的文件进行绘图
+管理绘图功能，在收到fileManage的绘图请求后，会按照cardData的数据以及cardFile提供的文件进行绘图
  
