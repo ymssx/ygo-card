@@ -1,5 +1,9 @@
 # card.js
 
+<img src="https://img.shields.io/npm/v/ygo-card"/>
+<img src="https://img.shields.io/npm/l/ygo-card"/>
+<img src="https://img.shields.io/badge/yami-%40qq.com-lightgrey"/>
+
 这是一个游戏王卡片渲染工具，你只需要在你的网站引入card.js，就可以轻松地渲染出标准的游戏王卡图！
 
 ## 为什么使用card.js
@@ -103,7 +107,8 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 
 [🔗 传送门](https://gitee.com/ymssx/pics)
 
-<img src="https://gitee.com/ymssx/cardjs/raw/master/source/mold/pic.jpg" height="200" />
+
+[<img src="https://gitee.com/ymssx/cardjs/raw/master/source/mold/pic.jpg" height="200" />](https://gitee.com/ymssx/pics)
 
 <br/>
  
