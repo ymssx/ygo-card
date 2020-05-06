@@ -41,7 +41,8 @@ let data = {
 }
 let canvas = document.getElementById('card');
 
-let card = new Card({ data, canvas, size });
+const card = new Card({ data, canvas, size });
+
 card.render();
 ```
 
