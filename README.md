@@ -4,9 +4,9 @@
 
 ## 为什么使用card.js
 
-· 📦card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此您不用过多的担心性能问题。
+· 📦 card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此您不用过多的担心性能问题。
 
-· 🎨card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
+· 🎨 card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
 
 ## 演示
 [在线演示](https://ymssx.gitee.io/ygo)
@@ -18,10 +18,28 @@
 </div>
 
 ## 使用方式
-### ES Module
+``` html
+<canvas id="card"></canvas>
+```
 
 ```javascript
 import Card from './card.js';
+
+let data = { 
+    name: '青眼的白龍',
+    _id: '89631139',
+    type: 'monster',
+    type2: 'tc',
+    type3: '',
+    type4: '',
+    attack: 3000,
+    defend: 2500,
+    level: 8,
+    desc: '以高攻擊力著稱的傳說之龍。任何對手都能被粉碎，其破壞力不可估量。',
+    race: '龍族',
+    attribute: 'light' 
+}
+let canvas = document.getElementById('card');
 
 let card = new Card({ data, canvas, size });
 card.render();
@@ -50,25 +68,6 @@ interface data = {
 }
 
 typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同調', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '靈魂', "fz": '反轉', "ts": '特殊召喚', "zb": '裝備', "sg": '速攻', "cd": '場地', "fj": '反擊', "yx": '永續' }
-```
-  
-例如 
-
-```javascript
-let data = { 
-    name: '青眼的白龍',
-    _id: '89631139',
-    type: 'monster',
-    type2: 'tc',
-    type3: '',
-    type4: '',
-    attack: 3000,
-    defend: 2500,
-    level: 8,
-    desc: '以高攻擊力著稱的傳說之龍。任何對手都能被粉碎，其破壞力不可估量。',
-    race: '龍族',
-    attribute: 'light' 
-}
 ```
   
 #### canvas -- canvas对象
