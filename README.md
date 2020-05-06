@@ -25,7 +25,8 @@
 ```javascript
 import Card from './card.js';
 
-let data = { 
+const canvas = document.getElementById('card');
+const data = { 
     name: '青眼的白龍',
     _id: '89631139',
     type: 'monster',
@@ -39,9 +40,8 @@ let data = {
     race: '龍族',
     attribute: 'light' 
 }
-let canvas = document.getElementById('card');
 
-const card = new Card({ data, canvas, size });
+const card = new Card({ data, canvas, size: [400, 584] });
 
 card.render();
 ```
@@ -72,24 +72,6 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 ```
   
 #### canvas -- canvas对象
-
- ## 生命周期
- 通过传入事件来自定义卡片渲染的生命周期钩子函数
-
- #### fontLoaded
- 单个字体文件加载完成
- 
- #### fontsLoaded
- 所有字体文件加载完成
-
- #### imageLoaded
- 单个图片资源加载完成
-
- #### imagesLoaded
- 单个图片资源加载完成
-
- #### loaded
- 卡片渲染完毕
  
  ## 扩展
  
@@ -112,6 +94,24 @@ const Card = function ({
   translate: boolean = false              // 是否自动繁简转换 - boolean
 })
 ```
+
+ ## 生命周期
+ 通过传入事件来自定义卡片渲染的生命周期钩子函数
+
+ · fontLoaded
+ 单个字体文件加载完成
+ 
+ · fontsLoaded
+ 所有字体文件加载完成
+
+ · imageLoaded
+ 单个图片资源加载完成
+
+ · imagesLoaded
+ 单个图片资源加载完成
+
+ · loaded
+ 卡片渲染完毕
  
 ## config
 更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
@@ -119,11 +119,11 @@ const Card = function ({
 `card.changeConfig(config)`
 
 ## API
-#### Card.changeConfig
+· Card.changeConfig
 
 `card.changeConfig(config)`
 
-#### Card.feedData
+· Card.feedData
 
 调整卡片信息
 
@@ -132,7 +132,7 @@ const Card = function ({
 或者直接
 `card.data.name = 'Blue Eyes'`
 
-#### Card.save
+· Card.save
 
 保存卡图
 
@@ -140,12 +140,12 @@ const Card = function ({
 
 Card.js
 
-### cardData.js 
+· cardData.js 
 管理卡片数据，监听数据变动，当数据更新之后，cardData会自动分析需要更新哪些文件，然后告知cardFile
 
-### cardFile.js
+· cardFile.js
 管理文件的更新与缓存，当收到cardData的更新请求后，会自动从缓存或者网络调用图片，在文件更新之后会自动告知cardDrawer
 
-### cardDrawer.js
+· cardDrawer.js
 管理绘图功能，在收到fileManage的绘图请求后，会按照cardData的数据以及cardFile提供的文件进行绘图
  
