@@ -124,6 +124,12 @@ const Card = function ({
 `card.changeConfig(config)`
 
 ## 🧮 API
+* Card.render
+
+`await card.render()`
+
+初始渲染，返回一个promise对象，当绘制完毕时变为fulfilled状态
+
 * Card.changeConfig
 
 `card.changeConfig(config)`

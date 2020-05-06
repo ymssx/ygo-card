@@ -128,6 +128,7 @@ export default class Card {
     await this.cardFile.loadAll();
     this.renderState = true;
     this.draw();
+    return true;
   }
 
   get promise() {
