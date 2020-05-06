@@ -168,7 +168,7 @@ const Card = function ({
 或者直接
 `card.data.name = 'Blue Eyes'`
 
-* Card.save
+### Card.save
 
 保存卡图
 
