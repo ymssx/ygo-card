@@ -8,8 +8,8 @@
 
 * 🎨 card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
 
-## 演示
-[在线演示](https://ymssx.gitee.io/ygo)
+## 🎈 演示
+[🔗 在线演示](https://ymssx.gitee.io/ygo)
 
 <div align=left>
     <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoCn.jpg" height="200" />
@@ -17,7 +17,7 @@
     <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoEn.jpg" height="200" />
 </div>
 
-## 使用方式
+## 🚀 使用方式
 ``` html
 <canvas id="card"></canvas>
 ```
@@ -46,7 +46,7 @@ const card = new Card({ data, canvas, size: [400, 584] });
 card.render();
 ```
 
-#### data -- 卡片信息，包括名字、密码、效果等
+* #### data -- 卡片信息，包括名字、密码、效果等
 ```typescript
 interface data = {
   name: string,                          // card name
@@ -71,9 +71,9 @@ interface data = {
 typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同調', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '靈魂', "fz": '反轉', "ts": '特殊召喚', "zb": '裝備', "sg": '速攻', "cd": '場地', "fj": '反擊', "yx": '永續' }
 ```
   
-#### canvas -- canvas对象
+* #### canvas -- canvas对象
  
- ## 扩展
+ ## 🎉 扩展
  
 ```typescript
 const Card = function ({
@@ -95,7 +95,7 @@ const Card = function ({
 })
 ```
 
- ## 生命周期
+ ## 🌴 生命周期
  通过传入事件来自定义卡片渲染的生命周期钩子函数
 
  * fontLoaded
@@ -118,12 +118,12 @@ const Card = function ({
 
  卡片渲染完毕
  
-## config
+## 🧰 config
 更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
 
 `card.changeConfig(config)`
 
-## API
+## 🧮 API
 * Card.changeConfig
 
 `card.changeConfig(config)`
@@ -141,7 +141,7 @@ const Card = function ({
 
 保存卡图
 
-## 实现方式
+## 🧶 实现方式
 
 Card.js
 
