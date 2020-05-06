@@ -170,14 +170,18 @@ const Card = function ({
 ## 🧰 config
 更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
 
-`card.changeConfig(config);`
+```javascript
+card.changeConfig(config);
+```
 
 <br/>
 
 ## 🧮 API
 ### Card.render
 
-`await card.render();`
+```javascript
+await card.render();
+```
 
 初始渲染，返回一个promise对象，当绘制完毕时变为fulfilled状态
 
@@ -193,7 +197,9 @@ card.feed(pic);
 
 ### Card.changeConfig
 
-`card.changeConfig(config);`
+```javascript
+card.changeConfig(config);
+```
 
 ### Card.feedData
 
