@@ -119,23 +119,23 @@ const Card = function ({
  ## 🌴 生命周期
  通过传入事件来自定义卡片渲染的生命周期钩子函数
 
- * fontLoaded
+ ### fontLoaded
 
  单个字体文件加载完成
  
- * fontsLoaded
+ ### fontsLoaded
 
  所有字体文件加载完成
 
- * imageLoaded
+ ### imageLoaded
 
  单个图片资源加载完成
 
- * imagesLoaded
+ ### imagesLoaded
 
  单个图片资源加载完成
 
- * loaded
+ ### loaded
 
  卡片渲染完毕
 
@@ -149,17 +149,17 @@ const Card = function ({
 <br/>
 
 ## 🧮 API
-* Card.render
+### Card.render
 
 `await card.render()`
 
 初始渲染，返回一个promise对象，当绘制完毕时变为fulfilled状态
 
-* Card.changeConfig
+### Card.changeConfig
 
 `card.changeConfig(config)`
 
-* Card.feedData
+### Card.feedData
 
 调整卡片信息
 
@@ -178,15 +178,15 @@ const Card = function ({
 
 Card.js
 
-* cardData.js 
+* 📚 cardData.js 
 
 管理卡片数据，监听数据变动，当数据更新之后，cardData会自动分析需要更新哪些文件，然后告知cardFile
 
-* cardFile.js
+* 📁 cardFile.js
 
 管理文件的更新与缓存，当收到cardData的更新请求后，会自动从缓存或者网络调用图片，在文件更新之后会自动告知cardDrawer
 
-* cardDrawer.js
+* 🎨 cardDrawer.js
 
 管理绘图功能，在收到fileManage的绘图请求后，会按照cardData的数据以及cardFile提供的文件进行绘图
  
