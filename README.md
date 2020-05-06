@@ -97,9 +97,13 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 
 ## 🎏 游戏王卡图库
 
+不知道去哪里找卡图？
+
 这里收录了绝大多数游戏王卡图，不定期更新
 
 [🔗 传送门](https://gitee.com/ymssx/pics)
+
+<img src="https://gitee.com/ymssx/cardjs/raw/master/source/mold/pic.jpg" height="200" />
 
 <br/>
  
