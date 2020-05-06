@@ -18,11 +18,15 @@
 </div>
 
 ## 📦 安装
-`npm i ygo-card`
+
+```shell
+$ git clone https://gitee.com/ymssx/cardjs.git
+```
 
 或者
-
-`git clone https://gitee.com/ymssx/cardjs.git`
+```shell
+$ npm i ygo-card
+```
 
 ## 🚀 使用方式
 ``` html
