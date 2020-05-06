@@ -4,9 +4,9 @@
 
 ## 为什么使用card.js
 
-* 📦 card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此您不用过多的担心性能问题。
+* 📦 card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此你不用过多的担心性能问题。
 
-* 🎨 card.js十分容易使用，您只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中您可以随心所欲地进行创作！
+* 🎨 card.js十分容易使用，你只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中你可以随心所欲地进行创作！
 
 <br/>
 
@@ -14,9 +14,12 @@
 [🔗 在线演示](https://ymssx.gitee.io/ygo)
 
 <div align=left>
-    <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoCn.jpg" height="200" />
-    <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoJp.jpg" height="200" />
-    <img src="https://gitee.com/ymssx/yugioh-card/raw/master/demo/demoEn.jpg" height="200" />
+    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" />
+    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" />
+    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/灰流麗.jpg" height="200" />
+    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/屋敷童.jpg" height="200" />
+    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/儚無水木.jpg" height="200" />
+    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" />
 </div>
 
 <br/>
