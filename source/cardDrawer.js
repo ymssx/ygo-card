@@ -354,4 +354,4 @@ export class CardDrawer {
       this.admin.rendered();
     }
   }
-};
+}
