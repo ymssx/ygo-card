@@ -115,7 +115,7 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 
 <br/>
  
- ## 🎉 扩展
+## 🎉 扩展
  
 ```typescript
 const Card = function ({
@@ -139,7 +139,7 @@ const Card = function ({
 
 <br/>
 
- ## 🌴 生命周期
+## 🌴 生命周期
 
  通过传入事件来自定义卡片渲染的生命周期钩子函数
 
