@@ -98,11 +98,11 @@ const MAP = {
 }
 
 
-export default function({id, attack, defend, race, type, level, attribute, name, desc}) {
+export default function({id, atk, def, race, type, level, attribute, name, desc}) {
   let [type1, type2, type3, type4] = Map.type[type];
-  let attribute = Map.attribute[attribute];
-  let race = Map.race[race];
-  let level = tran.level(level);
+  attribute = Map.attribute[attribute];
+  race = Map.race[race];
+  level = tran.level(level);
   
   return {
     _id: id,
