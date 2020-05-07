@@ -1,6 +1,7 @@
 import {CardDrawer} from "./cardDrawer.js";
 import {CardData} from "./cardData.js";
 import {CardFile} from "./cardFile.js";
+import Variation from "./lib/variation.js";
 import defaultConfig from "./config/defaultConfig.js";
 
 let defaultEvent = function (e) {
@@ -52,7 +53,8 @@ export default class Card {
     holo = true,
     cardbagSwitch = false,
     translate = true,
-    verbose = false
+    verbose = false,
+    autoResize = false
   }) {    
     // recover config from localStorage
     this.recover = recover;
@@ -76,9 +78,6 @@ export default class Card {
     this.imagesLoaded = imagesLoaded;
     this.loaded = loaded;
 
-    size = [size[0]*2, size[1]*2];
-    this.size = size;
-
     this.lang = lang;
     this.imgStatus = false;
     this.db_id = null;
@@ -90,12 +89,18 @@ export default class Card {
     this.renderState = false;
 
     this.data = new CardData(data, this);
+
+    size = [size[0]*2, size[1]*2];
+    this.size = size;
     if (canvas) {
-      canvas.style.maxWidth = 0.5 * size[0] + 'px';
-      canvas.style.maxHeight = 0.5 * size[1] + 'px';
       canvas.width = size[0];
       canvas.height = size[1];
       this.canvas = canvas;
+      if (autoResize) {
+        this.observer = new ResizeObserver(e => this.resize());
+        this.observer.observe(this.canvas)
+      }
+      
       this.cardDrawer = new CardDrawer(canvas, this);
       this.cardFile = new CardFile(this);
     }
@@ -150,9 +155,9 @@ export default class Card {
     this.draw();
   }
 
-  draw() {
+  draw(size) {
     if (this.renderState) {
-      this.cardDrawer.draw(this.data, this.cardFile.fileContent);
+      this.cardDrawer.draw(this.data, this.cardFile.fileContent, size);
     }
   }
 
@@ -216,5 +221,34 @@ export default class Card {
   feedFlash(img) {
     this.flashImg = img;
     this.data.flash = 0;
+  }
+
+  resize(delay = 1000) {
+    if (this.resizeLock) return;
+
+    if (this.resizer) {
+      clearTimeout(this.resizer);
+    }
+    
+    this.resizeLock = true;
+
+    this.resizer = setTimeout(() => {
+      this._resize_();
+      setTimeout(() => {
+        this.resizeLock = false;
+      }, 500)
+    }, delay);
+  }
+
+  _resize_() {
+    let w = 2 * this.canvas.clientWidth;
+    let h = 2 * this.canvas.clientHeight;
+    this.canvas.width = w;
+    this.canvas.height = h;
+    this.draw([w, h]);
+  }
+
+  static transData(data) {
+    return Variation(data);
   }
 }
