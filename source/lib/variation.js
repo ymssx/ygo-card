@@ -99,10 +99,13 @@ const MAP = {
 
 
 export default function({id, atk, def, race, type, level, attribute, name, desc}) {
-  let [type1, type2, type3, type4] = Map.type[type];
-  attribute = Map.attribute[attribute];
-  race = Map.race[race];
-  level = Map.level(level);
+  let [type1, type2, type3, type4] = MAP.type[type];
+  attribute = MAP.attribute[attribute];
+  race = MAP.race[race];
+  level = MAP.level(level);
+
+  atk = (atk === -2) ? '?' : atk;
+  def = (def === -2) ? '?' : def;
   
   return {
     _id: id,

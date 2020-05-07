@@ -95,6 +95,8 @@ export default class Card {
     if (canvas) {
       canvas.width = size[0];
       canvas.height = size[1];
+      canvas.style.maxWidth = size[0] / 2 + 'px';
+      canvas.style.maxHeight = size[1] / 2 + 'px';
       this.canvas = canvas;
       if (autoResize) {
         this.observer = new ResizeObserver(e => this.resize());

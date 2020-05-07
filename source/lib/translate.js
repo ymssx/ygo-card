@@ -11,6 +11,7 @@ function qqPYStr() {
 }
 
 export const translate = function(s) {
+	if (!s) return s;
   var str='';
 	for(var i=0;i<s.length;i++){
 		if(charPYStr().indexOf(s.charAt(i))!=-1)
