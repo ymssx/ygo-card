@@ -226,4 +226,4 @@ export default class Card {
     this.flashImg = img;
     this.data.flash = 0;
   }
-};
+}
