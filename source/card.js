@@ -40,9 +40,9 @@ export default class Card {
   constructor({
     data, canvas,
     size = [813, 1185],
+    moldPath = './mold',
     lang = 'cn',
     config = defaultConfig,
-    fastFont = true,
     fontLoaded = defaultEvent,
     imageLoaded = defaultEvent,
     fontsLoaded = defaultEvent,
@@ -53,16 +53,7 @@ export default class Card {
     cardbagSwitch = false,
     translate = true,
     verbose = false
-  }) {
-    // current path
-    let moldPath = import.meta.url.split('/');
-    if (moldPath.length > 1) {
-      moldPath[moldPath.length - 1] = 'mold';
-      this.moldPath = moldPath.join('/');
-    } else {
-      this.moldPath = '/';
-    }
-    
+  }) {    
     // recover config from localStorage
     this.recover = recover;
     if (recover) {
@@ -76,7 +67,7 @@ export default class Card {
 
     this.config = tempConfig || config;
     this.key = data._id;
-    this.fastFont = fastFont;
+    this.moldPath = moldPath;
 
     // events register
     this.fontLoaded = fontLoaded;
