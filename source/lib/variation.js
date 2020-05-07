@@ -102,7 +102,7 @@ export default function({id, atk, def, race, type, level, attribute, name, desc}
   let [type1, type2, type3, type4] = Map.type[type];
   attribute = Map.attribute[attribute];
   race = Map.race[race];
-  level = tran.level(level);
+  level = Map.level(level);
   
   return {
     _id: id,
