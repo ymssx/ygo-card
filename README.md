@@ -17,14 +17,12 @@
 ## 🎈 演示
 [🔗 在线演示](https://ymssx.gitee.io/ygo)
 
-<div align=left>
-    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" />
-    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" />
-    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/灰流麗.jpg" height="200" />
-    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/屋敷童.jpg" height="200" />
-    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/儚無水木.jpg" height="200" />
-    <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" />
-</div>
+<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" />
+<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" />
+<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/灰流麗.jpg" height="200" />
+<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/屋敷童.jpg" height="200" />
+<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/儚無水木.jpg" height="200" />
+<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" />
 
 <br/>
 
@@ -71,6 +69,7 @@ card.render();
 ```
 
 * #### data -- 卡片信息，包括名字、密码、效果等
+
 ```typescript
 interface data = {
   name: string,                          // card name
