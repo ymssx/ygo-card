@@ -108,7 +108,11 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 [🔗 传送门](https://gitee.com/ymssx/pics)
 
 
-[<img src="https://gitee.com/ymssx/cardjs/raw/master/source/mold/pic.jpg" height="200" />](https://gitee.com/ymssx/pics)
+[<img src="https://gitee.com/ymssx/pics/raw/master/500/21844576.jpg" height="150" />](https://gitee.com/ymssx/pics)
+[<img src="https://gitee.com/ymssx/pics/raw/master/500/58932615.jpg" height="150" />](https://gitee.com/ymssx/pics)
+[<img src="https://gitee.com/ymssx/pics/raw/master/500/84327329.jpg" height="150" />](https://gitee.com/ymssx/pics)
+[<img src="https://gitee.com/ymssx/pics/raw/master/500/20721928.jpg" height="150" />](https://gitee.com/ymssx/pics)
+[<img src="https://gitee.com/ymssx/pics/raw/master/500/79979666.jpg" height="150" />](https://gitee.com/ymssx/pics)
 
 <br/>
  
