@@ -140,6 +140,7 @@ const Card = function ({
 <br/>
 
  ## 🌴 生命周期
+
  通过传入事件来自定义卡片渲染的生命周期钩子函数
 
  ### fontLoaded
@@ -171,6 +172,7 @@ const Card = function ({
 <br/>
  
 ## 🧰 config
+
 更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
 
 ```javascript
@@ -180,6 +182,7 @@ card.changeConfig(config);
 <br/>
 
 ## 🧮 API
+
 ### Card.render
 
 ```javascript
