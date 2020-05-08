@@ -19,6 +19,7 @@
 * 🍅 card.js十分容易使用，你只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中你可以随心所欲地进行创作！
 
 <br/>
+<br/>
 
 ## 🎈 作品
 
@@ -36,6 +37,7 @@
 <a href="http://ocg.wiki/#52038441" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" /></a>
 
 <br/>
+<br/>
 
 ## 📦 安装
 
@@ -48,6 +50,7 @@ $ git clone https://gitee.com/ymssx/cardjs.git
 $ npm i ygo-card
 ```
 
+<br/>
 <br/>
 
 ## 🚀 使用方式
@@ -88,6 +91,8 @@ card.render();
 const card = new Card({ data, canvas, moldPath: './source/mold' });
 ```
 
+<br/>
+
 > ### data -- 卡片信息，包括名字、密码、效果等
 
 ```typescript
@@ -115,6 +120,7 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 ```
 
 <br/>
+<br/>
 
 ## 🎏 游戏王卡图库
 
@@ -131,6 +137,7 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 <a href="http://ocg.wiki/#20721928" target="blank"><img src="https://gitee.com/ymssx/pics/raw/master/500/20721928.jpg" height="150" /></a>
 <a href="http://ocg.wiki/#79979666" target="blank"><img src="https://gitee.com/ymssx/pics/raw/master/500/79979666.jpg" height="150" /></a>
 
+<br/>
 <br/>
  
 ## 🎉 详细配置
@@ -155,6 +162,8 @@ const Card = function ({
   verbose: boolean = false                // 是否开启啰嗦模式 - boolean
 })
 ```
+
+<br/>
 
 > ### size
 
@@ -183,6 +192,7 @@ const card = new Card({ data, canvas, size = [813, 1185] })
 const card = new Card({ data, canvas, autoResize: true })
 ```
 
+<br/>
 <br/>
 
 ## 🌴 生命周期
@@ -216,6 +226,7 @@ card.fontLoaded = function(e) {
 卡片渲染完毕。
 
 <br/>
+<br/>
  
 ## 🧰 config
 
@@ -239,6 +250,8 @@ await card.render();
 
 初始渲染，返回一个promise对象，当绘制完毕时变为fulfilled状态。
 
+<br/>
+
 ### Card.feed
 
 你可以自由的使用与更换自定义的中间卡图。
@@ -249,11 +262,16 @@ const pic = document.getElementById('blueEyes');
 card.feed(pic);
 ```
 
+<br/>
+
 ### Card.changeConfig
 
 ```javascript
 card.changeConfig(config);
 ```
+
+
+<br/>
 
 ### Card.feedData
 
@@ -268,6 +286,8 @@ card.feedData(data);
 card.data.name = 'Blue Eyes';
 ```
 
+<br/>
+
 ### Card.save
 
 保存卡图到本地，你可以指定保存时**文件名称**和**图片尺寸**。
@@ -275,6 +295,8 @@ card.data.name = 'Blue Eyes';
 card.save('青眼白龙', [1626, 2370]);
 ```
 也可以不指定参数，card.js会自动使用卡名作为文件名，尺寸会使用默认值1626 × 2370。
+
+<br/>
 
 ## 静态方法
 
@@ -287,6 +309,8 @@ card.save('青眼白龙', [1626, 2370]);
 ```javascript
 const complexText = Card.complex('青眼白龙'); // 青眼白龍
 ```
+
+<br/>
 
 ### Card.transData
 
@@ -328,6 +352,7 @@ console.log(newData);
 // 可以被card.js理解的数据对象结构
 ```
 
+<br/>
 <br/>
 
 ## 🧶 实现方式
