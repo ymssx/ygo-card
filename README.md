@@ -88,7 +88,7 @@ card.render();
 const card = new Card({ data, canvas, moldPath: './source/mold' });
 ```
 
-> data -- 卡片信息，包括名字、密码、效果等
+> ### data -- 卡片信息，包括名字、密码、效果等
 
 ```typescript
 interface data = {
@@ -156,7 +156,7 @@ const Card = function ({
 })
 ```
 
-> size
+> ### size
 
 当传入的值为数组时，canvas会严格按照这个尺寸进行绘制。
 
