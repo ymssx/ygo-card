@@ -14,8 +14,13 @@
 
 <br/>
 
-## 🎈 演示
-[🔗 在线演示](https://ymssx.gitee.io/ygo)
+## 🎈 作品
+
+[🔗 游戏王在线制卡器  #yami](https://ymssx.gitee.io/ygo)
+
+[🔗 游戏王WIKI #yami](http://ocg.wiki/#59438930)
+
+欢迎向我自荐你的基于card.js的作品，邮箱：ymssx@qq.com
 
 [<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" />](http://ocg.wiki/#59438930)
 [<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" />](http://ocg.wiki/#62015408)
@@ -40,6 +45,9 @@ $ npm i ygo-card
 <br/>
 
 ## 🚀 使用方式
+
+将card.js所在的文件夹放在合适的位置，在js中使用import的方式引入card.js
+
 ``` html
 <canvas id="card"></canvas>
 ```
@@ -68,7 +76,13 @@ const card = new Card({ data, canvas, size: [400, 584] });
 card.render();
 ```
 
-* #### data -- 卡片信息，包括名字、密码、效果等
+**注意**，当card.js不在根目录时，你可能需要手动指定moldPath （末尾不要加"/"）
+
+```javascript
+const card = new Card({ data, canvas, moldPath: './source/mold' });
+```
+
+#### data -- 卡片信息，包括名字、密码、效果等
 
 ```typescript
 interface data = {
@@ -93,8 +107,6 @@ interface data = {
 
 typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同調', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '靈魂', "fz": '反轉', "ts": '特殊召喚', "zb": '裝備', "sg": '速攻', "cd": '場地', "fj": '反擊', "yx": '永續' }
 ```
-  
-* #### canvas -- canvas对象
 
 <br/>
 
@@ -174,7 +186,9 @@ card.fontLoaded = function(e) {
  
 ## 🧰 config
 
-更改config文件，可以自由地调整卡片的样式，[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
+更改config文件，可以自由地调整卡片的样式，比如字体大小、颜色等。
+
+[具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
 
 ```javascript
 card.changeConfig(config);
@@ -228,6 +242,58 @@ card.data.name = 'Blue Eyes';
 card.save('青眼白龙', [1626, 2370]);
 ```
 也可以不指定参数，card.js会自动使用卡名作为文件名，尺寸会使用默认值1626 × 2370
+
+## 非实例方法
+
+以下是Card对象私有的方法，请不要在实例对象上使用
+
+### Card.complex
+
+将简体字文本转换为繁体字文本
+
+```javascript
+const complexText = Card.complex('青眼白龙'); // 青眼白龍
+```
+
+### Card.transData
+
+card.js需要你以特定的JSON结构来描述一张卡，觉得麻烦？没关系，使用transData可以**直接兼容YGOPro自带数据库的卡片数据**
+
+```javascript
+const ygoproData = {
+  "name": "拥有操纵风在天空飞舞之翼的元素英雄。以来自天空的一击羽翼击破来审判邪恶。",
+  "id": 21844576,
+  "atk": 1000,
+  "def": 1000,
+  "race": 1,
+  "type": 17,
+  "level": 3,
+  "attribute": 8
+}
+// 来自YGOPro的数据，直接传入card.js会报错
+const newData = Card.transData(ygoproData);
+console.log(newData);
+```
+
+输出
+
+```javascript
+{
+  name: '元素英雄 羽翼侠',
+  desc: '拥有操纵风在天空飞舞之翼的元素英雄。以来自天空的一击羽翼击破来审判邪恶。',
+  _id: '21844576',
+  attack: 1000,
+  defend: 1000,
+  race: '战士族',
+  type: 'monster',
+  type2: 'tc',
+  type3: '',
+  type4: '',
+  level: 3,
+  attribute: 'wind'
+}
+// 可以被card.js理解的数据对象结构
+```
 
 <br/>
 

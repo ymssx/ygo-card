@@ -2,6 +2,7 @@ import {CardDrawer} from "./cardDrawer.js";
 import {CardData} from "./cardData.js";
 import {CardFile} from "./cardFile.js";
 import Variation from "./lib/variation.js";
+import {translate} from "./lib/translate.js";
 import defaultConfig from "./config/defaultConfig.js";
 
 let defaultEvent = function (e) {
@@ -252,5 +253,9 @@ export default class Card {
 
   static transData(data) {
     return Variation(data);
+  }
+
+  static complex(text) {
+    return translate(text);
   }
 }
