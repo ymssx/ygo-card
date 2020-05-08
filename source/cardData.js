@@ -27,17 +27,25 @@ export class CardData {
     }
 
     let fontUpdate = ['name', 'desc', 'race'];
+    let tempText = {};
     for (let key of fontUpdate) {
+      tempText[key] = translate(dbData[key]);
       Object.defineProperty(this, key, {
         get() {
-          return dbData[key];
+          if (this.admin.translate) {
+            return tempText[key];
+          } else {
+            return dbData[key];
+          }
         },
         set(value) {
+          let transValue;
           if (this.admin.translate) {
-            value = translate(value)
+            transValue = translate(value)
           }
 
           dbData[key] = value;
+          tempText[key] = transValue;
           this.draw(['text'], key);
         }
       })
