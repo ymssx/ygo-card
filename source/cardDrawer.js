@@ -154,7 +154,7 @@ export class CardDrawer {
     }, 100);
   }
   
-  _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style) {
+  _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style, callback) {
     const r = size[0] / config.moldSize[0];
     const c = this.canvas;
 
@@ -350,10 +350,10 @@ export class CardDrawer {
       this.admin.saveToCache();
     }
     
-    if (this.admin.rendered instanceof Function) {
-      this.admin.rendered();
-    } else {
-      this.admin.loaded();
+    // callbacks
+    this.admin.loaded();
+    if (callback instanceof Function) {
+      callback();
     }
   }
 }

@@ -130,23 +130,6 @@ export default class Card {
     return true;
   }
 
-  get promise() {
-    return new Promise((resolve, reject) => {
-      this.rendered = () => {
-        let renderedEvent = {
-          type: 'draw',
-          status: true,
-          content: 'ok'
-        };
-        
-        this.loaded(renderedEvent);
-        resolve(renderedEvent);
-      };
-  
-      this.failed = reject;
-    });
-  }
-
   feed(img, imgStatus = false) {
     this.cardFile.fileContent.pic = img;
     this.imgStatus = imgStatus;
@@ -158,17 +141,21 @@ export default class Card {
     this.draw();
   }
 
-  draw(size) {
+  draw(size, config) {
     if (this.renderState) {
-      this.cardDrawer.draw(this.data, this.cardFile.fileContent, size);
+      return new Promise(resolve => {
+        this.cardDrawer.draw(this.data, this.cardFile.fileContent, size, config, () => {
+          resolve();
+        });
+      })
     }
   }
 
-  save(saveName, size = [1626, 2370]) {
+  async save(saveName, size = [1626, 2370]) {
     let [w ,h] = [this.canvas.width, this.canvas.height];
     this.canvas.width = size[0];
     this.canvas.height = size[1];
-    this.cardDrawer.draw(this.data, this.cardFile.fileContent, size);
+    await this.draw(size);
 
     let dataURI = this.canvas.toDataURL('image/png');
 

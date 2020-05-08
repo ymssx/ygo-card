@@ -144,6 +144,17 @@ export class CardFile {
     }
     return fileContent;
   }
+
+  async getCorsPic(url) {
+    let blob = await Cloud({
+      method: 'GET',
+      path: url,
+      responseType: 'blob'
+    });
+    let base64 = URL.createObjectURL(blob);
+    let res = await this.download(base64);
+    return res;
+  }
   
   async getFiles(files) {
     let res = {};
@@ -152,7 +163,7 @@ export class CardFile {
     }
 
     let url = this.admin.config["pic"](this.admin.data._id);
-    res.pic = await this.getFile(url, false);
+    res.pic = await this.getCorsPic(url);
 
     return res;
   }

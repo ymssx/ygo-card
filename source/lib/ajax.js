@@ -1,6 +1,10 @@
-export const Cloud = function ({ method = 'GET', path, data }) {
+export const Cloud = function ({ method = 'GET', path, data, responseType }) {
   return new Promise(((resolve, reject) => {
     let ajax = new XMLHttpRequest();
+
+    if (responseType) {
+      ajax.responseType = responseType;
+    }
 
     if ((method === 'GET' || method === 'get') && data) {
       let tempData = [];
@@ -19,7 +23,11 @@ export const Cloud = function ({ method = 'GET', path, data }) {
     ajax.onreadystatechange = function() {
       if (ajax.readyState === 4) {
         if ((ajax.status >= 200 && ajax.status < 300) || ajax.status === 304) {
-          resolve(ajax.responseText);
+          if (responseType === 'blob') {
+            resolve(ajax.response);
+          } else {
+            resolve(ajax.responseText);
+          }
         } else {
           reject (new Error('ajax send failed'));
         }
