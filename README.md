@@ -119,11 +119,11 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 [🔗 传送门](https://gitee.com/ymssx/pics)
 
 
-[<img src="https://gitee.com/ymssx/pics/raw/master/500/21844576.jpg" height="150" />](https://gitee.com/ymssx/pics)
-[<img src="https://gitee.com/ymssx/pics/raw/master/500/58932615.jpg" height="150" />](https://gitee.com/ymssx/pics)
-[<img src="https://gitee.com/ymssx/pics/raw/master/500/84327329.jpg" height="150" />](https://gitee.com/ymssx/pics)
-[<img src="https://gitee.com/ymssx/pics/raw/master/500/20721928.jpg" height="150" />](https://gitee.com/ymssx/pics)
-[<img src="https://gitee.com/ymssx/pics/raw/master/500/79979666.jpg" height="150" />](https://gitee.com/ymssx/pics)
+<a href="http://ocg.wiki/#21844576" target="blank"><img src="https://gitee.com/ymssx/pics/raw/master/500/21844576.jpg" height="150" /></a>
+<a href="http://ocg.wiki/#58932615" target="blank"><img src="https://gitee.com/ymssx/pics/raw/master/500/58932615.jpg" height="150" /></a>
+<a href="http://ocg.wiki/#84327329" target="blank"><img src="https://gitee.com/ymssx/pics/raw/master/500/84327329.jpg" height="150" /></a>
+<a href="http://ocg.wiki/#21844576" target="blank"><img src="https://gitee.com/ymssx/pics/raw/master/500/21844576.jpg" height="150" /></a>
+<a href="http://ocg.wiki/#79979666" target="blank"><img src="https://gitee.com/ymssx/pics/raw/master/500/79979666.jpg" height="150" /></a>
 
 <br/>
  
