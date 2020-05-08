@@ -352,6 +352,8 @@ export class CardDrawer {
     
     if (this.admin.rendered instanceof Function) {
       this.admin.rendered();
+    } else {
+      this.admin.loaded();
     }
   }
 }

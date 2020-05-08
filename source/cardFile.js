@@ -1,3 +1,5 @@
+import {Cloud} from './lib/ajax.js';
+
 export class CardFile {
   constructor(admin) {
     this.admin = admin;
@@ -190,7 +192,10 @@ export class CardFile {
     p.style.fontFamily = name;
     window.fontMap.fontBox.appendChild(p);
 
-    return await fetch(url);
+    return await Cloud({
+      method: 'GET',
+      path: url
+    });
   }
   
   async loadFonts(fonts) {
@@ -215,10 +220,12 @@ export class CardFile {
       }
     }
 
-    this.draw();
-
     this.admin.fontsLoaded({
       type: 'end'
     });
+
+    setTimeout(() => {
+      this.draw();
+    }, 200)
   }
 }
