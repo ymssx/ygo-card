@@ -22,12 +22,12 @@
 
 欢迎向我自荐你的基于card.js的作品，邮箱：ymssx@qq.com
 
-[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" />](http://ocg.wiki/#59438930)
-[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" />](http://ocg.wiki/#62015408)
-[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/灰流麗.jpg" height="200" />](http://ocg.wiki/#14558127)
-[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/屋敷童.jpg" height="200" />](http://ocg.wiki/#73642296)
-[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/儚無水木.jpg" height="200" />](http://ocg.wiki/#60643553)
-[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" />](http://ocg.wiki/#52038441)
+<a href="http://ocg.wiki/#59438930" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" /></a>
+<a href="http://ocg.wiki/#62015408" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" /></a>
+<a href="http://ocg.wiki/#14558127" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/灰流麗.jpg" height="200" /></a>
+<a href="http://ocg.wiki/#73642296" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/屋敷童.jpg" height="200" /></a>
+<a href="http://ocg.wiki/#60643553" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/儚無水木.jpg" height="200" /></a>
+<a href="http://ocg.wiki/#52038441" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" /></a>
 
 <br/>
 
