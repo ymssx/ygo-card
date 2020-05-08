@@ -17,12 +17,12 @@
 ## 🎈 演示
 [🔗 在线演示](https://ymssx.gitee.io/ygo)
 
-<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" />
-<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" />
-<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/灰流麗.jpg" height="200" />
-<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/屋敷童.jpg" height="200" />
-<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/儚無水木.jpg" height="200" />
-<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" />
+[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" />](http://ocg.wiki/#59438930)
+[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" />](http://ocg.wiki/#62015408)
+[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/灰流麗.jpg" height="200" />](http://ocg.wiki/#14558127)
+[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/屋敷童.jpg" height="200" />](http://ocg.wiki/#73642296)
+[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/儚無水木.jpg" height="200" />](http://ocg.wiki/#60643553)
+[<img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" />](http://ocg.wiki/#52038441)
 
 <br/>
 
