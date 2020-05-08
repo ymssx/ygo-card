@@ -4,12 +4,19 @@
 export default {
   "moldName": "default",
   // 模板路径
-  "moldUrl": "./mold/",
-  // 字体对应路径
   "fonts": {
-    "cn": "./mold/font/cn.ttf",
-    "number": "./mold/font/number.ttf",
-    "link": "./mold/font/link.ttf"
+    "cn": {
+      "name": "cn.ttf",
+      "type": "relative" // 相对路径（moldPath）或绝对路径
+    },
+    "number": {
+      "name": "number.ttf",
+      "type": "relative"
+    },
+    "link": {
+      "name": "link.ttf",
+      "type": "relative"
+    }
   },
   // 卡片中间图片路径的获取，您可以自定义您的图片库
   "pic": function(id) {

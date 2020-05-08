@@ -8,9 +8,15 @@
 
 ## 为什么使用card.js
 
-* 📦 card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此你不用过多的担心性能问题。
+你的网站需要大量的游戏王卡图，但是网上的卡图资源参差不齐？不妨试试card.js，只需要一次的加载，就可以使用快速、大量、标准、高清的游戏王卡图。
 
-* 🎨 card.js十分容易使用，你只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中你可以随心所欲地进行创作！
+* 🍇 对于海量高清卡图的场景，相比于直接下载完整的图片，card.js只需要下载中间卡图进行前端渲染，整体加载非常迅速，节省了大量带宽。
+
+* 🍉 card.js支持复杂的交互动效，比如SR面闪特效、烫金字等。同时允许实时修改卡片信息、自由定制卡片。
+
+* 🥦 card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此你不用过多的担心性能问题。
+
+* 🍅 card.js十分容易使用，你只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中你可以随心所欲地进行创作！
 
 <br/>
 
@@ -76,13 +82,13 @@ const card = new Card({ data, canvas, size: [400, 584] });
 card.render();
 ```
 
-**注意**，当card.js不在根目录时，你可能需要手动指定moldPath （末尾不要加"/"）
+**注意**，当card.js不在根目录时，你可能需要手动指定moldPath （末尾不要加"/"）。
 
 ```javascript
 const card = new Card({ data, canvas, moldPath: './source/mold' });
 ```
 
-#### data -- 卡片信息，包括名字、密码、效果等
+> data -- 卡片信息，包括名字、密码、效果等
 
 ```typescript
 interface data = {
@@ -114,7 +120,7 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 
 不知道去哪里找卡图？
 
-这里收录了绝大多数游戏王卡图，不定期更新
+这里收录了绝大多数游戏王卡图，不定期更新。
 
 [🔗 传送门](https://gitee.com/ymssx/pics)
 
@@ -127,13 +133,13 @@ typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt"
 
 <br/>
  
-## 🎉 扩展
+## 🎉 详细配置
  
 ```typescript
 const Card = function ({
-  data: object,                       // 卡片数据
+  data: object,                           // 卡片数据
   canvas: HTMLElement,                    // canvas对象
-  size: number[] = [813, 1185],           // 绘制尺寸，[宽, 高]
+  size: number[],                         // 绘制尺寸，[宽, 高]
   moldPath: string = './mold',            // 模板资源路径
   lang:'cn' | 'jp' | 'en' = 'cn',         // 语言 cn、jp、en
   config: object = defaultConfig,         // 配置信息 - object
@@ -150,15 +156,42 @@ const Card = function ({
 })
 ```
 
+> size
+
+当传入的值为数组时，canvas会严格按照这个尺寸进行绘制。
+
+```javascript
+const card = new Card({ data, canvas, size = [813, 1185] })
+```
+
+你也可以不传入size，如果autoResize为true（默认值），那么card.js会自动计算尺寸。
+
+当canvas尺寸变化时，card.js会自动重新进行绘制，保证卡图永远高清，这在弹性布局中十分有用。
+
+```html
+<style>
+#card {
+  width: 80%;
+}
+</style>
+
+<canvas id="card"></canvas>
+```
+
+```javascript
+// autoResize默认开启
+const card = new Card({ data, canvas, autoResize: true })
+```
+
 <br/>
 
 ## 🌴 生命周期
 
-通过传入事件来自定义卡片渲染的生命周期钩子函数
+通过传入事件来自定义卡片渲染的生命周期钩子函数。
 
 ### fontLoaded
 
-单个字体文件加载完成
+单个字体文件加载完成。
 
 ```javascript
 card.fontLoaded = function(e) {
@@ -168,19 +201,19 @@ card.fontLoaded = function(e) {
  
 ### fontsLoaded
 
-所有字体文件加载完成
+所有字体文件加载完成。
 
 ### imageLoaded
 
-单个图片资源加载完成
+单个图片资源加载完成。
 
 ### imagesLoaded
 
-单个图片资源加载完成
+单个图片资源加载完成。
 
 ### loaded
 
-卡片渲染完毕
+卡片渲染完毕。
 
 <br/>
  
@@ -204,13 +237,13 @@ card.changeConfig(config);
 await card.render();
 ```
 
-初始渲染，返回一个promise对象，当绘制完毕时变为fulfilled状态
+初始渲染，返回一个promise对象，当绘制完毕时变为fulfilled状态。
 
 ### Card.feed
 
-你可以自由的使用与更换自定义的中间卡图
+你可以自由的使用与更换自定义的中间卡图。
 
-比如当你想把【真红眼黑龙】的卡图换成【青眼白龙】
+比如当你想把【真红眼黑龙】的卡图换成【青眼白龙】。
 ```javascript
 const pic = document.getElementById('blueEyes');
 card.feed(pic);
@@ -224,7 +257,7 @@ card.changeConfig(config);
 
 ### Card.feedData
 
-调整卡片信息
+调整卡片信息。
 
 ```javascript
 card.feedData(data);
@@ -237,19 +270,19 @@ card.data.name = 'Blue Eyes';
 
 ### Card.save
 
-保存卡图到本地，你可以指定保存时**文件名称**和**图片尺寸**
+保存卡图到本地，你可以指定保存时**文件名称**和**图片尺寸**。
 ```javascript
 card.save('青眼白龙', [1626, 2370]);
 ```
-也可以不指定参数，card.js会自动使用卡名作为文件名，尺寸会使用默认值1626 × 2370
+也可以不指定参数，card.js会自动使用卡名作为文件名，尺寸会使用默认值1626 × 2370。
 
-## 非实例方法
+## 静态方法
 
-以下是Card对象私有的方法，请不要在实例对象上使用
+以下是Card对象私有的方法，请不要在实例对象上使用。
 
 ### Card.complex
 
-将简体字文本转换为繁体字文本
+将简体字文本转换为繁体字文本。
 
 ```javascript
 const complexText = Card.complex('青眼白龙'); // 青眼白龍
@@ -257,7 +290,7 @@ const complexText = Card.complex('青眼白龙'); // 青眼白龍
 
 ### Card.transData
 
-card.js需要你以特定的JSON结构来描述一张卡，觉得麻烦？没关系，使用transData可以**直接兼容YGOPro自带数据库的卡片数据**
+card.js需要你以特定的JSON结构来描述一张卡，觉得麻烦？没关系，使用transData可以**直接兼容YGOPro自带数据库的卡片数据**。
 
 ```javascript
 const ygoproData = {

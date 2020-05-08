@@ -39,9 +39,10 @@ let defaultEvent = function (e) {
 */
 
 export default class Card {
+  RATE = 1185 / 813;
   constructor({
     data, canvas,
-    size = [813, 1185],
+    size,
     moldPath = './mold',
     lang = 'cn',
     config = defaultConfig,
@@ -55,7 +56,7 @@ export default class Card {
     cardbagSwitch = false,
     translate = true,
     verbose = false,
-    autoResize = false
+    autoResize = true
   }) {    
     // recover config from localStorage
     this.recover = recover;
@@ -87,25 +88,13 @@ export default class Card {
     this.cardbagSwitch = cardbagSwitch;
     this.translate = translate;
     this.verbose = verbose;
+    this.autoResize = autoResize;
     this.renderState = false;
 
     this.data = new CardData(data, this);
-
-    size = [size[0]*2, size[1]*2];
-    this.size = size;
+    
     if (canvas) {
-      canvas.width = size[0];
-      canvas.height = size[1];
-      canvas.style.maxWidth = size[0] / 2 + 'px';
-      canvas.style.maxHeight = size[1] / 2 + 'px';
-      this.canvas = canvas;
-      if (autoResize) {
-        this.observer = new ResizeObserver(e => this.resize());
-        this.observer.observe(this.canvas)
-      }
-      
-      this.cardDrawer = new CardDrawer(canvas, this);
-      this.cardFile = new CardFile(this);
+      this.bind(canvas, size);
     }
   }
 
@@ -115,10 +104,38 @@ export default class Card {
     }
   }
 
-  bind(canvas) {
+  bind(canvas, size) {
     this.canvas = canvas;
-    canvas.width = this.size[0];
-    canvas.height = this.size[1];
+
+    if (size) {
+      canvas.style.maxWidth = size[0] + 'px';
+      canvas.style.maxHeight = size[1] + 'px';
+      this.size = [size[0] * 2, size[1] * 2];
+    } else {
+      this.size = this.ansysSize();
+      if (this.autoResize) {
+        // 当canvas实际尺寸发生变化时，提交一个canvas重绘的异步请求
+        this.sizeObserver = new ResizeObserver(() => {
+          this.resize();
+        });
+        this.sizeObserver.observe(this.canvas);
+        /*
+        重绘函数中会调整canvas尺寸，这会再次引起ResizeObserver的回调，从而无限迭代
+        使用MutationObserver监听canvas尺寸的变化，清空重绘的事件队列，切断迭代
+        */
+        this.attriObserver = new MutationObserver(() => {
+          if (this.resizer) {
+            clearTimeout(this.resizer);
+            this.resizer = null;
+          }
+        });
+        this.attriObserver.observe(this.canvas, {
+          attributes : true,
+          attributeFilter : ['width', 'height']
+        });
+      }
+    }
+    
     this.cardDrawer = new CardDrawer(canvas, this);
     this.cardFile = new CardFile(this);
   }
@@ -153,8 +170,6 @@ export default class Card {
 
   async save(saveName, size = [1626, 2370]) {
     let [w ,h] = [this.canvas.width, this.canvas.height];
-    this.canvas.width = size[0];
-    this.canvas.height = size[1];
     await this.draw(size);
 
     let dataURI = this.canvas.toDataURL('image/png');
@@ -175,9 +190,6 @@ export default class Card {
     link.href = objurl;
     link.click();
 
-
-    this.canvas.width = w;
-    this.canvas.height = h;
     this.draw();
   }
 
@@ -213,29 +225,32 @@ export default class Card {
     this.data.flash = 0;
   }
 
-  resize(delay = 1000) {
-    if (this.resizeLock) return;
+  ansysSize(thre = 0.0001) {
+    let w = 2 * this.canvas.clientWidth;
+    let h = 2 * this.canvas.clientHeight;
+    let currentRate = h / w;
+    if (currentRate - this.RATE > thre) {
+      h = w * this.RATE;
+    } else if (this.RATE - currentRate > thre) {
+      w = h / this.RATE;
+    }
 
+    return [w, h];
+  }
+
+  resize(delay = 500) {
     if (this.resizer) {
       clearTimeout(this.resizer);
     }
-    
-    this.resizeLock = true;
 
     this.resizer = setTimeout(() => {
       this._resize_();
-      setTimeout(() => {
-        this.resizeLock = false;
-      }, 500)
     }, delay);
   }
 
   _resize_() {
-    let w = 2 * this.canvas.clientWidth;
-    let h = 2 * this.canvas.clientHeight;
-    this.canvas.width = w;
-    this.canvas.height = h;
-    this.draw([w, h]);
+    this.size = this.ansysSize();
+    this.draw(this.size);
   }
 
   static transData(data) {

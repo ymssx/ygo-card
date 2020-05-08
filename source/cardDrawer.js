@@ -154,7 +154,9 @@ export class CardDrawer {
     }, 100);
   }
   
-  _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style, callback) {
+  _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style, callback) {    
+    this.admin.canvas.width = size[0];
+    this.admin.canvas.height = size[1];
     const r = size[0] / config.moldSize[0];
     const c = this.canvas;
 
