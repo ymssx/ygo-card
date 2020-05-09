@@ -27,8 +27,8 @@ export class CardFile {
     this.admin.log(this, ...content);
   }
 
-  draw() {
-    this.admin.draw();
+  draw(...arg) {
+    this.admin.draw(...arg);
   }
 
   async loadAll() {

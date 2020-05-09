@@ -120,8 +120,8 @@ export default class Card {
         });
         this.sizeObserver.observe(this.canvas);
         /*
-        重绘函数中会调整canvas尺寸，这会再次引起ResizeObserver的回调，从而无限迭代
-        使用MutationObserver监听canvas尺寸的变化，清空重绘的事件队列，切断迭代
+        重绘函数中会调整canvas尺寸属性，这会再次引起ResizeObserver的回调，从而无限迭代
+        使用MutationObserver监听canvas尺寸属性的变化，清空重绘的事件队列，切断迭代
         */
         this.attriObserver = new MutationObserver(() => {
           if (this.resizer) {
@@ -143,7 +143,7 @@ export default class Card {
   async render() {
     await this.cardFile.loadAll();
     this.renderState = true;
-    this.draw();
+    await this.draw();
     return true;
   }
 
