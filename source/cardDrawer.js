@@ -143,15 +143,14 @@ export class CardDrawer {
     }
   }
   
-  draw(...args) {
-    // debounce
+  draw(...args) {    
     if (this.drawer) {
-      clearTimeout(this.drawer);
+      window.cancelAnimationFrame(this.drawer);
     }
-
-    this.drawer = setTimeout(() => {
+    
+    this.drawer = window.requestAnimationFrame(() => {
       this._draw_(...args);
-    }, 100);
+    })
   }
   
   _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style, callback) {    
