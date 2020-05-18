@@ -45,24 +45,21 @@
 $ git clone https://gitee.com/ymssx/cardjs.git
 ```
 
-或者
-```shell
-$ npm i ygo-card
-```
+将 `dist`文件夹下的内容放到需要的地方
 
 <br/>
 
 ## 🚀 使用方式
 
-将card.js所在的文件夹放在合适的位置，在js中使用import的方式引入card.js
+将card.js所在的文件夹放在合适的位置，在js中使用`<script>`引入card.js
 
 ``` html
 <canvas id="card"></canvas>
+...
+<script src="./card.js"></script>
 ```
 
 ```javascript
-import Card from './card.js';
-
 const canvas = document.getElementById('card');
 const data = { 
     name: '青眼的白龍',
@@ -84,7 +81,7 @@ const card = new Card({ data, canvas, size: [400, 584] });
 card.render();
 ```
 
-**注意**，当card.js不在根目录时，你可能需要手动指定moldPath （末尾不要加"/"）。
+**注意，当card.js不在根目录时，你可能需要手动指定moldPath （末尾不要加"/"）。**
 
 ```javascript
 const card = new Card({ data, canvas, moldPath: './source/mold' });
