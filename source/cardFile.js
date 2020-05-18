@@ -56,7 +56,7 @@ export class CardFile {
         let save = true;
 
         if (key === 'pic') {
-          fileUrl = this.admin.config["pic"](this.data._id);
+          fileUrl = this.admin.config["pic"](this.admin.data._id);
           save = false;
         } else {
           fileUrl = this.fileList[key];
