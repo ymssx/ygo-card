@@ -38,8 +38,7 @@ let defaultEvent = function (e) {
 - canvas: HTMLElement
 */
 
-export default class Card {
-  RATE = 1185 / 813;
+export class Card {
   constructor({
     data, canvas,
     size,
@@ -58,6 +57,8 @@ export default class Card {
     verbose = false,
     autoResize = true
   }) {    
+    this.RATE = 1185 / 813;
+
     // recover config from localStorage
     this.recover = recover;
     if (recover) {
