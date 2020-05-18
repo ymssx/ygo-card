@@ -205,6 +205,10 @@ export class Card {
     }
   }
 
+  copy(card) {
+    this.cardDrawer.draw(card.data, card.cardFile.fileContent);
+  }
+
   get getData() {
     return this.data.getData();
   }
@@ -225,17 +229,37 @@ export class Card {
     this.data.flash = 0;
   }
 
-  ansysSize(thre = 0.0001) {
+  rounded(num) {    
+    let rounded = (0.5 + num) | 0;
+    rounded = ~~ (0.5 + num);
+    rounded = (0.5 + num) << 0;
+    return rounded;
+  }
+
+  ansysSize() {
+    if (!this.tempRate) this.tempRate = this.RATE;
     let w = 2 * this.canvas.clientWidth;
     let h = 2 * this.canvas.clientHeight;
     let currentRate = h / w;
-    if (currentRate - this.RATE > thre) {
-      h = w * this.RATE;
-    } else if (this.RATE - currentRate > thre) {
-      w = h / this.RATE;
-    }
 
-    return [w, h];
+    if (currentRate > this.tempRate) {
+      h = w * this.tempRate;
+    } else if (this.tempRate > currentRate) {
+      w = h / this.tempRate;
+    }
+    w = this.rounded(w);
+    h = this.rounded(h);
+
+    if (Math.abs(w - this.canvas.width) <= 3 ||
+      Math.abs(h - this.canvas.height) <= 3
+    ) {
+      return [this.canvas.width, this.canvas.height];
+    } else {
+      this.tempRate = h / w;
+      this.lw = w;
+      this.lh = h;
+      return [w, h];
+    }
   }
 
   resize(delay = 500) {
@@ -259,5 +283,18 @@ export class Card {
 
   static complex(text) {
     return translate(text);
+  }
+
+  static readYDK(text) {
+    let temp = text.split('#main')[1].split('#extra');
+    let mainText = temp[0].trim();
+    let temp2 = temp[1].split('!side');
+    let exText = temp2[0].trim();
+    let sideText = temp2[1].trim();
+
+    let main = mainText.split('\n');
+    let ex = exText.split('\n');
+    let side = sideText.split('\n');
+    return [main, ex, side];
   }
 }

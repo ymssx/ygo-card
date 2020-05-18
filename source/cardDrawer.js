@@ -236,7 +236,11 @@ export class CardDrawer {
         c.fillText(type, fontLeft, config.type.position[1] * r);
 
         if (cardData.type2 !== 'tc') {
-          c.drawImage(fileContent.icon, config.type.icon[0] * r, config.type.icon[1] * r, 46 * r, 46 * r);
+          try {
+            c.drawImage(fileContent.icon, config.type.icon[0] * r, config.type.icon[1] * r, 46 * r, 46 * r);
+          } catch(e) {
+            console.log(e);
+          }
         }
       }
     }
