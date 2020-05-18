@@ -199,7 +199,7 @@ export class CardDrawer {
     }
 
     // draw card name
-    if (window.fontMap[config.name.font]) {
+    if (window['__YGOCARDDATA__'].fontMap[config.name.font]) {
       c.fillStyle = cardData.color;
       c.font = config.name.fontSize*r + "px " + config.name.font + fontPlus;
       c.fillText(cardData.name,config.name.position[0] * r,config.name.position[1] * r,config.name.maxWidth * r);
@@ -223,7 +223,7 @@ export class CardDrawer {
 
 
     // draw race
-    if (window.fontMap[config.race.font]) {
+    if (window['__YGOCARDDATA__'].fontMap[config.race.font]) {
       if (cardData.type === 'monster') {
         c.fillStyle = '#000000';
         c.font = (config.race.fontWieght?(config.race.fontWieght + ' '):'') + config.race.fontSize * r + "px " + config.race.font;
@@ -249,7 +249,7 @@ export class CardDrawer {
       descConfig = config.magicDesc;
     }
 
-    if (window.fontMap[descConfig.font]) {
+    if (window['__YGOCARDDATA__'].fontMap[descConfig.font]) {
       var descParts;
       if (descConfig.splitMode === 'cn') {
         descParts = this.descSplit(cardData._desc_, descConfig.fontSize, descConfig.font, descConfig.maxLines);
@@ -302,7 +302,7 @@ export class CardDrawer {
     }
 
     // draw ATK/DEF
-    if (window.fontMap[config.ATK.font]) {
+    if (window['__YGOCARDDATA__'].fontMap[config.ATK.font]) {
       if (cardData.type === 'monster') {
         c.fillStyle = '#000000';
         c.font = config.ATK.fontSize * r + "px " + config.ATK.font;

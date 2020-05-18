@@ -4,21 +4,22 @@ export class CardFile {
   constructor(admin) {
     this.admin = admin;
     this.fileContent = {};
+    if (!window['__YGOCARDDATA__'].cardPicCache) window['__YGOCARDDATA__'].cardPicCache = {};
 
-    if (!window.fontMap) {
+    if (!window['__YGOCARDDATA__'].fontMap) {
       let fontBox = document.createElement('div');
       fontBox.style.width = '0';
       fontBox.style.height = '0';
       fontBox.style.overflow = 'hidden';
       document.body.appendChild(fontBox);      
-      window.fontMap = {
+      window['__YGOCARDDATA__'].fontMap = {
         fontBox
       };
     }
 
     for (let fontName in this.admin.config.fonts) {
-      if (!window.fontMap.hasOwnProperty(fontName)) {
-        window.fontMap[fontName] = false;
+      if (!window['__YGOCARDDATA__'].fontMap.hasOwnProperty(fontName)) {
+        window['__YGOCARDDATA__'].fontMap[fontName] = 1;
       }
     }
   }
@@ -27,13 +28,24 @@ export class CardFile {
     this.admin.log(this, ...content);
   }
 
-  draw(...arg) {
-    this.admin.draw(...arg);
+  async draw(...arg) {
+    await this.admin.draw(...arg);
   }
 
   async loadAll() {
     this.fileContent = await this.getFiles(this.fileList);
-    await this.loadFonts(this.admin.config.fonts);
+    this.admin.renderState = true;
+    await this.draw();
+
+    this.loadCardPic().then(() => {
+      this.draw();
+    });
+
+    await this.loadFonts(this.admin.config.fonts).then(() => {
+      setTimeout(() => {
+        this.draw();
+      }, 1000)
+    });
     return true;
   }
 
@@ -162,10 +174,35 @@ export class CardFile {
       res[key] = await this.getFile(files[key]);
     }
 
-    let url = this.admin.config["pic"](this.admin.data._id);
-    res.pic = await this.getCorsPic(url);
-
     return res;
+  }
+
+  async loadCardPic() {
+    let url = this.admin.config["pic"](this.admin.data._id);
+    let pic;
+    const cardPicCache = window['__YGOCARDDATA__'].cardPicCache;
+    if (cardPicCache.hasOwnProperty(url)) {
+      let res = cardPicCache[url];
+      if (res instanceof Promise) {
+        await res.then(pic => {
+          this.fileContent.pic = pic;
+        })
+      } else {
+        this.fileContent.pic = res;
+      }
+    } else {
+      cardPicCache[url] = new Promise(resolve => {
+        this.getCorsPic(url).then(pic => {
+          this.fileContent.pic = pic;
+          cardPicCache[url] = pic;
+          resolve(pic);
+        })
+      })
+
+      await cardPicCache[url];
+    }
+     
+    return true;
   }
   
   saveImage(key, image) {
@@ -188,30 +225,44 @@ export class CardFile {
   }
 
   async loadFont(url, name) {
-    if (window.fontMap[name]) return;
+    if (window['__YGOCARDDATA__'].fontMap[name] === 1) {
+      var css = document.createElement('style');
+      css.setAttribute('type', 'text/css');
+      css.setAttribute("crossOrigin",'anonymous');
+      css.setAttribute('class', name);
+      let data = "\n@font-face {font-family: '"+ name +"';src: url('"+ url +"');}\n";
+      css.appendChild(document.createTextNode(data));
+      document.head.appendChild(css);
+      
+      let p = document.createElement('p');
+      p.innerText = 'Yami';
+      p.style.fontFamily = name;
+      window['__YGOCARDDATA__'].fontMap.fontBox.appendChild(p);
 
-    var css = document.createElement('style');
-    css.setAttribute('type', 'text/css');
-    css.setAttribute("crossOrigin",'anonymous');
-    css.setAttribute('class', name);
-    let data = "\n@font-face {font-family: '"+ name +"';src: url('"+ url +"');}\n";
-    css.appendChild(document.createTextNode(data));
-    document.head.appendChild(css);
-    
-    let p = document.createElement('p');
-    p.innerText = 'Yami';
-    p.style.fontFamily = name;
-    window.fontMap.fontBox.appendChild(p);
+      window['__YGOCARDDATA__'].fontMap[name] = 2;
+  
+      let font = await Cloud({
+        method: 'GET',
+        path: url
+      });
 
-    return await Cloud({
-      method: 'GET',
-      path: url
-    });
+      window['__YGOCARDDATA__'].fontMap[name] = 3;
+      return font;
+    } else if (window['__YGOCARDDATA__'].fontMap[name] === 2) {  
+        let font = await Cloud({
+          method: 'GET',
+          path: url
+        });
+
+        window['__YGOCARDDATA__'].fontMap[name] = 3;
+        return font;
+    }
   }
   
-  async loadFonts(fonts) {
+  loadFonts(fonts) {
+    let fontslist = [];
     for (let fontName in fonts) {
-      if (!window.fontMap[fontName]) {
+      if (window['__YGOCARDDATA__'].fontMap[fontName] !== 3) {
         let path;
         if (fonts[fontName]['type'] === 'relative') {
           path = this.admin.moldPath + '/font/' + fonts[fontName]['name'];
@@ -219,24 +270,20 @@ export class CardFile {
           path = fonts[fontName]['name'];
         }
 
-        await this.loadFont(path, fontName);
-
-        window.fontMap[fontName] = true;
-
         this.admin.fontLoaded({
           type: 'font',
           status: true,
           content: fontName
         });
+
+        fontslist.push(this.loadFont(path, fontName));
       }
     }
 
-    this.admin.fontsLoaded({
-      type: 'end'
-    });
-
-    setTimeout(() => {
-      this.draw();
-    }, 200)
+    return Promise.all(fontslist).then(() => {
+      this.admin.fontsLoaded({
+        type: 'end'
+      });
+    })
   }
 }

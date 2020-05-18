@@ -58,6 +58,7 @@ export class Card {
     autoResize = true
   }) {    
     this.RATE = 1185 / 813;
+    if (!window.hasOwnProperty('__YGOCARDDATA__')) window['__YGOCARDDATA__'] = {};
 
     // recover config from localStorage
     this.recover = recover;
@@ -143,8 +144,6 @@ export class Card {
 
   async render() {
     await this.cardFile.loadAll();
-    this.renderState = true;
-    await this.draw();
     return true;
   }
 
