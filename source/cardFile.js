@@ -16,12 +16,6 @@ export class CardFile {
         fontBox
       };
     }
-
-    for (let fontName in this.admin.config.fonts) {
-      if (!window['__YGOCARDDATA__'].fontMap.hasOwnProperty(fontName)) {
-        window['__YGOCARDDATA__'].fontMap[fontName] = 1;
-      }
-    }
   }
 
   log(...content) {
@@ -40,7 +34,7 @@ export class CardFile {
     this.loadCardPic().then(() => {
       this.draw();
     });
-
+    
     await this.loadFonts(this.admin.config.fonts).then(() => {
       setTimeout(() => {
         this.draw();
@@ -53,17 +47,12 @@ export class CardFile {
     if (keys) {
       for (let key of keys) {
         let fileUrl;
-        let save = true;
 
         if (key === 'pic') {
-          fileUrl = this.admin.config["pic"](this.admin.data._id);
-          save = false;
+          await this.loadCardPic()
         } else {
           fileUrl = this.fileList[key];
-        }
-
-        if (fileUrl) {
-          this.fileContent[key] = await this.getFile(fileUrl, save);
+          this.fileContent[key] = await this.getFile(fileUrl, true);
         }
       }
     }
@@ -230,7 +219,11 @@ export class CardFile {
       css.setAttribute('type', 'text/css');
       css.setAttribute("crossOrigin",'anonymous');
       css.setAttribute('class', name);
-      let data = "\n@font-face {font-family: '"+ name +"';src: url('"+ url +"');}\n";
+      let data = `
+      @font-face {
+        font-family: '`+ name +`';
+        src: url('`+ url +`');
+      }`;
       css.appendChild(document.createTextNode(data));
       document.head.appendChild(css);
       
@@ -260,6 +253,12 @@ export class CardFile {
   }
   
   loadFonts(fonts) {
+    for (let fontName in this.admin.config.fonts) {
+      if (!window['__YGOCARDDATA__'].fontMap.hasOwnProperty(fontName)) {
+        window['__YGOCARDDATA__'].fontMap[fontName] = 1;
+      }
+    }
+    
     let fontslist = [];
     for (let fontName in fonts) {
       if (window['__YGOCARDDATA__'].fontMap[fontName] !== 3) {

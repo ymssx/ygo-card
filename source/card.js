@@ -63,7 +63,7 @@ export class Card {
     // recover config from localStorage
     this.recover = recover;
     if (recover) {
-      var tempConfig = Object.create(config);
+      var tempConfig = Object.assign({}, config);
       for (let key in config) {
         if (localStorage.getItem(key)) {
           tempConfig[key] = JSON.parse(localStorage.getItem(key))
@@ -94,7 +94,7 @@ export class Card {
     this.renderState = false;
 
     this.data = new CardData(data, this);
-    
+    this.size = size;
     if (canvas) {
       this.bind(canvas, size);
     }
@@ -114,27 +114,33 @@ export class Card {
       canvas.style.maxHeight = size[1] + 'px';
       this.size = [size[0] * 2, size[1] * 2];
     } else {
-      this.size = this.ansysSize();
-      if (this.autoResize) {
-        // 当canvas实际尺寸发生变化时，提交一个canvas重绘的异步请求
-        this.sizeObserver = new ResizeObserver(() => {
-          this.resize();
-        });
-        this.sizeObserver.observe(this.canvas);
-        /*
-        重绘函数中会调整canvas尺寸属性，这会再次引起ResizeObserver的回调，从而无限迭代
-        使用MutationObserver监听canvas尺寸属性的变化，清空重绘的事件队列，切断迭代
-        */
-        this.attriObserver = new MutationObserver(() => {
-          if (this.resizer) {
-            clearTimeout(this.resizer);
-            this.resizer = null;
-          }
-        });
-        this.attriObserver.observe(this.canvas, {
-          attributes : true,
-          attributeFilter : ['width', 'height']
-        });
+      if (!this.size) {
+        this.size = this.ansysSize();
+        if (this.autoResize) {
+          // 当canvas实际尺寸发生变化时，提交一个canvas重绘的异步请求
+          this.sizeObserver = new ResizeObserver(() => {
+            this.resize();
+          });
+          this.sizeObserver.observe(this.canvas);
+          /*
+          重绘函数中会调整canvas尺寸属性，这会再次引起ResizeObserver的回调，从而无限迭代
+          使用MutationObserver监听canvas尺寸属性的变化，清空重绘的事件队列，切断迭代
+          */
+          this.attriObserver = new MutationObserver(() => {
+            if (this.resizer) {
+              clearTimeout(this.resizer);
+              this.resizer = null;
+            }
+          });
+          this.attriObserver.observe(this.canvas, {
+            attributes : true,
+            attributeFilter : ['width', 'height']
+          });
+        }
+      } else {
+        canvas.style.maxWidth = this.size[0] + 'px';
+        canvas.style.maxHeight = this.size[1] + 'px';
+        this.size = [this.size[0] * 2, this.size[1] * 2];
       }
     }
     
@@ -155,7 +161,7 @@ export class Card {
 
   changeConfig(config) {
     this.config = config;
-    this.draw();
+    this.render();
   }
 
   draw(size, config) {
