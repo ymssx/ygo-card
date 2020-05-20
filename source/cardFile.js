@@ -52,12 +52,15 @@ export class CardFile {
           await this.loadCardPic()
         } else {
           fileUrl = this.fileList[key];
-          this.fileContent[key] = await this.getFile(fileUrl, true);
+          if (fileUrl) {
+            this.fileContent[key] = await this.getFile(fileUrl);
+          }
         }
       }
     }
 
-    this.draw();
+    await this.draw();
+    return true;
   }
 
   get fileList() {
