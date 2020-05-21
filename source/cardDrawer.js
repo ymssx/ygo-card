@@ -1,7 +1,7 @@
 export class CardDrawer {
-  constructor(canvas, admin) {
-    this.canvas = canvas.getContext('2d');
+  constructor(admin) {
     this.admin = admin;
+    this.canvas = this.admin.canvas.getContext('2d');
   }
   
   descSplit(desc, fontSize, font, maxLines = 6, maxWidth = 683) {

@@ -108,11 +108,12 @@ export class Card {
 
   bind(canvas, size) {
     this.canvas = canvas;
+    let ratio = this.getPixelRatio;
 
     if (size) {
-      canvas.style.maxWidth = size[0] + 'px';
-      canvas.style.maxHeight = size[1] + 'px';
-      this.size = [size[0] * 2, size[1] * 2];
+      this.canvas.style.maxWidth = size[0] + 'px';
+      this.canvas.style.maxHeight = size[1] + 'px';
+      this.size = [size[0] * ratio, size[1] * ratio];
     } else {
       if (!this.size) {
         this.size = this.ansysSize();
@@ -138,13 +139,13 @@ export class Card {
           });
         }
       } else {
-        canvas.style.maxWidth = this.size[0] + 'px';
-        canvas.style.maxHeight = this.size[1] + 'px';
-        this.size = [this.size[0] * 2, this.size[1] * 2];
+        this.canvas.style.maxWidth = this.size[0] + 'px';
+        this.canvas.style.maxHeight = this.size[1] + 'px';
+        this.size = [this.size[0] * ratio, this.size[1] * ratio];
       }
     }
     
-    this.cardDrawer = new CardDrawer(canvas, this);
+    this.cardDrawer = new CardDrawer(this);
     this.cardFile = new CardFile(this);
   }
 
@@ -242,26 +243,43 @@ export class Card {
     return rounded;
   }
 
-  ansysSize() {
-    if (!this.tempRate) this.tempRate = this.RATE;
-    let w = 2 * this.canvas.clientWidth;
-    let h = 2 * this.canvas.clientHeight;
-    let currentRate = h / w;
-
-    if (currentRate > this.tempRate) {
-      h = w * this.tempRate;
-    } else if (this.tempRate > currentRate) {
-      w = h / this.tempRate;
+  isStyleExsis(value) {
+    if (value === undefined || value === '' || value === 'auto' || value === null) {
+      return false;
+    } else {
+      return true;
     }
+  }
+
+  ansysSize() {
+    let ratio = this.getPixelRatio;
+    let w = ratio * this.canvas.clientWidth;
+    let h = ratio * this.canvas.clientHeight;
+
+    let style = this.canvas.style;
+    let isW = this.isStyleExsis(style.width);
+    let isH = this.isStyleExsis(style.height);
+    if (isW && isH) {
+      let currentRate = h / w;
+      if (currentRate > this.RATE) {
+        h = w * this.RATE;
+      } else if (this.RATE > currentRate) {
+        w = h / this.RATE;
+      }
+    } else if (isW && !isH) {
+      h = w * this.RATE;
+    } else if (!isW && isH) {
+      w = h / this.RATE;
+    }
+
     w = this.rounded(w);
     h = this.rounded(h);
 
-    if (Math.abs(w - this.canvas.width) <= 3 ||
-      Math.abs(h - this.canvas.height) <= 3
+    if (Math.abs(w - this.canvas.width) / this.canvas.width <= 0.01 ||
+      Math.abs(h - this.canvas.height) / this.canvas.height <= 0.01
     ) {
       return [this.canvas.width, this.canvas.height];
     } else {
-      this.tempRate = h / w;
       this.lw = w;
       this.lh = h;
       return [w, h];
@@ -282,6 +300,18 @@ export class Card {
     this.size = this.ansysSize();
     this.draw(this.size);
   }
+
+  get getPixelRatio () {
+    let context = this.canvas.getContext('2d');
+    let backingStore = context.backingStorePixelRatio ||
+      context.webkitBackingStorePixelRatio ||
+      context.mozBackingStorePixelRatio ||
+      context.msBackingStorePixelRatio ||
+      context.oBackingStorePixelRatio ||
+      context.backingStorePixelRatio || 1;
+      
+    return (window.devicePixelRatio || 1) / backingStore;
+  };
 
   static transData(data) {
     return Variation(data);
