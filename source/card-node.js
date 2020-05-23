@@ -4,7 +4,7 @@ const nodeConfig = {
   "moldName": "default",
   "fonts": {
     "cn": {
-      "name": "cn.ttf",
+      "name": "jp.ttf",
       "type": "relative"
     },
     "number": {
@@ -17,7 +17,7 @@ const nodeConfig = {
     }
   },
   "pic": function(id) {
-    return '/pics/'+ id + '.jpg';
+    return 'E:/project/ygopic/500/'+ id + '.jpg';
   },
   "style": {
     "moldSize": [813, 1185],
@@ -117,6 +117,7 @@ const nodeConfig = {
 class CardFile {
   constructor(admin) {
     this.admin = admin;
+    this.loadFonts();
   }
 
 
@@ -157,6 +158,8 @@ class CardFile {
       res.holo = path + 'holo.png';
       res.holo_flash = path + 'holo.jpg';
     }
+
+    res.pic = this.admin.config.pic(this.admin.data._id);
   
     return res;
   }
@@ -164,13 +167,13 @@ class CardFile {
 
   getFileContent() {
     let fileList = this.getFileList();
-    let fileContent = {};
+    this.fileContent = {};
     let filePromise = [];
   
     for (let file in fileList) {
       let url = fileList[file];
       filePromise.push(loadImage(url).then((image) => {
-        fileContent[file] = image;
+        this.fileContent[file] = image;
       }))
     }
   
@@ -182,13 +185,12 @@ class CardFile {
     let fontMap = this.admin.config.fonts;
     for (let fontName in fontMap) {
       let fontIfm = fontMap[fontName];
-      registerFont(fontIfm.name, { family: fontName })
+      registerFont(this.admin.path + 'font/' + fontIfm.name, { family: fontName })
     }
   }
 
 
   loadAll() {
-    this.loadFonts();
     return this.getFileContent();
   }
 }
@@ -686,26 +688,11 @@ class CardDrawer {
     }
   }
   
-  draw(...args) {    
-    if (this.drawer) {
-      window.cancelAnimationFrame(this.drawer);
-    }
-    
-    this.drawer = window.requestAnimationFrame(() => {
-      this._draw_(...args);
-    })
-  }
-  
-  _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style, callback) {    
-    this.admin.canvas.width = size[0];
-    this.admin.canvas.height = size[1];
+  draw(cardData, fileContent, size = this.admin.size, config = this.admin.config.style, callback) {
     const r = size[0] / config.moldSize[0];
     const c = this.canvas;
 
     let fontPlus = '';
-    if (this.admin.fastFont) {
-      fontPlus +=  this.admin.key + ',' + config.name.font;
-    }
 
     // draw card mold
     try {
@@ -713,7 +700,7 @@ class CardDrawer {
         c.drawImage(fileContent.mold, 0, 0, config.moldSize[0], config.moldSize[1], 0, 0, r * config.moldSize[0], r * config.moldSize[1]);
       }
     } catch (e) {
-      return;
+      console.log(e);
     }
 
     // draw card pic
@@ -742,11 +729,9 @@ class CardDrawer {
     }
 
     // draw card name
-    if (window['__YGOCARDDATA__'].fontMap[config.name.font]) {
-      c.fillStyle = cardData.color;
-      c.font = config.name.fontSize*r + "px " + config.name.font + fontPlus;
-      c.fillText(cardData.name,config.name.position[0] * r,config.name.position[1] * r,config.name.maxWidth * r);
-    }
+    c.fillStyle = cardData.color;
+    c.font = config.name.fontSize*r + "px " + config.name.font + fontPlus;
+    c.fillText(cardData.name,config.name.position[0] * r,config.name.position[1] * r,config.name.maxWidth * r);
 
     // draw attribute
     fileContent.attribute && c.drawImage(fileContent.attribute, 0, 0, config.attribute.size[0], config.attribute.size[1],config.attribute.position[0]*r,config.attribute.position[1]*r,config.attribute.position[2]*r,config.attribute.position[3]*r);
@@ -766,24 +751,22 @@ class CardDrawer {
 
 
     // draw race
-    if (window['__YGOCARDDATA__'].fontMap[config.race.font]) {
-      if (cardData.type === 'monster') {
-        c.fillStyle = '#000000';
-        c.font = (config.race.fontWieght?(config.race.fontWieght + ' '):'') + config.race.fontSize * r + "px " + config.race.font;
-        c.fillText(cardData._ifm_, config.race.position[0] * r, config.race.position[1] * r, config.race.maxWidth * r);
-      } else {
-        let type = cardData._magicType_;
-        c.fillStyle = '#000000';
-        c.font = config.type.fontSize * r + "px " + config.type.font + fontPlus;
-        let fontLeft = config.type.position[0] * r - c.measureText(type).width;
-        c.fillText(type, fontLeft, config.type.position[1] * r);
+    if (cardData.type === 'monster') {
+      c.fillStyle = '#000000';
+      c.font = (config.race.fontWieght?(config.race.fontWieght + ' '):'') + config.race.fontSize * r + "px " + config.race.font;
+      c.fillText(cardData._ifm_, config.race.position[0] * r, config.race.position[1] * r, config.race.maxWidth * r);
+    } else {
+      let type = cardData._magicType_;
+      c.fillStyle = '#000000';
+      c.font = config.type.fontSize * r + "px " + config.type.font + fontPlus;
+      let fontLeft = config.type.position[0] * r - c.measureText(type).width;
+      c.fillText(type, fontLeft, config.type.position[1] * r);
 
-        if (cardData.type2 !== 'tc') {
-          try {
-            c.drawImage(fileContent.icon, config.type.icon[0] * r, config.type.icon[1] * r, 46 * r, 46 * r);
-          } catch(e) {
-            console.log(e);
-          }
+      if (cardData.type2 !== 'tc') {
+        try {
+          c.drawImage(fileContent.icon, config.type.icon[0] * r, config.type.icon[1] * r, 46 * r, 46 * r);
+        } catch(e) {
+          console.log(e);
         }
       }
     }
@@ -796,43 +779,41 @@ class CardDrawer {
       descConfig = config.magicDesc;
     }
 
-    if (window['__YGOCARDDATA__'].fontMap[descConfig.font]) {
-      var descParts;
-      if (descConfig.splitMode === 'cn') {
-        descParts = this.descSplit(cardData._desc_, descConfig.fontSize, descConfig.font, descConfig.maxLines);
-      } else {
-        descParts = this.descSplitEn(cardData._desc_, descConfig.fontSize, descConfig.font, descConfig.maxLines);
-      }
+    var descParts;
+    if (descConfig.splitMode === 'cn') {
+      descParts = this.descSplit(cardData._desc_, descConfig.fontSize, descConfig.font, descConfig.maxLines);
+    } else {
+      descParts = this.descSplitEn(cardData._desc_, descConfig.fontSize, descConfig.font, descConfig.maxLines);
+    }
 
-      c.fillStyle = '#000000';
-      c.font = descConfig.fontSize*r + "px " + descConfig.font + fontPlus;
+    c.fillStyle = '#000000';
+    c.font = descConfig.fontSize*r + "px " + descConfig.font + fontPlus;
 
-      if (descConfig.splitMode === 'cn') {
-        this.drawDesc(descParts, descConfig, r);
-      } else {
-        this.drawEnDesc(descParts, descConfig, r);
-      }
+    if (descConfig.splitMode === 'cn') {
+      this.drawDesc(descParts, descConfig, r);
+    } else {
+      this.drawEnDesc(descParts, descConfig, r);
+    }
 
-      // draw pendulum desc
-      if (cardData.type3 === 'lb' && cardData.lb_desc) {
-        let pendulumDescParts = this.descSplit(cardData.lb_desc, config.monsterDesc.lbFontSize, config.monsterDesc.font, 5, 556);
-        c.fillStyle = 'rgba(0,0,0,0.7)';
-        c.font = config.monsterDesc.lbFontSize*r + "px " + config.monsterDesc.font + fontPlus;
-        for (let index in pendulumDescParts) {
-          let descPart = pendulumDescParts[index];
-          let left = config.monsterDesc.lbPosition[0];
-          let top = config.monsterDesc.lbPosition[1] + index * config.monsterDesc.lbLineHeight;
-          c.fillText(descPart, left*r, top*r, 556*r);
-          if (index === 4) {
-            let tempWidth = c.measureText(descPart).width;
-            if (tempWidth < 556*r) {
-              c.fillText(descPart, left*r, top*r, c.measureText(descPart.slice(0, -1)).width);
-            } else {
-              c.fillText(descPart, left*r, top*r, 556*r);
-            }
+    // draw pendulum desc
+    if (cardData.type3 === 'lb' && cardData.lb_desc) {
+      let pendulumDescParts = this.descSplit(cardData.lb_desc, config.monsterDesc.lbFontSize, config.monsterDesc.font, 5, 556);
+      c.fillStyle = 'rgba(0,0,0,0.7)';
+      c.font = config.monsterDesc.lbFontSize*r + "px " + config.monsterDesc.font + fontPlus;
+      for (let index in pendulumDescParts) {
+        let descPart = pendulumDescParts[index];
+        let left = config.monsterDesc.lbPosition[0];
+        let top = config.monsterDesc.lbPosition[1] + index * config.monsterDesc.lbLineHeight;
+        c.fillText(descPart, left*r, top*r, 556*r);
+        if (index === 4) {
+          let tempWidth = c.measureText(descPart).width;
+          if (tempWidth < 556*r) {
+            c.fillText(descPart, left*r, top*r, c.measureText(descPart.slice(0, -1)).width);
           } else {
             c.fillText(descPart, left*r, top*r, 556*r);
           }
+        } else {
+          c.fillText(descPart, left*r, top*r, 556*r);
         }
       }
     }
@@ -849,24 +830,22 @@ class CardDrawer {
     }
 
     // draw ATK/DEF
-    if (window['__YGOCARDDATA__'].fontMap[config.ATK.font]) {
-      if (cardData.type === 'monster') {
+    if (cardData.type === 'monster') {
+      c.fillStyle = '#000000';
+      c.font = config.ATK.fontSize * r + "px " + config.ATK.font;
+
+      let ATKLeft = config.ATK.position[0] * r - c.measureText(cardData.attack).width;
+      c.fillText(cardData.attack, ATKLeft, config.ATK.position[1] * r, 72 * r);
+
+      if (cardData.type2 !== 'lj') {
+        let DEFLeft = config.DEF.position[0] * r - c.measureText(cardData.defend).width;
+        c.fillText(cardData.defend, DEFLeft, config.DEF.position[1] * r, 72 * r);
+      } else {
+        var link = cardData._link_;
         c.fillStyle = '#000000';
-        c.font = config.ATK.fontSize * r + "px " + config.ATK.font;
-
-        let ATKLeft = config.ATK.position[0] * r - c.measureText(cardData.attack).width;
-        c.fillText(cardData.attack, ATKLeft, config.ATK.position[1] * r, 72 * r);
-
-        if (cardData.type2 !== 'lj') {
-          let DEFLeft = config.DEF.position[0] * r - c.measureText(cardData.defend).width;
-          c.fillText(cardData.defend, DEFLeft, config.DEF.position[1] * r, 72 * r);
-        } else {
-          var link = cardData._link_;
-          c.fillStyle = '#000000';
-          c.font = config.DEF.fontSize * r + "px " + config.DEF.font;
-          let DEFLeft = config.DEF.position[0] * r - c.measureText(cardData.link_num).width;
-          c.fillText(cardData.link_num, DEFLeft, config.DEF.position[1] * r, 72 * r);
-        }
+        c.font = config.DEF.fontSize * r + "px " + config.DEF.font;
+        let DEFLeft = config.DEF.position[0] * r - c.measureText(cardData.link_num).width;
+        c.fillText(cardData.link_num, DEFLeft, config.DEF.position[1] * r, 72 * r);
       }
     }
 
@@ -892,16 +871,110 @@ class CardDrawer {
       let cardbagLeft = config.cardbag.position[0] * r - c.measureText(cardData.cardbag).width;
       c.fillText(cardData.cardbag, cardbagLeft, config.cardbag.position[1] * r);
     }
-
-    // save to caches
-    if (this.admin.recover) {
-      this.admin.saveToCache();
-    }
     
     // callbacks
-    this.admin.loaded();
     if (callback instanceof Function) {
       callback();
+    }
+  }
+}
+
+
+const MAP = {
+  type: {
+    131076: ['tragic', 'yx', '', ''],
+    17: ['monster', 'tc', '', ''],
+    33554465: ['monster', 'xg', 'ts', ''],
+    33: ['monster', 'xg', '', ''],
+    16777249: ['monster', 'xg', 'lb', ''],
+    4: ['tragic', 'tc', '', ''],
+    2097185: ['monster', 'xg', 'fz', ''],
+    2: ['magic', 'tc', '', ''],
+    65538: ['magic', 'sg', '', ''],
+    4129: ['monster', 'xg', 'tz', ''],
+    67108897: ['monster', 'lj', '', ''],
+    16401: ['monster', 'to', '', ''],
+    262146: ['magic', 'zb', '', ''],
+    524290: ['magic', 'cd', '', ''],
+    8225: ['monster', 'tt', '', ''],
+    8388641: ['monster', 'cl', '', ''],
+    131074: ['magic', 'yx', '', ''],
+    97: ['monster', 'rh', '', ''],
+    4113: ['monster', 'tc', 'tz', ''],
+    1048580: ['tragic', 'fj', '', ''],
+    65: ['monster', 'rh', 'tc', ''],
+    33558561: ['monster', 'xg', 'tz', 'ts'],
+    545: ['monster', 'xg', 'nm', ''],
+    1057: ['monster', 'xg', 'tm', ''],
+    129: ['monster', 'ys', 'tc', ''],
+    161: ['monster', 'ys', '', ''],
+    2081: ['monster', 'xg', 'ec', ''],
+    50331681: ['monster', 'xg', 'lb', 'ts'],
+    4194337: ['monster', 'xg', 'kt', ''],
+    16777233: ['monster', 'tc', 'lb', ''],
+    130: ['magic', 'ys', '', ''],
+    8388609: ['monster', 'cl', 'tc', ''],
+    16781345: ['monster', 'xg', 'lb', 'tz'],
+    12321: ['monster', 'tt', 'tz', ''],
+    16777313: ['monster', 'rh', 'lb', ''],
+    8193: ['monster', 'tt', 'tc', ''],
+    25165857: ['monster', 'cl', 'lb', ''],
+    18874401: ['monster', 'xg', 'lb', 'fz'],
+    673: ['monster', 'ys', 'lh', ''],
+    2101281: ['monster', 'xg', 'fz', 'tz'],
+    37748769: ['monster', 'xg', 'kt', 'ts'],
+    16777761: ['monster', 'xg', 'lb', 'lh'],
+    67108865: ['monster', 'lj', 'tc', ''],
+    16785441: ['monster', 'tt', 'lb', ''],
+    16781329: ['monster', 'tc', 'lb', 'tz'],
+    5153: ['monster', 'xg', 'tm', 'tz'],
+    33554977: ['monster', 'xg', 'lh', 'ts'],
+    4161: ['monster', 'rh', 'tz', 'tc']
+  },
+  attribute: {
+    0: "tragic",
+    32: "dark",
+    16: "light",
+    1: "ground",
+    4: "fire",
+    8: "wind",
+    2: "water",
+    64: "god"
+  },
+  race: {
+    16: "不死族",
+    8: "恶魔族",
+    32768: "兽战士族",
+    256: "岩石族",
+    2: "魔法师族",
+    1: "战士族",
+    512: "鸟兽族",
+    16384: "兽族",
+    32: "机械族",
+    4: "天使族",
+    16777216: "电子界族",
+    131072: "鱼族",
+    4096: "雷族",
+    128: "炎族",
+    262144: "海龙族",
+    64: "水族",
+    1024: "植物族",
+    8192: "龙族",
+    524288: "爬虫族",
+    1048576: "念动力族",
+    2048: "昆虫族",
+    65536: "恐龙族",
+    8388608: "幻龙族",
+    2097152: "幻神兽族",
+    4194304: "创造神族"
+  },
+  level(num) {
+    if (num < 13) {
+        return num;
+    } else {
+      let binNum = num.toString(2);
+      let avaiablePart = binNum.subStr(binNum.length - 4, binNum.length - 1);
+      return avaiablePart;
     }
   }
 }
@@ -910,25 +983,51 @@ class CardDrawer {
 class Card {
   constructor({
     data,
-    size = [813, 1185],
+    size = 813,
     config = nodeConfig,
-    path = './mold'
+    path = './mold/'
   }) {
-    this.size = size;
-    this.canvas = createCanvas(size[0], size[1]);
+    this.size = [size, size * 1185 / 813];
     this.config = config;
     this.path = path;
 
     this.data = new CardData(data, this);
-    this.cardDrawer = new CardDrawer(this);
     this.cardFile = new CardFile(this);
+    this.canvas = createCanvas(this.size[0], this.size[1]);
+    this.cardDrawer = new CardDrawer(this);
   }
 
 
   async render() {
     await this.cardFile.loadAll();
-    this.cardDrawer._draw_(this.data, this.cardFile.fileContent);
+    this.cardDrawer.draw(this.data, this.cardFile.fileContent);
     return this.canvas;
+  }
+
+  
+  static transData({id, atk, def, race, type, level, attribute, name, desc}) {
+    let [type1, type2, type3, type4] = MAP.type[type];
+    attribute = MAP.attribute[attribute];
+    race = MAP.race[race];
+    level = MAP.level(level);
+  
+    atk = (atk === -2) ? '?' : atk;
+    def = (def === -2) ? '?' : def;
+    
+    return {
+      _id: id,
+      name,
+      type: type1,
+      type2: type2,
+      type3: type3,
+      type4: type4,
+      attack: atk,
+      defend: def,
+      race,
+      level,
+      attribute,
+      desc
+    }
   }
 }
 
