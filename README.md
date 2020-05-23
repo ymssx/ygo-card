@@ -100,7 +100,7 @@ interface data = {
   type3: type,                           // third type
   type4: type,                           // fourth type
   desc: string                           // card describe
-  ?attribute: 'light' | 'dark' | 'fire' | 'water' | 'wind' | 'ground' | 'god'
+  ?attribute: 'light' | 'dark' | 'fire' | 'water' | 'wind' | 'earth' | 'divine'
                                          // monster attribute
   ?race: string                          // monster race
   ?attack: number                        // monster attack
