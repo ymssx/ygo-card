@@ -53,11 +53,11 @@ const MAP = {
     0: "trap",
     32: "dark",
     16: "light",
-    1: "ground",
+    1: "earth",
     4: "fire",
     8: "wind",
     2: "water",
-    64: "god"
+    64: "divine"
   },
   race: {
     16: "不死族",
@@ -98,7 +98,33 @@ const MAP = {
 }
 
 
-export default function({id, atk, def, race, type, level, attribute, name, desc}) {
+const typeMap = {
+  'normal': 'tc',
+  "effect": 'xg',
+  "ritual": 'ys',
+  "fusion": 'rh',
+  "synchro": 'tt',
+  "xyz": 'cl',
+  "pendulum": 'lb',
+  "link": 'lj',
+  "gemini": 'ec',
+  "tuner": 'tz',
+  "union": 'tm',
+  "toon": 'tk',
+  "spirit": 'lh',
+  "flip effect": 'fz',
+  "flip-effect": 'fz',
+  "special summon": 'ts',
+  "special-summon": 'ts',
+  "equip": 'zb',
+  "quick play": 'sg',
+  "quick-play": 'sg',
+  "field": 'cd',
+  "counter": 'fj',
+  "continuous": 'yx'
+}
+
+export const variation = function({id, atk, def, race, type, level, attribute, name, desc}) {
   let [type1, type2, type3, type4] = MAP.type[type];
   attribute = MAP.attribute[attribute];
   race = MAP.race[race];
@@ -121,4 +147,24 @@ export default function({id, atk, def, race, type, level, attribute, name, desc}
     attribute,
     desc
   }
+}
+
+
+export const transType = function(data) {
+  if (data.type2) {
+    if (typeMap[data.type2]) {
+      data.type2 = typeMap[data.type2];
+    }
+  }
+  if (data.type3) {
+    if (typeMap[data.type3]) {
+      data.type3 = typeMap[data.type3];
+    }
+  }
+  if (data.type4) {
+    if (typeMap[data.type4]) {
+      data.type4 = typeMap[data.type4];
+    }
+  }
+  return data;
 }

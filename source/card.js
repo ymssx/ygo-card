@@ -1,7 +1,7 @@
 import {CardDrawer} from "./cardDrawer.js";
 import {CardData} from "./cardData.js";
 import {CardFile} from "./cardFile.js";
-import Variation from "./lib/variation.js";
+import {variation, transType} from "./lib/variation.js";
 import {translate} from "./lib/translate.js";
 import defaultConfig from "./config/defaultConfig.js";
 
@@ -20,7 +20,7 @@ let defaultEvent = function (e) {
     type3: type,                           // third type
     type4: type,                           // fourth type
     desc: string                           // card describe
-    ?attribute: 'light' | 'dark' | 'fire' | 'water' | 'wind' | 'ground' | 'god'
+    ?attribute: 'light' | 'dark' | 'fire' | 'water' | 'wind' | 'earth' | 'divine'
                                            // monster attribute
     ?race: string                          // monster race
     ?attack: number                        // monster attack
@@ -93,7 +93,7 @@ export class Card {
     this.autoResize = autoResize;
     this.renderState = false;
 
-    this.data = new CardData(data, this);
+    this.data = new CardData(this.transType(data), this);
     this.size = size;
     if (canvas) {
       this.bind(canvas, size);
@@ -312,6 +312,10 @@ export class Card {
       
     return (window.devicePixelRatio || 1) / backingStore;
   };
+
+  transType(data) {
+    return transType(data);
+  }
 
   static transData(data) {
     return Variation(data);

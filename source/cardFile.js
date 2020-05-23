@@ -70,35 +70,35 @@ export class CardFile {
     let res= {};
     if (data.type === 'monster') {
         if (data.type3 !== 'lb') {
-          res.mold = path + data.type + '_' + data.type2 + '.jpg';
+          res.mold = path + 'frame/' + data.type + '_' + data.type2 + '.jpg';
         } else {
-          res.mold = path + data.type + '_' + data.type2 + '_' + 'lb' + '.jpg';
+          res.mold = path + 'frame/' + data.type + '_' + data.type2 + '_' + 'lb' + '.jpg';
         }
 
         if (data.type2 === 'lj') {
-          res.arrow1_0 = path + 'arrow1_0.png';
-          res.arrow1_1 = path + 'arrow1_1.png';
-          res.arrow2_0 = path + 'arrow2_0.png';
-          res.arrow2_1 = path + 'arrow2_1.png';
+          res.arrow1_0 = path + 'arrow/arrow1_0.png';
+          res.arrow1_1 = path + 'arrow/arrow1_1.png';
+          res.arrow2_0 = path + 'arrow/arrow2_0.png';
+          res.arrow2_1 = path + 'arrow/arrow2_1.png';
         }
 
         res.attribute = path + 'attribute/' + data.attribute + '.png';
         if (data.type2 === 'cl') {
-          res.level = path + 'level.png';
+          res.level = path + 'star/rank.png';
         } else {
-          res.level = path + 'star.png';
+          res.level = path + 'star/level.png';
         }
     } else {
       res.mold = path + data.type + '.jpg';
       res.attribute = path + 'attribute/' + data.type + '.png';
       if (data.type2 !== 'tc') {
-        res.icon = path + 'type/' + data.type2 + '.png';
+        res.icon = path + 'icon/' + data.type2 + '.png';
       }
     }
 
     if (this.admin.holo) {
-      res.holo = path + 'holo.png';
-      res.holo_flash = path + 'holo.jpg';
+      res.holo = path + 'holo/holo.png';
+      res.holo_flash = path + 'holo/holo.jpg';
     }
 
     return res;

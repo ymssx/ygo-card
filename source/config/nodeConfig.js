@@ -99,7 +99,7 @@ export default {
   },
   "translate": {
     "attribute": {
-      "light": '光', "dark": '暗', "wind": '风', "water": '水', "fire": '炎', "ground": '地', "god": '神'
+      "light": '光', "dark": '暗', "wind": '风', "water": '水', "fire": '炎', "earth": '地', "divine": '神'
     },
     "type": {
       "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同調', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '靈魂', "fz": '反轉', "ts": '特殊召喚', "zb": '裝備', "sg": '速攻', "cd": '場地', "fj": '反擊', "yx": '永續'

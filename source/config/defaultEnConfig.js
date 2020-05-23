@@ -97,14 +97,14 @@ export default {
   },
   "translate": {
     "attribute": {
-      "light": '光', "dark": '暗', "wind": '风', "water": '水', "fire": '炎', "ground": '地', "god": '神'
+      "light": '光', "dark": '暗', "wind": '风', "water": '水', "fire": '炎', "earth": '地', "divine": '神'
     },
     "type": {
-      "tc": 'normal', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同调', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '灵魂', "fz": '反转', "kt": '卡通', "ts": '特殊召唤', "zb": '装备', "sg": '速攻', "cd": '场地', "fj": '反击', "yx": '永续'
+      "tc": 'normal', "xg": 'effect', "ys": 'ritual', "rh": 'fusion', "tt": 'synchro', "cl": 'xyz', "lb": 'pendulum', "lj": 'link', "ec": 'gemini', "tz": 'tuner', "tm": 'union', "tk": 'toon', "lh": 'spirit', "fz": 'flip effect', "ts": 'special summon', "zb": 'equip', "sg": 'quick-play', "cd": 'field', "fj": 'counter', "yx": 'continuous'
     },
-    "raceList": ["龍族","戰士族","惡魔族","魔法師族","天使族","不死族","岩石族","植物族","昆蟲族","水族","炎族","雷族","魚族","海龍族","幻龍族","恐龍族","爬蟲族","機械族","獸族","鳥獸族","獸戰士族","念動力族","電子界族","幻神獸族","創造神族"],
-    "spell": "spell card",
-    "tragic": "trap card",
+    "raceList": ["Dragon", "Warrior", "Fiend", "Spellcaster", "Fairy", "Zombie", "Rock", "Plant", "Insect", "Aqua", "Pyro", "Thunder", "Fish", "Sea Serpent", "Wyrm", "Dinosaur", "Reptile", "Machine", "Beast", "Winged Beast", "Beast-Warrior", "Psychic", "Cyberse", "Divine-Beast", "Divine"],
+    "spell": "Spell",
+    "tragic": "Trap",
     "brackets": ['[' , ']']
   }
 }
