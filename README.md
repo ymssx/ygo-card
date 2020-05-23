@@ -95,7 +95,7 @@ const card = new Card({ data, canvas, moldPath: './source/mold' });
 interface data = {
   name: string,                          // card name
   _id: string,                           // card id
-  type: 'monster' | 'magic' | 'tragic',  // first type
+  type: 'monster' | 'spell' | 'trap',    // first type
   type2: type,                           // secend type
   type3: type,                           // third type
   type4: type,                           // fourth type

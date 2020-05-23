@@ -229,7 +229,7 @@ export class CardDrawer {
         c.font = (config.race.fontWieght?(config.race.fontWieght + ' '):'') + config.race.fontSize * r + "px " + config.race.font;
         c.fillText(cardData._ifm_, config.race.position[0] * r, config.race.position[1] * r, config.race.maxWidth * r);
       } else {
-        let type = cardData._magicType_;
+        let type = cardData._spellType_;
         c.fillStyle = '#000000';
         c.font = config.type.fontSize * r + "px " + config.type.font + fontPlus;
         let fontLeft = config.type.position[0] * r - c.measureText(type).width;
@@ -250,7 +250,7 @@ export class CardDrawer {
     if (cardData.type === 'monster') {
       descConfig = config.monsterDesc;
     } else {
-      descConfig = config.magicDesc;
+      descConfig = config.spellDesc;
     }
 
     if (window['__YGOCARDDATA__'].fontMap[descConfig.font]) {

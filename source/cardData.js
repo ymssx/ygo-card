@@ -230,21 +230,21 @@ export class CardData {
 				txt += "/" + tc + brackets[1];
 			}
 			return txt;
-		} else if (this.type === "magic") {
-			return brackets[0] + trans.magic + brackets[1];
+		} else if (this.type === "spell") {
+			return brackets[0] + trans.spell + brackets[1];
 		} else {
-			return brackets[0] + trans.tragic + brackets[1];
+			return brackets[0] + trans.trap + brackets[1];
 		}
   }
   
-  get _magicType_() {
+  get _spellType_() {
     let type;
     let brackets = this.admin.config.translate.brackets;
-    if (this.type === 'magic') {
-      let text = this.admin.config.translate.magic;
+    if (this.type === 'spell') {
+      let text = this.admin.config.translate.spell;
       type = brackets[0] + text;
     } else {
-      let text = this.admin.config.translate.tragic;
+      let text = this.admin.config.translate.trap;
       type = brackets[0] + text;
     }
 

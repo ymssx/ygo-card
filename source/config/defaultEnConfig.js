@@ -62,7 +62,7 @@ export default {
       "lbLineHeight": 24.5,
       "maxLines": 6
     },
-    "magicDesc": {
+    "spellDesc": {
       "splitMode": "en",
       "font": "en",
       "fontSize": 24,
@@ -103,7 +103,7 @@ export default {
       "tc": 'normal', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同调', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '灵魂', "fz": '反转', "kt": '卡通', "ts": '特殊召唤', "zb": '装备', "sg": '速攻', "cd": '场地', "fj": '反击', "yx": '永续'
     },
     "raceList": ["龍族","戰士族","惡魔族","魔法師族","天使族","不死族","岩石族","植物族","昆蟲族","水族","炎族","雷族","魚族","海龍族","幻龍族","恐龍族","爬蟲族","機械族","獸族","鳥獸族","獸戰士族","念動力族","電子界族","幻神獸族","創造神族"],
-    "magic": "spell card",
+    "spell": "spell card",
     "tragic": "trap card",
     "brackets": ['[' , ']']
   }
