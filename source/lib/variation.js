@@ -150,6 +150,15 @@ export const variation = function({id, atk, def, race, type, level, attribute, n
 }
 
 
+export const transSingleType = function(type) {
+  if (typeMap[type]) {
+    return typeMap[type];
+  } else {
+    return type;
+  }
+}
+
+
 export const transType = function(data) {
   if (data.type2) {
     if (typeMap[data.type2]) {

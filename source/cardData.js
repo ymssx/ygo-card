@@ -1,4 +1,5 @@
 import {translate} from "./lib/translate.js";
+import {transSingleType} from "./lib/variation.js";
 
 export class CardData {
   constructor(dbData, admin, color) {
@@ -20,6 +21,9 @@ export class CardData {
           return dbData[key];
         },
         set(value) {
+          if (key === 'type4') {
+            value = transSingleType(value);
+          }
           dbData[key] = value;
           this.draw();
         }
@@ -105,6 +109,7 @@ export class CardData {
           return dbData[key];
         },
         set(value) {
+          value = transSingleType(value);
           dbData[key] = value;
           if (dbData['type'] === 'monster') {
             this.draw(['mold', 'level', 'attribute']);
