@@ -143,17 +143,17 @@ const Card = function ({
   size: number[],                         // 绘制尺寸，[宽, 高]
   moldPath: string = './mold',            // 模板资源路径
   lang:'cn' | 'jp' | 'en' = 'cn',         // 语言 cn、jp、en
-  config: object = defaultConfig,         // 配置信息 - object
-  fontLoaded: function = defaultEvent,    // 事件 - function
+  config: object = defaultConfig,         // 配置信息。在这里指定你的自定义配置信息
+  fontLoaded: function = defaultEvent,    // 事件
   imageLoaded: function = defaultEvent,
   fontsLoaded: function = defaultEvent,
   imagesLoaded: function = defaultEvent,
   loaded: function = defaultEvent,
-  recover: boolean = false,               // 是否缓存配置与数据 - boolean
-  holo: boolean = true,                   // 是否显示防伪标志 - boolean
-  cardbagSwitch: boolean = false,         // 是否显示卡包信息 - boolean
-  translate: boolean = false,             // 是否自动繁简转换 - boolean
-  verbose: boolean = false                // 是否开启啰嗦模式 - boolean
+  recover: boolean = false,               // 是否缓存配置与数据
+  holo: boolean = true,                   // 是否显示防伪标志
+  cardbagSwitch: boolean = false,         // 是否显示卡包信息
+  translate: boolean = false,             // 是否自动繁简转换
+  verbose: boolean = false                // 是否开启啰嗦模式
 })
 ```
 
@@ -225,6 +225,8 @@ card.fontLoaded = function(e) {
 更改config文件，可以自由地调整卡片的样式，比如字体大小、颜色等。
 
 [具体配置请参考`config/defaultConfig.js`](https://gitee.com/ymssx/cardjs/tree/master/source/config)
+
+你可以通过传递一个配置对象来临时改变配置信息
 
 ```javascript
 card.changeConfig(config);
