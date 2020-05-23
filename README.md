@@ -62,18 +62,18 @@ $ git clone https://gitee.com/ymssx/cardjs.git
 ```javascript
 const canvas = document.getElementById('card');
 const data = { 
-    name: '青眼的白龍',
-    _id: '89631139',
-    type: 'monster',
-    type2: 'tc',
-    type3: '',
-    type4: '',
-    attack: 3000,
-    defend: 2500,
-    level: 8,
-    desc: '以高攻擊力著稱的傳說之龍。任何對手都能被粉碎，其破壞力不可估量。',
-    race: '龍族',
-    attribute: 'light' 
+  name: '青眼的白龍',
+  _id: '89631139',
+  type: 'monster',
+  type2: 'tc',
+  type3: '',
+  type4: '',
+  attack: 3000,
+  defend: 2500,
+  level: 8,
+  desc: '以高攻擊力著稱的傳說之龍。任何對手都能被粉碎，其破壞力不可估量。',
+  race: '龍族',
+  attribute: 'light' 
 }
 
 const card = new Card({ data, canvas, size: [400, 584] });
@@ -96,7 +96,7 @@ interface data = {
   name: string,                          // card name
   _id: string,                           // card id
   type: 'monster' | 'spell' | 'trap',    // first type
-  type2: type,                           // secend type
+  type2: type,                           // secend type 见下面注释①
   type3: type,                           // third type
   type4: type,                           // fourth type
   desc: string                           // card describe
@@ -113,6 +113,32 @@ interface data = {
 }
 
 typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同調', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '靈魂', "fz": '反轉', "ts": '特殊召喚', "zb": '裝備', "sg": '速攻', "cd": '場地', "fj": '反擊', "yx": '永續' }
+```
+
+> ① 关于type2 | type3 | type4
+* 描述卡片类型时，请一定在type2中反映出它是一张什么颜色的卡片，可选为 tc通常、xg效果、rh融合、ys仪式、cl超量、tt同调等
+* type3 - type4可描述为tz调整、ec二重、fz反转、tc通常、xg效果等
+* 默认使用拼音首字母描述，超过两个字的按前两个字处理，如“特殊召唤”为“ts”
+* TCG玩家也可以使用英文，如 normal、effect、fusion、ritual、xyz、synchro等（请使用小写），我们会自动转换为拼音
+
+以下两种描述是等价的，请根据自己喜好选择
+
+```javascript
+const data = { 
+  name: '幽鬼兔',
+  type: 'monster',
+  type2: 'xg', // 效果
+  type3: 'tz', // 调整
+  type4: '',
+}
+
+const data = { 
+  name: '幽鬼兔',
+  type: 'monster',
+  type2: 'effect', // 效果
+  type3: 'tuner', // 调整
+  type4: '',
+}
 ```
 
 <br/>
