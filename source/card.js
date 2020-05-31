@@ -318,7 +318,7 @@ export class Card {
   }
 
   static transData(data) {
-    return Variation(data);
+    return variation(data);
   }
 
   static complex(text) {
