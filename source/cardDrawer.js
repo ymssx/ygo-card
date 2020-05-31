@@ -329,7 +329,47 @@ export class CardDrawer {
 
     // link arrows
     if (cardData.type2 === 'lj') {
-      c.drawImage(fileContent.arrow1_1, 334, 823)
+      const link = cardData._link_;
+      const linkConfig = config.linkArrows;
+      const drawArrow = (type, value) => {
+        if (type === 0) {
+          if (value) {
+            c.drawImage(fileContent.arrow1_1, linkConfig.arrow1.position[0] * r, linkConfig.arrow1.position[1] * r, linkConfig.arrow1.size[0] * r, linkConfig.arrow1.size[1] * r);
+          } else {
+            c.drawImage(fileContent.arrow1_0, linkConfig.arrow1.position[0] * r, linkConfig.arrow1.position[1] * r, linkConfig.arrow1.size[0] * r, linkConfig.arrow1.size[1] * r);
+          }
+        } else {
+          if (value) {
+            c.drawImage(fileContent.arrow2_1, linkConfig.arrow2.position[0] * r, linkConfig.arrow2.position[1] * r, linkConfig.arrow2.size[0] * r, linkConfig.arrow2.size[1] * r);
+          } else {
+            c.drawImage(fileContent.arrow2_0, linkConfig.arrow2.position[0] * r, linkConfig.arrow2.position[1] * r, linkConfig.arrow2.size[0] * r, linkConfig.arrow2.size[1] * r);
+          }
+        }
+      }
+
+      c.save();
+      // 原点设置到卡图中心
+      c.translate(linkConfig.center[0] * r, linkConfig.center[1] * r);
+      c.save();
+
+      drawArrow(0, link[6]);
+      c.rotate(Math.PI / 2);
+      drawArrow(0, link[3]);
+      c.rotate(Math.PI / 2);
+      drawArrow(0, link[1]);
+      c.rotate(Math.PI / 2);
+      drawArrow(0, link[4]);
+
+      c.restore();
+      drawArrow(1, link[5]);
+      c.rotate(Math.PI / 2);
+      drawArrow(1, link[0]);
+      c.rotate(Math.PI / 2);
+      drawArrow(1, link[2]);
+      c.rotate(Math.PI / 2);
+      drawArrow(1, link[7]);
+
+      c.restore();
     }
 
     // draw holo

@@ -96,7 +96,17 @@ export default {
       "positonLeft": [86, 854],
       "positonRight": [718, 854]
     },
-    "linkArrows": {}
+    "linkArrows": {
+      "center": [408, 528],
+      "arrow1": {
+        "size": [140, 41],
+        "position": [-70, 308]
+      },
+      "arrow2": {
+        "size": [70, 70],
+        "position": [-336, 267]
+      }
+    }
   },
   "translate": {
     "attribute": {
