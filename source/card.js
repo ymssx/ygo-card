@@ -74,6 +74,10 @@ export class Card {
 
     this.config = tempConfig || config;
     this.key = data._id;
+    
+    if (moldPath[moldPath.length - 1] === '/') {
+      moldPath = moldPath.substring(0, moldPath.length - 1);
+    }
     this.moldPath = moldPath;
 
     // events register

@@ -33,7 +33,7 @@ export default {
     },
     "pic": {
       "position": [101, 220, 615, 616],
-      "position_lb": [57, 214, 702, 528]
+      "position_lb": [57, 213, 702, 528]
     },
     "attribute": {
       "position": [680, 57, 75, 75],
@@ -43,10 +43,6 @@ export default {
       "position": [686, 145],
       "size": [50, 50],
       "distance": 55
-    },
-    "holo": {
-      "position": [755, 1125],
-      "size": [30, 30]
     },
     "monsterDesc": {
       "splitMode": "cn",
@@ -59,7 +55,7 @@ export default {
       "lbLineHeight": 24.5,
       "maxLines": 6
     },
-    "magicDesc": {
+    "spellDesc": {
       "splitMode": "cn",
       "font": "cn",
       "fontSize": 24,
@@ -90,10 +86,37 @@ export default {
       "fontSize": 36,
       "position": [750, 1107]
     },
+    "pendulumNumber": {
+      "font": "number",
+      "fontSize": 60,
+      "positonLeft": [88, 854],
+      "positonRight": [730, 854]
+    },
+    "linkArrows": {
+      "center": [408, 528],
+      "arrow1": {
+        "size": [140, 41],
+        "position": [-70, 308]
+      },
+      "arrow2": {
+        "size": [70, 70],
+        "position": [-336, 267]
+      }
+    },
     "cardbag": {
       "font": "number",
       "fontSize": 30,
-      "position": [735, 875]
+      "position": [730, 872],
+      "linkPosition": [665, 872]
+    },
+    "password": {
+      "font": 'number',
+      "fontSize": 26,
+      "position": [43, 1148]
+    },
+    "holo": {
+      "position": [755, 1125],
+      "size": [30, 30]
     }
   },
   // 文本翻译对照表

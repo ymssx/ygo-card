@@ -8,17 +8,15 @@
 
 ## 为什么使用card.js
 
-你的网站需要大量的游戏王卡图，但是网上的卡图资源参差不齐？不妨试试card.js，只需要一次的加载，就可以使用快速、大量、标准、高清的游戏王卡图。
+你的网站需要大量的游戏王卡图，但是网上的卡图资源参差不齐？不妨试试card.js，只需要一次的加载，就可以使用大量、标准、高清的游戏王卡图。
 
-* 🍇 对于海量高清卡图的场景，相比于直接下载完整的图片，card.js只需要下载中间卡图进行前端渲染，整体加载非常迅速，节省了大量带宽。
+* 🥦 响应式。Card会自动响应数据的变动，同时更新卡图，这在与表单交互场景十分有用。同时，对于大量的更新请求，内部只会进行一次绘制，因此你不用过多的担心性能问题。
 
-* 🍉 card.js支持复杂的交互动效，比如SR面闪特效、烫金字等。同时允许实时修改卡片信息、自由定制卡片。
+* 🍅 十分容易使用。你只需要短短的几行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中你可以随心所欲地进行创作！
 
-* 🍋 card.js渲染的卡图非常清晰，你可以直接保存到本地进行打印。同时card.js会自动监听canvas的尺寸，当其尺寸改变时，card.js会自动重绘。从显示器到纸上，它是一张永远都不会模糊的图片。
+* 🍉 交互式。你可以轻松实现各种交互动效，比如SR面闪特效、烫金字等。同时允许实时修改卡片信息、自由定制卡片。
 
-* 🥦 card.js会追踪数据的变动，自动地更新卡图，这在与表单交互场景十分有用。同时，对于大量的图片更新请求，card.js只会进行一次绘制，因此你不用过多的担心性能问题。
-
-* 🍅 card.js十分容易使用，你只需要短短的一行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中你可以随心所欲地进行创作！
+* 🍇 动态尺寸。Card渲染的卡图非常清晰，你可以直接保存到本地进行打印。同时Card会自动监听canvas的尺寸变化，同时会自动重绘。从显示器到纸张上，它是一张永远都不会模糊的图片。
 
 <br/>
 
@@ -47,17 +45,33 @@ $ git clone https://gitee.com/ymssx/cardjs.git
 
 将 `dist`文件夹下的内容放到需要的地方
 
+#### 目录结构
+
+> mold/
+
+保存了我们需要的标准模板素材。当然你也可以自定义你的模板。
+
+> config/
+
+这里自带了几分常用的配置文件。
+
+> card.js
+
+手动引入它就可以使用Card啦
+
 <br/>
 
 ## 🚀 使用方式
 
-将card.js所在的文件夹放在合适的位置，在js中使用`<script>`引入card.js
+将`dist`文件夹的内容放在合适的位置，使用`<script>`引入card.js
 
 ``` html
 <canvas id="card"></canvas>
 ...
-<script src="./card.js"></script>
+<script src="xxx/card.js"></script>
 ```
+
+传入一个卡片数据和canvas对象，然后使用render方法就可以渲染啦
 
 ```javascript
 const canvas = document.getElementById('card');
@@ -81,7 +95,7 @@ const card = new Card({ data, canvas, size: [400, 584] });
 card.render();
 ```
 
-**注意，当card.js不在根目录时，你可能需要手动指定moldPath （末尾不要加"/"）。**
+> **注意，当card.js不在根目录时，你可能需要手动指定moldPath。**
 
 ```javascript
 const card = new Card({ data, canvas, moldPath: './source/mold' });
@@ -306,6 +320,23 @@ card.data.name = 'Blue Eyes';
 card.save('青眼白龙', [1626, 2370]);
 ```
 也可以不指定参数，card.js会自动使用卡名作为文件名，尺寸会使用默认值1626 × 2370。
+
+### Card.feedFlash
+
+使用面闪效果。传入一张闪面卡图，并且调整`card.data.flash`的值（0 ~ 1），卡图会呈现不同强度的面闪效果。
+
+```javascript
+card.feedFlash(document.getElementById('flashImg'));
+
+card.data.flash = 0.5;
+```
+
+一张闪面卡图需要自行制作，一下是两组例子：
+
+<img src="./source/mold/pic.jpg" height=150/>
+<img src="./source/mold/flash.jpg" height=150/>
+<img src="https://ymssx.gitee.io/pics/500/16899564.jpg" height=150/>
+<img src="./source/mold/flash2.jpg" height=150/>
 
 <br/>
 
