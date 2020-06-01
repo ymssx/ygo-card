@@ -194,12 +194,12 @@ export class CardData {
       let temp = desc.split("→")[1];
       if (!temp) return desc;
 
-			var lb_desc = temp.split("【")[0].replace("\r", "").replace("\n", "").replace(" ", "");
-			var desc_ = temp.split("】")[1].replace("\r", "").replace("\n", "").replace(" ", "");
+			var lb_desc = temp.split("【")[0].replace("\r", "").replace(" ", "");
+			var desc_ = temp.split("】")[1].replace("\r", "").replace(" ", "");
 			this._lb_num = lb_num;
 			this._lb_desc = lb_desc;
 		} else {
-			var desc_ = desc.replace("\r", "").replace("\n", "").replace(" ", "");
+			var desc_ = desc.replace("\r", "").replace(" ", "");
 		}
 		return desc_;
   }

@@ -3,26 +3,49 @@ export class CardDrawer {
     this.admin = admin;
     this.canvas = this.admin.canvas.getContext('2d');
   }
+
+  isPunctuation(char) {
+    const reg = new RegExp("[\u0000-\u00ff]");
+    const reg2 = new RegExp("[\uff00-\uffff]");
+    const punctuationMap = ['。', '，', '：', '【', '】'];
+    return reg.test(char) || reg2.test(char) || punctuationMap.includes(char);
+  }
   
   descSplit(desc, fontSize, font, maxLines = 6, maxWidth = 683) {
+    let originMaxLine = maxLines;
+    desc = desc.trim();
     const c = this.canvas;
     c.font=fontSize + "px " + font;
     let width = maxWidth;
+
+    let res = [];
+    let temp = '';
+    // 允许有一次换行
+    let splitDesc = desc.split('\n');
+    if (splitDesc.length >= 2) {
+      res = [splitDesc.shift()];
+      desc = splitDesc.join('');
+      maxLines -= 1;
+    }
+
     let orignWidth = c.measureText(desc).width;
     if (orignWidth > maxWidth * maxLines) {
       width = orignWidth / maxLines;
     }
-    let res = [];
-    let temp = '';
     for (let i of desc) {
-      temp += i;
-      if (c.measureText(temp).width >= width) {
-        res.push(temp);
-        temp = ''
+      // 如果某行首字为标点符号，那么会将其压入上一行。
+      if (temp === '' && res.length > 0 && this.isPunctuation(i)) {
+        res[res.length - 1] += i;
+      } else {
+        temp += i;
+        if (c.measureText(temp).width >= width) {
+          res.push(temp);
+          temp = ''
+        }
       }
     }
     if (temp) {
-      if (res.length < maxLines) {
+      if (res.length < originMaxLine) {
         res.push(temp);
       } else {
         res[res.length - 1] += temp;
