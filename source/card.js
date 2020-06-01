@@ -113,8 +113,6 @@ export class Card {
     let ratio = this.getPixelRatio;
 
     if (size) {
-      this.canvas.style.maxWidth = size[0] + 'px';
-      this.canvas.style.maxHeight = size[1] + 'px';
       this.size = [size[0] * ratio, size[1] * ratio];
     } else {
       if (!this.size) {
@@ -141,8 +139,6 @@ export class Card {
           });
         }
       } else {
-        this.canvas.style.maxWidth = this.size[0] + 'px';
-        this.canvas.style.maxHeight = this.size[1] + 'px';
         this.size = [this.size[0] * ratio, this.size[1] * ratio];
       }
     }

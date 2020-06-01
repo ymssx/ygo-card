@@ -100,7 +100,7 @@ export default {
     },
     "cardbag": {
       "font": "number",
-      "fontSize": 35,
+      "fontSize": 30,
       "position": [730, 872],
       "linkPosition": [665, 872]
     },

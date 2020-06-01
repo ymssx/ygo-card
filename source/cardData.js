@@ -112,7 +112,11 @@ export class CardData {
           value = transSingleType(value);
           dbData[key] = value;
           if (dbData['type'] === 'monster') {
-            this.draw(['mold', 'level', 'attribute']);
+            let fileList = ['mold', 'level', 'attribute'];
+            if (dbData['type2'] === 'lj') {
+              fileList = fileList.concat(['arrow1_0', 'arrow1_1', 'arrow2_0', 'arrow2_1'])
+            }
+            this.draw(fileList);
           } else {
             this.draw(['mold', 'level', 'attribute', 'icon']);
           }
@@ -127,6 +131,16 @@ export class CardData {
       set(value) {
         dbData['attribute'] = value;
         this.draw(['attribute']);
+      }
+    })
+
+    Object.defineProperty(this, 'link', {
+      get() {
+        return this._link_;
+      },
+      set(value) {
+        dbData['link'] = value;
+        this.draw();
       }
     })
 
