@@ -92,8 +92,8 @@ export default {
     "pendulumNumber": {
       "font": "number",
       "fontSize": 60,
-      "positonLeft": [86, 854],
-      "positonRight": [718, 854]
+      "positonLeft": [88, 854],
+      "positonRight": [730, 854]
     },
     "linkArrows": {
       "center": [408, 528],

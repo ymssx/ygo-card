@@ -86,6 +86,17 @@ export default {
       "fontSize": 36,
       "position": [750, 1107]
     },
+    "cardbag": {
+      "font": "number",
+      "fontSize": 30,
+      "position": [735, 875]
+    },
+    "pendulumNumber": {
+      "font": "number",
+      "fontSize": 60,
+      "positonLeft": [88, 854],
+      "positonRight": [730, 854]
+    },
     "linkArrows": {
       "center": [408, 528],
       "arrow1": {

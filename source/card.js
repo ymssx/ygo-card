@@ -53,6 +53,7 @@ export class Card {
     recover = false,
     holo = true,
     cardbagSwitch = false,
+    passwordSwitch = false,
     translate = true,
     verbose = false,
     autoResize = true
@@ -88,6 +89,7 @@ export class Card {
     this.flashImg = null;
     this.holo = holo;
     this.cardbagSwitch = cardbagSwitch;
+    this.passwordSwitch = passwordSwitch;
     this.translate = translate;
     this.verbose = verbose;
     this.autoResize = autoResize;

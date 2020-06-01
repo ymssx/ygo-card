@@ -298,11 +298,13 @@ export class CardDrawer {
     if (cardData.type3 === 'lb' && cardData.lb_num) {
       c.fillStyle = '#000000';
       c.font = config.pendulumNumber.fontSize * r + "px " + config.pendulumNumber.font;
-      let numWidth = 0.5 * Math.min(c.measureText(cardData.lb_num).width, 50);
-      let leftPosition = config.pendulumNumber.positonLeft[0] - numWidth;
-      let rightPosition = config.pendulumNumber.positonRight[0] - numWidth;
-      c.fillText(cardData.lb_num, leftPosition, config.pendulumNumber.positonLeft[1] * r, 50 * r);
-      c.fillText(cardData.lb_num, rightPosition, config.pendulumNumber.positonRight[1] * r, 50 * r);
+      let leftPosition = config.pendulumNumber.positonLeft;
+      let rightPosition = config.pendulumNumber.positonRight;
+      c.save();
+      c.textAlign = 'center';
+      c.fillText(cardData.lb_num, leftPosition[0] * r, leftPosition[1] * r);
+      c.fillText(cardData.lb_num, rightPosition[0] * r, rightPosition[1] * r);
+      c.restore();
     }
 
     // draw ATK/DEF
@@ -384,10 +386,35 @@ export class CardDrawer {
 
     // draw cardbag
     if (cardData.cardbag && this.admin.cardbagSwitch) {
+      c.save();
       c.fillStyle = '#000000';
+      if (cardData.type2 === 'cl') {
+        c.fillStyle = '#ffffff';
+      }
       c.font = config.cardbag.fontSize * r + "px " + config.cardbag.font;
-      let cardbagLeft = config.cardbag.position[0] * r - c.measureText(cardData.cardbag).width;
-      c.fillText(cardData.cardbag, cardbagLeft, config.cardbag.position[1] * r);
+      let cardbagLeft, cardbagTop;
+      c.textAlign = 'right';
+      if (cardData.type2 !== 'lj') {
+        cardbagLeft = config.cardbag.position[0] * r;
+        cardbagTop = config.cardbag.position[1] * r;
+      } else {
+        cardbagLeft = config.cardbag.linkPosition[0] * r;
+        cardbagTop = config.cardbag.linkPosition[1] * r;
+      }
+      c.fillText(cardData.cardbag, cardbagLeft, cardbagTop);
+      c.restore();
+    }
+
+    // draw password
+    if (cardData._id && this.admin.passwordSwitch) {
+      c.save();
+      c.fillStyle = '#000000';
+      if (cardData.type2 === 'cl') {
+        c.fillStyle = '#ffffff';
+      }
+      c.font = config.password.fontSize * r + "px " + config.password.font;
+      c.fillText(cardData._id, config.password.position[0] * r, config.password.position[1] * r);
+      c.restore();
     }
 
     // save to caches
