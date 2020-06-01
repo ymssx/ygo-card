@@ -4,6 +4,7 @@ import {CardFile} from "./cardFile.js";
 import {variation, transType} from "./lib/variation.js";
 import {translate} from "./lib/translate.js";
 import defaultConfig from "./config/defaultConfig.js";
+export {CardDom} from './cardDom.js';
 
 let defaultEvent = function (e) {
   return e;
