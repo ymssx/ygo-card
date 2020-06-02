@@ -89,7 +89,7 @@ export class CardFile {
           res.level = path + 'star/level.png';
         }
     } else {
-      res.mold = path + data.type + '.jpg';
+      res.mold = path + 'frame/' + data.type + '.jpg';
       res.attribute = path + 'attribute/' + data.type + '.png';
       if (data.type2 !== 'tc') {
         res.icon = path + 'icon/' + data.type2 + '.png';
