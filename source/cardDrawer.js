@@ -411,15 +411,21 @@ export class CardDrawer {
     if (cardData.cardbag && this.admin.cardbagSwitch) {
       c.save();
       c.fillStyle = '#000000';
-      if (cardData.type2 === 'cl') {
+      if (cardData.type2 === 'cl' && cardData.type3 !== 'lb') {
         c.fillStyle = '#ffffff';
       }
       c.font = config.cardbag.fontSize * r + "px " + config.cardbag.font;
       let cardbagLeft, cardbagTop;
       c.textAlign = 'right';
       if (cardData.type2 !== 'lj') {
-        cardbagLeft = config.cardbag.position[0] * r;
-        cardbagTop = config.cardbag.position[1] * r;
+        if (cardData.type3 === 'lb') {
+          c.textAlign = 'left';
+          cardbagLeft = config.cardbag.pendulumPosition[0] * r;
+          cardbagTop = config.cardbag.pendulumPosition[1] * r;
+        } else {
+          cardbagLeft = config.cardbag.position[0] * r;
+          cardbagTop = config.cardbag.position[1] * r;
+        };
       } else {
         cardbagLeft = config.cardbag.linkPosition[0] * r;
         cardbagTop = config.cardbag.linkPosition[1] * r;
@@ -432,7 +438,7 @@ export class CardDrawer {
     if (cardData._id && this.admin.passwordSwitch) {
       c.save();
       c.fillStyle = '#000000';
-      if (cardData.type2 === 'cl') {
+      if (cardData.type2 === 'cl' && cardData.type3 !== 'lb') {
         c.fillStyle = '#ffffff';
       }
       c.font = config.password.fontSize * r + "px " + config.password.font;
