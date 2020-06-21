@@ -103,7 +103,8 @@ export default {
       "font": "number",
       "fontSize": 52,
       "positonLeft": [88, 854],
-      "positonRight": [730, 854]
+      "positonRight": [730, 854],
+      "pendulumPosition": [66, 1102],
     },
     "linkArrows": {
       "center": [408, 528],
