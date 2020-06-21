@@ -102,7 +102,8 @@ export default {
       "font": "number",
       "fontSize": 30,
       "position": [730, 872],
-      "linkPosition": [665, 872]
+      "linkPosition": [665, 872],
+      "pendulumPosition": [66, 1102],
     },
     "password": {
       "font": 'number',
