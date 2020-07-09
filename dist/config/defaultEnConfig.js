@@ -20,6 +20,10 @@ export default {
     "race": {
       "name": "race.ttf",
       "type": "relative"
+    },
+    "password": {
+      "name": "password.ttf",
+      "type": "relative"
     }
   },
   "pic": function(id) {
@@ -46,10 +50,6 @@ export default {
       "position": [686, 145],
       "size": [50, 50],
       "distance": 55
-    },
-    "holo": {
-      "position": [755, 1125],
-      "size": [30, 30]
     },
     "monsterDesc": {
       "splitMode": "en",
@@ -94,11 +94,6 @@ export default {
       "fontSize": 36,
       "position": [750, 1107]
     },
-    "cardbag": {
-      "font": "number",
-      "fontSize": 30,
-      "position": [735, 875]
-    },
     "pendulumNumber": {
       "font": "number",
       "fontSize": 52,
@@ -116,6 +111,22 @@ export default {
         "size": [70, 70],
         "position": [-336, 267]
       }
+    },
+    "cardbag": {
+      "font": "password",
+      "fontSize": 24,
+      "position": [728, 871],
+      "linkPosition": [665, 872],
+      "pendulumPosition": [66, 1104],
+    },
+    "password": {
+      "font": 'password',
+      "fontSize": 23,
+      "position": [40, 1149]
+    },
+    "holo": {
+      "position": [743, 1115],
+      "size": [42, 42]
     }
   },
   "translate": {

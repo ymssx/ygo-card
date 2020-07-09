@@ -12,6 +12,10 @@ export default {
     "link": {
       "name": "link.ttf",
       "type": "relative"
+    },
+    "password": {
+      "name": "password.ttf",
+      "type": "relative"
     }
   },
   "pic": function(id) {
@@ -24,7 +28,7 @@ export default {
       "font": "cn",
       "fontSize": 65,
       "maxWidth": 610,
-      "position": [65, 114]
+      "position": [65, 119]
     },
     "pic": {
       "position": [101, 220, 615, 616],
@@ -99,20 +103,20 @@ export default {
       }
     },
     "cardbag": {
-      "font": "number",
-      "fontSize": 30,
-      "position": [730, 872],
+      "font": "password",
+      "fontSize": 24,
+      "position": [728, 871],
       "linkPosition": [665, 872],
-      "pendulumPosition": [66, 1102],
+      "pendulumPosition": [66, 1104],
     },
     "password": {
-      "font": 'number',
-      "fontSize": 26,
-      "position": [43, 1148]
+      "font": 'password',
+      "fontSize": 23,
+      "position": [40, 1149]
     },
     "holo": {
-      "position": [755, 1125],
-      "size": [30, 30]
+      "position": [743, 1115],
+      "size": [42, 42]
     }
   },
   "translate": {
