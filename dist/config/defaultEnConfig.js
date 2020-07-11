@@ -35,7 +35,7 @@ export default {
       "position": [65, 114]
     },
     "pic": {
-      "position": [101, 220, 615, 616],
+      "position": [101, 220, 614, 616],
       "position_lb": [57, 213, 702, 528]
     },
     "attribute": {
