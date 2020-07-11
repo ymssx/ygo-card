@@ -12,44 +12,55 @@ export default class CardDrawer {
   }
   
   descSplit(desc, fontSize, font, maxLines = 6, maxWidth = 683) {
-    let originMaxLine = maxLines;
-    desc = desc.trim();
     const c = this.canvas;
-    c.font=fontSize + "px " + font;
-    let width = maxWidth;
+    c.font = fontSize + "px " + font;
+    const descList = desc.split('\n');
+
+    // 当初始分段数超过最大行数时，将多出部分直接压入最后一行
+    while (descList.length > maxLines) {
+      const resPara = descList.pop();
+      descList[maxLines - 1] += resPara;
+    }
+
+    // 评估当前实际是否超出最大行数
+
+    // 根据缩放比例获取实际行数
+    const getCurrentLines = (scale) => {
+      return descList.reduce((lines, para) => {
+        lines += Math.ceil(scale * c.measureText(para).width / maxWidth);
+        return lines;
+      }, 0);
+    };
+    
+    // 缩放比例从1逐渐降为0
+    let scale = 1;
+    while (getCurrentLines(scale) > maxLines && scale > 0) {
+      scale -= 0.01;
+    }
 
     let res = [];
-    let temp = '';
-    // 允许有一次换行
-    let splitDesc = desc.split('\n');
-    if (splitDesc.length >= 2) {
-      res = [splitDesc.shift()];
-      desc = splitDesc.join('');
-      maxLines -= 1;
-    }
-
-    let orignWidth = c.measureText(desc).width;
-    if (orignWidth > maxWidth * maxLines) {
-      width = orignWidth / maxLines;
-    }
-    for (let i of desc) {
-      // 如果某行首字为标点符号，那么会将其压入上一行。
-      if (temp === '' && res.length > 0 && this.isPunctuation(i)) {
-        res[res.length - 1] += i;
-      } else {
-        temp += i;
-        if (c.measureText(temp).width >= width) {
-          res.push(temp);
-          temp = ''
+    for (let para of descList) {
+      const oneLineWidth = scale * c.measureText(para).width;
+      const needLines = Math.ceil(oneLineWidth / maxWidth);      
+      const oneLineMaxWidth = oneLineWidth / needLines;
+      let currentRes = [];
+      let currentLine = '';
+      for (let word of para) {
+        // 如果某行首字为标点符号，那么会将其压入上一行。
+        if (currentLine === '' && currentRes.length > 0 && this.isPunctuation(word)) {
+          currentRes[currentRes.length - 1] += word;
+        } else {
+          currentLine += word;
+          if (scale * c.measureText(currentLine).width >= oneLineMaxWidth) {
+            currentRes.push(currentLine);
+            currentLine = '';
+          }
         }
       }
-    }
-    if (temp) {
-      if (res.length < originMaxLine) {
-        res.push(temp);
-      } else {
-        res[res.length - 1] += temp;
+      if (currentLine) {
+        currentRes.push(currentLine);
       }
+      res = res.concat(currentRes);
     }
 
     return res;
@@ -130,20 +141,21 @@ export default class CardDrawer {
   
   drawDesc(descParts, descConfig, r) {
     const c = this.canvas;
+    const { maxWidth, maxLines, lineHeight, position } = descConfig;
 
     for (let index in descParts) {
       let descPart = descParts[index];
-      let left = descConfig.position[0];
-      let top = descConfig.position[1] + index * descConfig.lineHeight;
-      if (index === descConfig.maxLines - 1) {
+      let left = position[0];
+      let top = position[1] + index * lineHeight;
+      if (index === maxLines - 1) {
         let tempWidth = c.measureText(descPart).width;
-        if (tempWidth < 683*r) {
-          c.fillText(descPart,left*r,top*r,c.measureText(descPart.slice(0, -1)).width);
+        if (tempWidth < maxWidth * r) {
+          c.fillText(descPart, left * r, top * r, c.measureText(descPart.slice(0, -1)).width);
         } else {
-          c.fillText(descPart,left*r,top*r,683*r);
+          c.fillText(descPart, left * r, top * r, maxWidth * r);
         }
       } else {
-        c.fillText(descPart,left*r,top*r,683*r);
+        c.fillText(descPart, left * r, top * r, maxWidth * r);
       }
     }
   }
@@ -284,7 +296,7 @@ export default class CardDrawer {
         descParts = this.descSplitEn(cardData._desc_, descConfig.fontSize, descConfig.font, descConfig.maxLines);
       }
 
-      c.fillStyle = '#000000';
+      c.fillStyle = '#000';
       c.font = descConfig.fontSize*r + "px " + descConfig.font + fontPlus;
 
       if (descConfig.splitMode === 'cn') {

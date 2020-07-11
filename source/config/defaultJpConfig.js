@@ -49,7 +49,8 @@ export default {
       "lbPosition": [130, 773],
       "lineHeight": 26,
       "lbLineHeight": 24.5,
-      "maxLines": 6
+      "maxLines": 6,
+      "maxWidth": 683
     },
     "spellDesc": {
       "splitMode": "cn",
@@ -57,7 +58,8 @@ export default {
       "fontSize": 24,
       "position": [66, 915],
       "lineHeight": 24,
-      "maxLines": 9
+      "maxLines": 9,
+      "maxWidth": 683
     },
     "race": {
       "font": "jp",
