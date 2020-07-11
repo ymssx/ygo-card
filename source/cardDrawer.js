@@ -41,8 +41,8 @@ export default class CardDrawer {
     let res = [];
     for (let para of descList) {
       const oneLineWidth = scale * c.measureText(para).width;
-      const needLines = Math.ceil(oneLineWidth / maxWidth);      
-      const oneLineMaxWidth = oneLineWidth / needLines;
+      const needLines = Math.ceil(oneLineWidth / maxWidth);
+      const oneLineMaxWidth = Math.max(scale * maxWidth, oneLineWidth / needLines);
       let currentRes = [];
       let currentLine = '';
       for (let word of para) {
