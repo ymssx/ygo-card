@@ -204,14 +204,18 @@ export default class CardData {
   get _desc_() {
 		const desc = this.desc;
 		if (this.type3 === 'lb') {
-			var lb_num = parseInt(desc.substr(1));
-      let temp = desc.split("→")[1];
-      if (!temp) return desc;
+      try {
+        var lb_num = parseInt(desc.substr(1));
+        let temp = desc.split("→")[1];
+        if (!temp) return desc;
 
-			var lb_desc = temp.split("【")[0].replace("\r", "");
-			var desc_ = temp.split("】")[1].replace("\r", "");
-			this._lb_num = lb_num;
-			this._lb_desc = lb_desc;
+        var lb_desc = temp.split("【")[0].replace("\r", "");
+        var desc_ = temp.split("】")[1].replace("\r", "");
+        this._lb_num = lb_num;
+        this._lb_desc = lb_desc;
+      } catch(err) {
+        console.log(err);
+      }
 		} else {
 			var desc_ = desc.replace("\r", "");
 		}
