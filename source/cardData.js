@@ -1,7 +1,7 @@
-import {translate} from "./lib/translate.js";
-import {transSingleType} from "./lib/variation.js";
+import { translate } from "./lib/translate.js";
+import { transSingleType } from "./lib/variation.js";
 
-export class CardData {
+export default class CardData {
   constructor(dbData, admin, color) {
     this.dbData = dbData;
     this.admin = admin;

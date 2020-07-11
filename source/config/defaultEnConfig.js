@@ -26,10 +26,6 @@ export default {
       "type": "relative"
     }
   },
-  "pic": function(id) {
-    // 'https://ymssx.gitee.io/pics/500/'+this.cardData._id + '.jpg';
-    return 'https://cose.xyz:1803/php/getPic.php?_id='+ id + '&w=500&h=500';
-  },
   "style": {
     "moldSize": [813, 1185],
     "name": {

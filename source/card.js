@@ -1,10 +1,11 @@
-import {CardDrawer} from "./cardDrawer.js";
-import {CardData} from "./cardData.js";
-import {CardFile} from "./cardFile.js";
-import {variation, transType} from "./lib/variation.js";
-import {translate} from "./lib/translate.js";
+import CardDrawer from "./cardDrawer.js";
+import CardData from "./cardData.js";
+import CardFile from "./cardFile.js";
+import { variation, transType } from "./lib/variation.js";
+import { translate } from "./lib/translate.js";
+import { getPicFromCose, getPicFromGitee } from "./lib/getPic.js";
 import defaultConfig from "./config/defaultConfig.js";
-export {CardDom} from './cardDom.js';
+export { CardDom } from './cardDom.js';
 
 let defaultEvent = function (e) {
   return e;
@@ -46,6 +47,7 @@ export class Card {
     moldPath = './mold',
     lang = 'cn',
     config = defaultConfig,
+    getPic = getPicFromCose,
     fontLoaded = defaultEvent,
     imageLoaded = defaultEvent,
     fontsLoaded = defaultEvent,
@@ -88,6 +90,7 @@ export class Card {
     this.imagesLoaded = imagesLoaded;
     this.loaded = loaded;
 
+    this.getPic = getPic;
     this.lang = lang;
     this.imgStatus = false;
     this.db_id = null;

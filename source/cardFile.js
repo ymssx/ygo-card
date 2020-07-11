@@ -1,6 +1,6 @@
-import {Cloud} from './lib/ajax.js';
+import { Cloud } from './lib/ajax.js';
 
-export class CardFile {
+export default class CardFile {
   constructor(admin) {
     this.admin = admin;
     this.fileContent = {};
@@ -170,8 +170,7 @@ export class CardFile {
   }
 
   async loadCardPic() {
-    let url = this.admin.config["pic"](this.admin.data._id);
-    let pic;
+    let url = this.admin.getPic(this.admin.data._id);
     const cardPicCache = window['__YGOCARDDATA__'].cardPicCache;
     if (cardPicCache.hasOwnProperty(url)) {
       let res = cardPicCache[url];
