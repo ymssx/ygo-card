@@ -217,6 +217,10 @@ export default class CardData {
 		}
 		return desc_;
   }
+
+  get isSpecialMonster() {
+    return ['rh', 'ys', 'rh', 'tt', 'cl', 'lj'].includes(this.type2);
+  }
   
 	get _ifm_() {
 		const race = this.race;
@@ -246,7 +250,11 @@ export default class CardData {
 			if (this.type2 !== "tc" && this.type3 !== "tc" && this.type4 !== "tc") {
 				txt += "/" + xg + brackets[1];
 			} else {
-				txt += "/" + tc + brackets[1];
+        if (!this.isSpecialMonster) {
+          txt += "/" + tc + brackets[1];
+        } else {
+          txt += brackets[1];
+        }
 			}
 			return txt;
 		} else if (this.type === "spell") {
