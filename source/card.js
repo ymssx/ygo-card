@@ -249,32 +249,15 @@ export class Card {
     return rounded;
   }
 
-  isStyleExsis(value) {
-    if (value === undefined || value === '' || value === 'auto' || value === null) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   ansysSize() {
     let ratio = this.getPixelRatio;
     let w = ratio * this.canvas.clientWidth;
     let h = ratio * this.canvas.clientHeight;
 
-    let style = this.canvas.style;
-    let isW = this.isStyleExsis(style.width);
-    let isH = this.isStyleExsis(style.height);
-    if (isW && isH) {
-      let currentRate = h / w;
-      if (currentRate > this.RATE) {
-        h = w * this.RATE;
-      } else if (this.RATE > currentRate) {
-        w = h / this.RATE;
-      }
-    } else if (isW && !isH) {
+    let currentRate = h / w;
+    if (currentRate > this.RATE) {
       h = w * this.RATE;
-    } else if (!isW && isH) {
+    } else if (this.RATE > currentRate) {
       w = h / this.RATE;
     }
 
@@ -286,8 +269,6 @@ export class Card {
     ) {
       return [this.canvas.width, this.canvas.height];
     } else {
-      this.lw = w;
-      this.lh = h;
       return [w, h];
     }
   }
