@@ -3,6 +3,7 @@ import CardData from "./cardData.js";
 import CardFile from "./cardFile.js";
 import { variation, transType } from "./lib/variation.js";
 import { translate } from "./lib/translate.js";
+import { readYDK } from "./lib/readYDK.js";
 import { getPicFromCose, getPicFromGitee } from "./lib/getPic.js";
 import defaultConfig from "./config/defaultConfig.js";
 export { CardDom } from './cardDom.js';
@@ -313,15 +314,6 @@ export class Card {
   }
 
   static readYDK(text) {
-    let temp = text.split('#main')[1].split('#extra');
-    let mainText = temp[0].trim();
-    let temp2 = temp[1].split('!side');
-    let exText = temp2[0].trim();
-    let sideText = temp2[1].trim();
-
-    let main = mainText.split('\n');
-    let ex = exText.split('\n');
-    let side = sideText.split('\n');
-    return [main, ex, side];
+    return readYDK(text);
   }
 }
