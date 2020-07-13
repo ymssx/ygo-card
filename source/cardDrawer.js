@@ -12,6 +12,8 @@ export default class CardDrawer {
   }
   
   descSplit(desc, fontSize, font, maxLines = 6, maxWidth = 683) {
+    if (!desc) return [];
+    
     const c = this.canvas;
     c.font = fontSize + "px " + font;
     const descList = desc.split('\n');

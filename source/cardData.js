@@ -209,15 +209,15 @@ export default class CardData {
         let temp = desc.split("→")[1];
         if (!temp) return desc;
 
-        var lb_desc = temp.split("【")[0].replace("\r", "");
-        var desc_ = temp.split("】")[1].replace("\r", "");
+        var lb_desc = temp.split("【")[0];
+        var desc_ = temp.split("】")[1];
         this._lb_num = lb_num;
         this._lb_desc = lb_desc;
       } catch(err) {
         console.log(err);
       }
 		} else {
-			var desc_ = desc.replace("\r", "");
+			var desc_ = desc;
 		}
 		return desc_;
   }

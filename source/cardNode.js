@@ -95,6 +95,7 @@ export class Card {
     cardbagSwitch = false,
     passwordSwitch = true,
     holo = true,
+    translate = false,
   }) {
     this.size = [size, size * 1185 / 813];
     this.config = config;
@@ -104,6 +105,8 @@ export class Card {
     this.cardbagSwitch = cardbagSwitch;
     this.passwordSwitch = passwordSwitch;
     this.holo = holo;
+
+    this.translate = translate;
 
     this.data = new CardData(data, this);
     this.cardFile = new CardFile(this);

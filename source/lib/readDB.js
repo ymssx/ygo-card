@@ -1,7 +1,14 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('C:/Users/Yami/Desktop/ygoServer/cards.cdb');
 
-const getData = function(id) {
+const dbMap = {};
+
+const getData = function(dbPath, id) {
+  if (!dbMap[dbPath]) {
+    dbMap[dbPath] = new sqlite3.Database(dbPath);
+  }
+
+  const db = dbMap[dbPath];
+
   return new Promise((resolve, reject) => {
     let res = {};
 
@@ -24,16 +31,16 @@ const getData = function(id) {
       }      
     });
   })
-}
+};
 
 
-const getMultiData = function(ids) {
+const getMultiData = function(dbPath, ids) {
   if (typeof ids === 'string') ids = JSON.parse(ids);
 
   return ids.map(id => {
-    return getData(id);
+    return getData(dbPath, id);
   })
-}
+};
 
 module.exports = {
   getData,

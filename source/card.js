@@ -58,7 +58,7 @@ export class Card {
     holo = true,
     cardbagSwitch = false,
     passwordSwitch = false,
-    translate = true,
+    translate = false,
     verbose = false,
     autoResize = true
   }) {    
