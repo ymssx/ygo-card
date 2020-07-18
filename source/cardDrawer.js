@@ -5,8 +5,8 @@ export default class CardDrawer {
   }
 
   isPunctuation(char) {
-    const reg = new RegExp("[\u0000-\u00ff]");
-    const reg2 = new RegExp("[\uff00-\uffff]");
+    const reg = new RegExp('[\u0000-\u00ff]');
+    const reg2 = new RegExp('[\uff00-\uffff]');
     const punctuationMap = ['。', '，', '：', '【', '】'];
     return reg.test(char) || reg2.test(char) || punctuationMap.includes(char);
   }
@@ -15,7 +15,7 @@ export default class CardDrawer {
     if (!desc) return [];
     
     const c = this.canvas;
-    c.font = fontSize + "px " + font;
+    c.font = fontSize + 'px ' + font;
     const descList = desc.split('\n');
 
     // 当初始分段数超过最大行数时，将多出部分直接压入最后一行
@@ -71,7 +71,7 @@ export default class CardDrawer {
   descSplitEn(desc, fontSize, font, maxLines = 6, maxWidth = 683) {
     let words = desc.split(' ');
     const c = this.canvas;
-    c.font=fontSize + "px " + font;
+    c.font=fontSize + 'px ' + font;
     let width = maxWidth;
     let orignWidth = c.measureText(desc).width;
     if (orignWidth > maxWidth * maxLines) {
@@ -181,7 +181,7 @@ export default class CardDrawer {
   }
 
   fontMap(key) {
-    if (typeof global !== "undefined") {
+    if (typeof global !== 'undefined') {
       return true;
     } else {
       return window['__YGOCARDDATA__'].fontMap[key];
@@ -189,7 +189,7 @@ export default class CardDrawer {
   }
   
   draw(...args) {
-    if (typeof global !== "undefined") {
+    if (typeof global !== 'undefined') {
       this._draw_(...args);
     } else {
       if (this.drawer) {
@@ -249,9 +249,12 @@ export default class CardDrawer {
 
     // draw card name
     if (this.fontMap(config.name.font)) {
+      c.save()
       c.fillStyle = cardData.color;
-      c.font = config.name.fontSize*r + "px " + config.name.font + fontPlus;
+      c.textBaseline = 'middle';
+      c.font = config.name.fontSize*r + 'px ' + config.name.font + fontPlus;
       c.fillText(cardData.name,config.name.position[0] * r,config.name.position[1] * r,config.name.maxWidth * r);
+      c.restore();
     }
 
     // draw attribute
@@ -275,12 +278,12 @@ export default class CardDrawer {
     if (this.fontMap(config.race.font)) {
       if (cardData.type === 'monster') {
         c.fillStyle = '#000000';
-        c.font = (config.race.fontWieght?(config.race.fontWieght + ' '):'') + config.race.fontSize * r + "px " + config.race.font;
+        c.font = (config.race.fontWieght?(config.race.fontWieght + ' '):'') + config.race.fontSize * r + 'px ' + config.race.font;
         c.fillText(cardData._ifm_, config.race.position[0] * r, config.race.position[1] * r, config.race.maxWidth * r);
       } else {
         let type = cardData._spellType_;
         c.fillStyle = '#000000';
-        c.font = config.type.fontSize * r + "px " + config.type.font + fontPlus;
+        c.font = config.type.fontSize * r + 'px ' + config.type.font + fontPlus;
         let fontLeft = config.type.position[0] * r - c.measureText(type).width;
         c.fillText(type, fontLeft, config.type.position[1] * r);
 
@@ -311,7 +314,7 @@ export default class CardDrawer {
       }
 
       c.fillStyle = '#000';
-      c.font = descConfig.fontSize*r + "px " + descConfig.font + fontPlus;
+      c.font = descConfig.fontSize*r + 'px ' + descConfig.font + fontPlus;
 
       if (descConfig.splitMode === 'cn') {
         this.drawDesc(descParts, descConfig, r);
@@ -323,7 +326,7 @@ export default class CardDrawer {
       if (cardData.type3 === 'lb' && cardData.lb_desc) {
         let pendulumDescParts = this.descSplit(cardData.lb_desc, config.monsterDesc.lbFontSize, config.monsterDesc.font, 5, 556);
         c.fillStyle = 'rgba(0,0,0,0.7)';
-        c.font = config.monsterDesc.lbFontSize*r + "px " + config.monsterDesc.font + fontPlus;
+        c.font = config.monsterDesc.lbFontSize*r + 'px ' + config.monsterDesc.font + fontPlus;
         for (let index in pendulumDescParts) {
           let descPart = pendulumDescParts[index];
           let left = config.monsterDesc.lbPosition[0];
@@ -346,7 +349,7 @@ export default class CardDrawer {
     // pendulum number
     if (cardData.type3 === 'lb' && cardData.lb_num) {
       c.fillStyle = '#000000';
-      c.font = config.pendulumNumber.fontSize * r + "px " + config.pendulumNumber.font;
+      c.font = config.pendulumNumber.fontSize * r + 'px ' + config.pendulumNumber.font;
       let leftPosition = config.pendulumNumber.positonLeft;
       let rightPosition = config.pendulumNumber.positonRight;
       c.save();
@@ -360,7 +363,7 @@ export default class CardDrawer {
     if (this.fontMap(config.ATK.font)) {
       if (cardData.type === 'monster') {
         c.fillStyle = '#000000';
-        c.font = config.ATK.fontSize * r + "px " + config.ATK.font;
+        c.font = config.ATK.fontSize * r + 'px ' + config.ATK.font;
 
         let ATKLeft = config.ATK.position[0] * r - c.measureText(cardData.attack).width;
         c.fillText(cardData.attack, ATKLeft, config.ATK.position[1] * r, 72 * r);
@@ -371,7 +374,7 @@ export default class CardDrawer {
         } else {
           var link = cardData._link_;
           c.fillStyle = '#000000';
-          c.font = config.DEF.fontSize * r + "px " + config.DEF.font;
+          c.font = config.DEF.fontSize * r + 'px ' + config.DEF.font;
           let DEFLeft = config.DEF.position[0] * r - c.measureText(cardData.link_num).width;
           c.fillText(cardData.link_num, DEFLeft, config.DEF.position[1] * r, 72 * r);
         }
@@ -440,7 +443,7 @@ export default class CardDrawer {
       if (cardData.type2 === 'cl' && cardData.type3 !== 'lb') {
         c.fillStyle = '#ffffff';
       }
-      c.font = config.cardbag.fontSize * r + "px " + config.cardbag.font;
+      c.font = config.cardbag.fontSize * r + 'px ' + config.cardbag.font;
       let cardbagLeft, cardbagTop;
       c.textAlign = 'right';
       if (cardData.type2 !== 'lj') {
@@ -467,7 +470,7 @@ export default class CardDrawer {
       if (cardData.type2 === 'cl' && cardData.type3 !== 'lb') {
         c.fillStyle = '#ffffff';
       }
-      c.font = config.password.fontSize * r + "px " + config.password.font;
+      c.font = config.password.fontSize * r + 'px ' + config.password.font;
       c.fillText(cardData._id, config.password.position[0] * r, config.password.position[1] * r);
       c.restore();
     }

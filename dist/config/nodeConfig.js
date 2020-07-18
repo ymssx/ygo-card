@@ -25,7 +25,7 @@ exports["default"] = {
       "font": "cn",
       "fontSize": 65,
       "maxWidth": 610,
-      "position": [65, 119]
+      "position": [65, 96]
     },
     "pic": {
       "position": [101, 220, 614, 616],

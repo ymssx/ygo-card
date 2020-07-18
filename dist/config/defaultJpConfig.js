@@ -25,7 +25,7 @@ export default {
       "font": "jp",
       "fontSize": 60,
       "maxWidth": 610,
-      "position": [65, 118]
+      "position": [65, 96]
     },
     "pic": {
       "position": [101, 220, 614, 616],

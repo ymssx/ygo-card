@@ -32,7 +32,7 @@ export default {
       "font": "en_name",
       "fontSize": 65,
       "maxWidth": 610,
-      "position": [65, 114]
+      "position": [65, 96]
     },
     "pic": {
       "position": [101, 220, 614, 616],
