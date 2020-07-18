@@ -237,7 +237,7 @@ export default class CardData {
 
 		if (this.type === "monster") {
 			var txt = brackets[0] + race;
-			if (this.type2 !== "tc" && this.type2 !== "xg") {
+			if (!['tc', 'xg', 'tk'].includes(this.type2)) {
 				txt += "/" + trans.type[this.type2];
 			}
 			if (this.type3 !== "tc" && this.type3 !== null && this.type3 !== "") {
