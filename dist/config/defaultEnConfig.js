@@ -132,7 +132,7 @@ export default {
       "light": '光', "dark": '暗', "wind": '风', "water": '水', "fire": '炎', "earth": '地', "divine": '神'
     },
     "type": {
-      "tc": 'normal', "xg": 'effect', "ys": 'ritual', "rh": 'fusion', "tt": 'synchro', "cl": 'xyz', "lb": 'pendulum', "lj": 'link', "ec": 'gemini', "tz": 'tuner', "tm": 'union', "kt": 'toon', "lh": 'spirit', "fz": 'flip effect', "ts": 'special summon', "zb": 'equip', "sg": 'quick-play', "cd": 'field', "fj": 'counter', "yx": 'continuous'
+      "tc": 'normal', "xg": 'effect', "ys": 'ritual', "rh": 'fusion', "tk": 'fusion', "tt": 'synchro', "cl": 'xyz', "lb": 'pendulum', "lj": 'link', "ec": 'gemini', "tz": 'tuner', "tm": 'union', "kt": 'toon', "lh": 'spirit', "fz": 'flip effect', "ts": 'special summon', "zb": 'equip', "sg": 'quick-play', "cd": 'field', "fj": 'counter', "yx": 'continuous'
     },
     "raceList": ["Dragon", "Warrior", "Fiend", "Spellcaster", "Fairy", "Zombie", "Rock", "Plant", "Insect", "Aqua", "Pyro", "Thunder", "Fish", "Sea Serpent", "Wyrm", "Dinosaur", "Reptile", "Machine", "Beast", "Winged Beast", "Beast-Warrior", "Psychic", "Cyberse", "Divine-Beast", "Divine"],
     "spell": "Spell",
