@@ -215,7 +215,7 @@ export class Card {
 
   feedData(data) {
     for (let key in data) {
-      if (this.data[key] === data[key]) { break }
+      if (this.data[key] === data[key]) { continue }
       this.data[key] = data[key];
     }
   }
