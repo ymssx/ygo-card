@@ -17,7 +17,7 @@ exports["default"] = {
     "password": {
       "name": "password.ttf",
       "type": "relative"
-    }
+    },
   },
   "style": {
     "moldSize": [813, 1185],

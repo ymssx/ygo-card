@@ -4,6 +4,9 @@ export default class CardFile {
   constructor(admin) {
     this.admin = admin;
     this.fileContent = {};
+    this.updateMap = new Set();
+    this.updateCaller = null;
+
     if (!window['__YGOCARDDATA__'].cardPicCache) window['__YGOCARDDATA__'].cardPicCache = {};
 
     if (!window['__YGOCARDDATA__'].fontMap) {
@@ -23,7 +26,8 @@ export default class CardFile {
   }
 
   async draw(...arg) {
-    await this.admin.draw(...arg);
+    // await this.admin.draw(...arg);
+    this.admin.forceDraw(...arg);
   }
 
   async loadAll() {
@@ -44,6 +48,14 @@ export default class CardFile {
   }
 
   async update(keys, who) {
+    keys.forEach(key => this.updateMap.add(key));
+    window.cancelAnimationFrame(this.updateCaller);
+    this.updateCaller = window.requestAnimationFrame(() => this._update());
+  }
+
+  async _update() {
+    const keys = Array.from(this.updateMap.values());
+
     if (keys) {
       for (let key of keys) {
         let fileUrl;
@@ -59,6 +71,7 @@ export default class CardFile {
       }
     }
 
+    this.updateMap.clear();
     await this.draw();
     return true;
   }

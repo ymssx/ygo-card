@@ -182,6 +182,12 @@ export class Card {
     }
   }
 
+  forceDraw(size, config) {
+    if (this.renderState) {
+      this.cardDrawer._draw_(this.data, this.cardFile.fileContent, size, config);
+    }
+  }
+
   async save(saveName, size = [1626, 2370]) {
     let [w ,h] = [this.canvas.width, this.canvas.height];
     await this.draw(size);
@@ -217,6 +223,7 @@ export class Card {
     for (let key in data) {
       this.data[key] = data[key];
     }
+    console.log(this.data.type2)
   }
 
   copy(card) {
