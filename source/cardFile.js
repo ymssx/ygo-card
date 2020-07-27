@@ -47,7 +47,10 @@ export default class CardFile {
   }
 
   async update(keys, who) {
-    keys.forEach(key => this.updateMap.add(key));
+    if (Array.isArray(keys)) {
+      keys.forEach(key => this.updateMap.add(key));
+    }
+    
     window.cancelAnimationFrame(this.updateCaller);
     this.updateCaller = window.requestAnimationFrame(() => this._update_());
   }
