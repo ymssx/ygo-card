@@ -25,15 +25,14 @@ export default class CardFile {
     this.admin.log(this, ...content);
   }
 
-  async draw(...arg) {
-    // await this.admin.draw(...arg);
-    this.admin.forceDraw(...arg);
+  draw(...arg) {
+    this.admin.draw(...arg);
   }
 
   async loadAll() {
     this.fileContent = await this.getFiles(this.fileList);
     this.admin.renderState = true;
-    await this.draw();
+    this.draw();
 
     this.loadCardPic().then(() => {
       this.draw();
@@ -50,10 +49,10 @@ export default class CardFile {
   async update(keys, who) {
     keys.forEach(key => this.updateMap.add(key));
     window.cancelAnimationFrame(this.updateCaller);
-    this.updateCaller = window.requestAnimationFrame(() => this._update());
+    this.updateCaller = window.requestAnimationFrame(() => this._update_());
   }
 
-  async _update() {
+  async _update_() {
     const keys = Array.from(this.updateMap.values());
 
     if (keys) {
@@ -72,7 +71,7 @@ export default class CardFile {
     }
 
     this.updateMap.clear();
-    await this.draw();
+    this.draw();
     return true;
   }
 

@@ -174,17 +174,7 @@ export class Card {
 
   draw(size, config) {
     if (this.renderState) {
-      return new Promise(resolve => {
-        this.cardDrawer.draw(this.data, this.cardFile.fileContent, size, config, () => {
-          resolve();
-        });
-      })
-    }
-  }
-
-  forceDraw(size, config) {
-    if (this.renderState) {
-      this.cardDrawer._draw_(this.data, this.cardFile.fileContent, size, config);
+      this.cardDrawer.draw(this.data, this.cardFile.fileContent, size, config);
     }
   }
 

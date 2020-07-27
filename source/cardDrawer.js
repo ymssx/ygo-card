@@ -188,21 +188,7 @@ export default class CardDrawer {
     }
   }
   
-  draw(...args) {
-    if (typeof global !== 'undefined') {
-      this._draw_(...args);
-    } else {
-      if (this.drawer) {
-        window.cancelAnimationFrame(this.drawer);
-      }
-      
-      this.drawer = window.requestAnimationFrame(() => {
-        this._draw_(...args);
-      })
-    }
-  }
-  
-  _draw_(cardData, fileContent, size = this.admin.size, config = this.admin.config.style, callback) {    
+  draw(cardData, fileContent, size = this.admin.size, config = this.admin.config.style, callback) {    
     this.admin.canvas.width = size[0];
     this.admin.canvas.height = size[1];
     const r = size[0] / config.moldSize[0];
