@@ -2,7 +2,7 @@ export default {
   "moldName": "default",
   "fonts": {
     "cn": {
-      "name": "cn_test.ttf",
+      "name": "cn.ttf",
       "type": "relative"
     },
     "number": {
