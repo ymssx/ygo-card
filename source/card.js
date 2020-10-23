@@ -48,7 +48,7 @@ export class Card {
     moldPath = './mold',
     lang = 'cn',
     config = defaultConfig,
-    getPic = getPicFromCose,
+    getPic = getPicFromGitee,
     fontLoaded = defaultEvent,
     imageLoaded = defaultEvent,
     fontsLoaded = defaultEvent,
@@ -213,7 +213,6 @@ export class Card {
     for (let key in data) {
       this.data[key] = data[key];
     }
-    console.log(this.data.type2)
   }
 
   copy(card) {

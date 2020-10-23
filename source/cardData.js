@@ -279,10 +279,10 @@ export default class CardData {
       type = brackets[0] + text;
     }
 
-    if (this.type2 === 'tc') {
-      type += brackets[1];
-    } else {
+    if (['cd', 'fj', 'sg', 'ys', 'yx', 'zb'].includes(this.type2)) {
       type += '   ' + brackets[1];
+    } else {
+      type += brackets[1];
     }
 
     return type;
