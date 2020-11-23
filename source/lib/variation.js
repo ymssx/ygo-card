@@ -124,7 +124,12 @@ const typeMap = {
   "continuous": 'yx'
 }
 
-export const variation = function({id, atk, def, race, type, level, attribute, name, desc}) {
+export const variation = function(data) {
+  if (Object.keys(data).length === 0) {
+    return false;
+  }
+
+  let {id, atk, def, race, type, level, attribute, name, desc} = data;
   let [type1, type2, type3, type4] = MAP.type[type];
   attribute = MAP.attribute[attribute];
   race = MAP.race[race];
@@ -134,7 +139,7 @@ export const variation = function({id, atk, def, race, type, level, attribute, n
   def = (def === -2) ? '?' : def;
   
   return {
-    _id: id,
+    _id: String(id),
     name,
     type: type1,
     type2: type2,
