@@ -39,11 +39,14 @@
 
 ## 📦 安装
 
-### npm安装
+* ### npm安装
+
 ```shell
 $ npm i ygo-card -D --save
 ```
+
 在项目中引用
+
 ```javascript
 // commonjs
 const { Card, CardNode } = require('ygo-card');
@@ -51,13 +54,19 @@ const { Card, CardNode } = require('ygo-card');
 import { Card, cardNode } from 'ygo-card';
 ```
 
-### 手动引入
+* ### 手动引入
 
 ```shell
 $ git clone https://gitee.com/ymssx/cardjs.git
 ```
 
-将 `dist`文件夹下的内容放到需要的地方
+将`dist`文件夹的内容放在合适的位置，使用`<script>`引入card.js
+
+``` html
+<canvas id="card"></canvas>
+...
+<script src="xxx/card.js"></script>
+```
 
 #### 目录结构
 
@@ -75,28 +84,7 @@ $ git clone https://gitee.com/ymssx/cardjs.git
 
 <br/>
 
-## 🚀 使用方式
-
-### npm引入
-```shell
-$ npm i ygo-card -D --save
-```
-在项目中引用
-```javascript
-// commonjs
-const { Card, CardNode } = require('ygo-card');
-//es6
-import { Card, cardNode } from 'ygo-card';
-```
-
-### script标签引入
-下载源码后，将`dist`文件夹的内容放在合适的位置，使用`<script>`引入card.js
-
-``` html
-<canvas id="card"></canvas>
-...
-<script src="xxx/card.js"></script>
-```
+## 🚀 基本使用
 
 传入一个卡片数据和canvas对象，然后使用render方法就可以渲染啦
 
@@ -130,27 +118,27 @@ const card = new Card({ data, canvas, moldPath: './source/mold' });
 
 <br/>
 
-> ### data -- 卡片信息，包括名字、密码、效果等
+> ### data: CardData -- 卡片信息，包括名字、密码、效果等
 
 ```typescript
-interface data = {
-  name: string,                          // card name
-  _id: string,                           // card id
-  type: 'monster' | 'spell' | 'trap',    // first type
-  type2: type,                           // secend type 见下面注释①
-  type3: type,                           // third type
-  type4: type,                           // fourth type
+interface CardData {
+  name: string;                          // card name
+  _id: string;                           // card id
+  type: 'monster' | 'spell' | 'trap';    // first type
+  type2: type;                           // secend type 见下面注释①
+  type3: type;                           // third type
+  type4: type;                           // fourth type
   desc: string                           // card describe
-  ?attribute: 'light' | 'dark' | 'fire' | 'water' | 'wind' | 'earth' | 'divine'
+  attribute?: 'light' | 'dark' | 'fire' | 'water' | 'wind' | 'earth' | 'divine';
                                          // monster attribute
-  ?race: string                          // monster race
-  ?attack: number                        // monster attack
-  ?defend: number                        // monster defend
-  ?level: number                         // monster level
+  race?: string;                         // monster race
+  attack?: number;                       // monster attack
+  defend?: number;                       // monster defend
+  level?: number;                        // monster level
 
-  ?link: boolean[]                       // link monster arrows
-  ?lb_desc: string                       // pendulum describe
-  ?lb_number: number                     // pendulum number
+  link?: boolean[];                      // link monster arrows
+  lb_desc?: string;                      // pendulum describe
+  lb_number?: number;                    // pendulum number
 }
 
 typeMap = { "tc": '通常', "xg": '效果', "ys": '儀式', "rh": '融合', "tt": '同調', "cl": '超量', "lb": '靈擺', "lj": '連接', "ec": '二重', "tz": '調整', "tm": '同盟', "tk": '卡通', "lh": '靈魂', "fz": '反轉', "ts": '特殊召喚', "zb": '裝備', "sg": '速攻', "cd": '場地', "fj": '反擊', "yx": '永續' }
@@ -184,6 +172,47 @@ const data = {
 
 <br/>
 
+## 🚀 在React中使用
+
+```javascript
+import react, { useState, useEffect, useRef } from 'react';
+import { Card } from 'ygo-card';
+
+const YgoCard = ({ data, onCreated, onLoaded }) => {
+  const [cardIns, setCardIns] = useState();
+  const canvas = useRef(null);
+
+  useEffect(() => {
+    const newCardIns = = new Card({
+      data,
+      size: [813, 1185],
+      canvas: canvas.current,
+      moldPath: '/mold',
+      fontsLoaded: onLoaded,
+    });
+
+    setCardIns(newCardIns);
+
+    newCard.render();
+
+    if (onCreated instanceof Function) {
+      onCreated(newCard);
+    }
+  }, [canvas]);
+
+  useEffect(() => {
+    cardIns?.feedData(data);
+  }, [data]);
+
+  return (
+    <canvas ref={canvas} />
+  );
+};
+
+// 引用
+const BlueEyes = () => <YgoCard data={ name: '青眼白龙', attack: 3000 } />;
+```
+
 ## 🎏 游戏王卡图库
 
 不知道去哪里找卡图？
@@ -205,12 +234,13 @@ const data = {
  
 ```typescript
 const Card = function ({
-  data: object,                           // 卡片数据
+  data: CardData,                         // 卡片数据
   canvas: HTMLElement,                    // canvas对象
   size: number[],                         // 绘制尺寸，[宽, 高]
   moldPath: string = './mold',            // 模板资源路径
-  lang:'cn' | 'jp' | 'en' = 'cn',         // 语言 cn、jp、en
+  lang: 'cn' | 'jp' | 'en' = 'cn',        // 语言 cn、jp、en
   config: object = defaultConfig,         // 配置信息。在这里指定你的自定义配置信息
+  getPic: id => imgUrl,                   // 描述如何通过id获取卡图的函数
   fontLoaded: function = defaultEvent,    // 事件
   imageLoaded: function = defaultEvent,
   fontsLoaded: function = defaultEvent,
@@ -220,7 +250,7 @@ const Card = function ({
   holo: boolean = true,                   // 是否显示防伪标志
   cardbagSwitch: boolean = false,         // 是否显示卡包信息
   translate: boolean = false,             // 是否自动繁简转换
-  verbose: boolean = false                // 是否开启啰嗦模式
+  verbose: boolean = false,               // 是否开启啰嗦模式
 })
 ```
 
