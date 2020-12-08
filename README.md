@@ -39,6 +39,20 @@
 
 ## 📦 安装
 
+### npm安装
+```shell
+$ npm i ygo-card -D --save
+```
+在项目中引用
+```javascript
+// commonjs
+const { Card, CardNode } = require('ygo-card');
+//es6
+import { Card, cardNode } from 'ygo-card';
+```
+
+### 手动引入
+
 ```shell
 $ git clone https://gitee.com/ymssx/cardjs.git
 ```
@@ -63,7 +77,20 @@ $ git clone https://gitee.com/ymssx/cardjs.git
 
 ## 🚀 使用方式
 
-将`dist`文件夹的内容放在合适的位置，使用`<script>`引入card.js
+### npm引入
+```shell
+$ npm i ygo-card -D --save
+```
+在项目中引用
+```javascript
+// commonjs
+const { Card, CardNode } = require('ygo-card');
+//es6
+import { Card, cardNode } from 'ygo-card';
+```
+
+### script标签引入
+下载源码后，将`dist`文件夹的内容放在合适的位置，使用`<script>`引入card.js
 
 ``` html
 <canvas id="card"></canvas>

@@ -6,7 +6,7 @@ import { translate } from "./lib/translate.js";
 import { readYDK } from "./lib/readYDK.js";
 import { getPicFromCose, getPicFromGitee } from "./lib/getPic.js";
 import defaultConfig from "./config/defaultConfig.js";
-export { CardDom } from './cardDom.js';
+// export { CardDom } from './cardDom.js';
 
 let defaultEvent = function (e) {
   return e;
