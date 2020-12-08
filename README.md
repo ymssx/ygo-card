@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/npm/v/ygo-card"/>
 <img src="https://img.shields.io/npm/l/ygo-card"/>
-<img src="https://img.shields.io/badge/yami-%40qq.com-lightgrey"/>
+<img src="https://img.shields.io/badge/ymssx-%40qq.com-lightgrey"/>
 
 这是一个游戏王卡片渲染工具，你只需要在你的网站引入card.js，就可以轻松地渲染出标准的游戏王卡图！
 
@@ -175,7 +175,7 @@ const data = {
 ## 🚀 在React中使用
 
 ```javascript
-import react, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card } from 'ygo-card';
 
 const YgoCard = ({ data, onCreated, onLoaded }) => {
