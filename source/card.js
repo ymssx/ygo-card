@@ -43,10 +43,11 @@ let defaultEvent = function (e) {
 
 export class Card {
   constructor({
-    data, canvas,
+    data,
+    canvas,
     size,
-    moldPath = './mold',
-    lang = 'cn',
+    moldPath = "./mold",
+    lang = "cn",
     config = defaultConfig,
     getPic = getPicFromGitee,
     fontLoaded = defaultEvent,
@@ -60,10 +61,11 @@ export class Card {
     passwordSwitch = false,
     translate = false,
     verbose = false,
-    autoResize = true
-  }) {    
+    autoResize = true,
+  }) {
     this.RATE = 1185 / 813;
-    if (!window.hasOwnProperty('__YGOCARDDATA__')) window['__YGOCARDDATA__'] = {};
+    if (!window.hasOwnProperty("__YGOCARDDATA__"))
+      window["__YGOCARDDATA__"] = {};
 
     // recover config from localStorage
     this.recover = recover;
@@ -71,15 +73,15 @@ export class Card {
       var tempConfig = Object.assign({}, config);
       for (let key in config) {
         if (localStorage.getItem(key)) {
-          tempConfig[key] = JSON.parse(localStorage.getItem(key))
+          tempConfig[key] = JSON.parse(localStorage.getItem(key));
         }
       }
     }
 
     this.config = tempConfig || config;
     this.key = data._id;
-    
-    if (moldPath[moldPath.length - 1] === '/') {
+
+    if (moldPath[moldPath.length - 1] === "/") {
       moldPath = moldPath.substring(0, moldPath.length - 1);
     }
     this.moldPath = moldPath;
@@ -143,15 +145,15 @@ export class Card {
             }
           });
           this.attriObserver.observe(this.canvas, {
-            attributes : true,
-            attributeFilter : ['width', 'height']
+            attributes: true,
+            attributeFilter: ["width", "height"],
           });
         }
       } else {
         this.size = [this.size[0] * ratio, this.size[1] * ratio];
       }
     }
-    
+
     this.cardDrawer = new CardDrawer(this);
     this.cardFile = new CardFile(this);
   }
@@ -179,14 +181,14 @@ export class Card {
   }
 
   async save(saveName, size = [1626, 2370]) {
-    let [w ,h] = [this.canvas.width, this.canvas.height];
+    let [w, h] = [this.canvas.width, this.canvas.height];
     await this.draw(size);
 
-    let dataURI = this.canvas.toDataURL('image/png');
+    let dataURI = this.canvas.toDataURL("image/png");
 
-    var binStr = atob(dataURI.split(',')[1]),
-    len = binStr.length,
-    arr = new Uint8Array(len);
+    var binStr = atob(dataURI.split(",")[1]),
+      len = binStr.length,
+      arr = new Uint8Array(len);
 
     for (var i = 0; i < len; i++) {
       arr[i] = binStr.charCodeAt(i);
@@ -196,7 +198,7 @@ export class Card {
 
     var objurl = URL.createObjectURL(blob);
     var link = document.createElement("a");
-    link.download = saveName || this.data.name + '.png';
+    link.download = saveName || this.data.name + ".png";
     link.href = objurl;
     link.click();
 
@@ -206,7 +208,7 @@ export class Card {
   autoDraw() {
     setInterval(() => {
       this.draw();
-    },200)
+    }, 200);
   }
 
   feedData(data) {
@@ -231,7 +233,7 @@ export class Card {
       localStorage.setItem(key, json);
     }
 
-    localStorage.setItem('lang', this.lang);
+    localStorage.setItem("lang", this.lang);
   }
 
   feedFlash(img) {
@@ -239,9 +241,9 @@ export class Card {
     this.data.flash = 0;
   }
 
-  rounded(num) {    
+  rounded(num) {
     let rounded = (0.5 + num) | 0;
-    rounded = ~~ (0.5 + num);
+    rounded = ~~(0.5 + num);
     rounded = (0.5 + num) << 0;
     return rounded;
   }
@@ -261,7 +263,8 @@ export class Card {
     w = this.rounded(w);
     h = this.rounded(h);
 
-    if (Math.abs(w - this.canvas.width) / this.canvas.width <= 0.01 ||
+    if (
+      Math.abs(w - this.canvas.width) / this.canvas.width <= 0.01 ||
       Math.abs(h - this.canvas.height) / this.canvas.height <= 0.01
     ) {
       return [this.canvas.width, this.canvas.height];
@@ -285,17 +288,19 @@ export class Card {
     this.draw(this.size);
   }
 
-  get getPixelRatio () {
-    let context = this.canvas.getContext('2d');
-    let backingStore = context.backingStorePixelRatio ||
+  get getPixelRatio() {
+    let context = this.canvas.getContext("2d");
+    let backingStore =
+      context.backingStorePixelRatio ||
       context.webkitBackingStorePixelRatio ||
       context.mozBackingStorePixelRatio ||
       context.msBackingStorePixelRatio ||
       context.oBackingStorePixelRatio ||
-      context.backingStorePixelRatio || 1;
-      
+      context.backingStorePixelRatio ||
+      1;
+
     return (window.devicePixelRatio || 1) / backingStore;
-  };
+  }
 
   transType(data) {
     return transType(data);
@@ -311,6 +316,10 @@ export class Card {
 
   static readYDK(text) {
     return readYDK(text);
+  }
+
+  static getData(data) {
+    return new Card({ data }).data;
   }
 }
 
