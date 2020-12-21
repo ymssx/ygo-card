@@ -90,9 +90,8 @@ const MAP = {
     if (num < 13) {
         return num;
     } else {
-      let binNum = num.toString(2);
-      let avaiablePart = binNum.subStr(binNum.length - 4, binNum.length - 1);
-      return avaiablePart;
+      const binNum = num.toString(2);
+      return binNum.substr(binNum.length - 4, binNum.length - 1);
     }
   }
 }
