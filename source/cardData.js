@@ -302,36 +302,33 @@ export default class CardData {
   }
 
   get _link_() {
+    if (this.type2 !== 'lj') {
+      this.link_num = 0;
+      return [false, false, false, false, false, false, false, false];
+    }
+
+    let link = [];
     if (this.dbData.link instanceof Array && this.dbData.link.length >= 8) {
-      this.link_num = this.dbData.link.reduce((num, item) => {
+      link = this.dbData.link.slice(0, 8);
+    } else {
+      const LINK_DIRECTION_SOUTHWEST = 0x1, LINK_DIRECTION_SOUTH = 0x2, LINK_DIRECTION_SOUTHEAST = 0x4,
+        LINK_DIRECTION_WEST = 0x8, LINK_DIRECTION_EAST = 0x20, LINK_DIRECTION_NORTHWEST = 0x40, LINK_DIRECTION_NORTH = 0x80,
+        LINK_DIRECTION_NORTHEAST = 0x100;
+      const MARKER_POSITIONS = [LINK_DIRECTION_NORTHWEST, LINK_DIRECTION_NORTH, LINK_DIRECTION_NORTHEAST, LINK_DIRECTION_WEST,
+        LINK_DIRECTION_EAST, LINK_DIRECTION_SOUTHWEST, LINK_DIRECTION_SOUTH, LINK_DIRECTION_SOUTHEAST];
+
+      const linkInt = this.defend;
+      for(const i in MARKER_POSITIONS) {
+          link.push((linkInt & MARKER_POSITIONS[i]) === MARKER_POSITIONS[i]);
+      }
+
+      this.link_num = link.reduce((num, item) => {
         num += item ? 1 : 0;
         return num;
       }, 0);
 
-      return this.dbData.link;
+      return link;
     }
-
-    if (this.type2 !== "lj") {
-      this.link_num = 0;
-      return [false, false, false, false, false, false, false, false, false];
-    }
-
-    let link = this.defend;
-    let link_ = link.toString(2);
-    if (link_.length > 9) {
-      link_ = link_.substr(-9);
-    }
-    let num = 0;
-    let res = [false, false, false, false, false, false, false, false, false];
-    for (let i = 0; i < link_.length; i++) {
-      let s = link_.substr(i, 1);
-      if (parseInt(s)) {
-        res[i + 9 - link_.length] = true;
-        num++;
-      }
-    }
-    this.link_num = num;
-    return res;
   }
 
   get defaultColor() {
