@@ -109,7 +109,7 @@ const typeMap = {
   "gemini": 'ec',
   "tuner": 'tz',
   "union": 'tm',
-  "toon": 'tk',
+  "toon": 'kt',
   "spirit": 'lh',
   "flip effect": 'fz',
   "flip-effect": 'fz',
