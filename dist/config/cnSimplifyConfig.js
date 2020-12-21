@@ -3,7 +3,7 @@
 export default {
   "moldName": "default",
   "fonts": {
-    "cn": {
+    "cn-simplify": {
       "name": "cn_simplify.ttf",
       "type": "relative"
     },
@@ -23,7 +23,7 @@ export default {
   "style": {
     "moldSize": [813, 1185],
     "name": {
-      "font": "cn",
+      "font": "cn-simplify",
       "fontSize": 65,
       "maxWidth": 610,
       "position": [65, 96]
@@ -43,7 +43,7 @@ export default {
     },
     "monsterDesc": {
       "splitMode": "cn",
-      "font": "cn",
+      "font": "cn-simplify",
       "fontSize": 24,
       "lbFontSize": 22,
       "position": [66, 942],
@@ -55,7 +55,7 @@ export default {
     },
     "spellDesc": {
       "splitMode": "cn",
-      "font": "cn",
+      "font": "cn-simplify",
       "fontSize": 24,
       "position": [66, 915],
       "lineHeight": 24,
@@ -63,13 +63,13 @@ export default {
       "maxWidth": 683
     },
     "race": {
-      "font": "cn",
+      "font": "cn-simplify",
       "fontSize": 26,
       "position": [53, 915],
       "maxWidth": 610
     },
     "type": {
-      "font": "cn",
+      "font": "cn-simplify",
       "fontSize": 48,
       "position": [750, 185],
       "icon": [667, 147],
