@@ -1,0 +1,27 @@
+{
+  "name": "ygo-card",
+  "version": "1.1.4",
+  "description": "This is a Yu-Gi-Oh card rendering tool.",
+  "main": "card.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --config webpack.config.js",
+    "build": "webpack"
+  },
+  "author": "Yami",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.3",
+    "html-webpack-plugin": "^4.3.0",
+    "ts-loader": "^8.0.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "sqlite3": "^5.0.0"
+  }
+}
