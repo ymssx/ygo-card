@@ -60,6 +60,7 @@ export class Card {
     imageLoaded = defaultEvent,
     fontsLoaded = defaultEvent,
     imagesLoaded = defaultEvent,
+    picLoaded = defaultEvent,
     loaded = defaultEvent,
     recover = false,
     holo = true,
@@ -97,6 +98,7 @@ export class Card {
     this.imageLoaded = imageLoaded;
     this.fontsLoaded = fontsLoaded;
     this.imagesLoaded = imagesLoaded;
+    this.picLoaded = picLoaded;
     this.loaded = loaded;
 
     this.getPic = getPic;

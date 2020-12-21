@@ -226,6 +226,7 @@ export default class CardFile {
     }
 
     this.admin.clearFlash();
+    this.admin.picLoaded();
 
     return true;
   }
