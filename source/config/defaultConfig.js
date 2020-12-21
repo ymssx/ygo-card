@@ -1,3 +1,5 @@
+// 默认中文模板
+
 export default {
   "moldName": "default",
   "fonts": {

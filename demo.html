@@ -8,9 +8,9 @@
   <canvas id="card" style="height: 90vh;"></canvas>
 </body>
 <script src="./dist/card.js"></script>
-<script type="module">
-  let canvas = document.getElementById('card');
-  let data = {
+<script>
+  const canvas = document.getElementById('card');
+  const data = {
     name: '幽鬼兔',
     _id: '59438930',
     type: 'monster',
@@ -26,7 +26,7 @@
     attribute: 'dark'
   };
 
-  let card = new Card({ data, canvas, moldPath: './dist/mold'});
+  const card = new Card({ data, canvas, moldPath: './dist/mold'});
   
   card.render();
 </script>

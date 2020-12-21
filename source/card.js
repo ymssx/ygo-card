@@ -5,8 +5,14 @@ import { variation, transType } from "./lib/variation.js";
 import { translate } from "./lib/translate.js";
 import { readYDK } from "./lib/readYDK.js";
 import { getPicFromCose, getPicFromGitee } from "./lib/getPic.js";
-import defaultConfig from "./config/defaultConfig.js";
 // export { CardDom } from './cardDom.js';
+
+// configs
+import defaultConfig from "./config/defaultConfig.js";
+import cnSimplifyConfig from "./config/cnSimplifyConfig.js";
+import defaultJpConfig from './config/defaultJpConfig.js';
+import jpWitchNotationConfig from './config/jpWithNotationConfig.js';
+import defaultEnConfig from './config/defaultEnConfig.js';
 
 let defaultEvent = function (e) {
   return e;
@@ -49,7 +55,7 @@ export class Card {
     moldPath = "./mold",
     lang = "cn",
     config = defaultConfig,
-    getPic = getPicFromGitee,
+    getPic = getPicFromCose,
     fontLoaded = defaultEvent,
     imageLoaded = defaultEvent,
     fontsLoaded = defaultEvent,
@@ -324,3 +330,10 @@ export class Card {
 }
 
 export const config = defaultConfig;
+export const configs = {
+  cn: defaultConfig,
+  cnSimplify: cnSimplifyConfig,
+  jp: defaultJpConfig,
+  jpNotation: jpWitchNotationConfig,
+  en: defaultEnConfig,
+};
