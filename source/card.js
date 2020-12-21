@@ -169,9 +169,18 @@ export class Card {
     return true;
   }
 
+  clearFlash() {
+    this.flashImg = null;
+    this.data.flash = 0;
+  }
+
   feed(img, imgStatus = false) {
     this.cardFile.fileContent.pic = img;
     this.imgStatus = imgStatus;
+
+    // 当图片改变，闪面特效自动关闭
+    this.clearFlash();
+    
     this.draw();
   }
 

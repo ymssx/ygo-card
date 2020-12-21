@@ -2,7 +2,7 @@ export default {
   "moldName": "default",
   "moldUrl": "./mold/",
   "fonts": {
-    "jp": {
+    "jp-notation": {
       "name": "jp_notation.otf",
       "type": "relative"
     },
@@ -22,7 +22,7 @@ export default {
   "style": {
     "moldSize": [813, 1185],
     "name": {
-      "font": "jp",
+      "font": "jp-notation",
       "fontSize": 60,
       "maxWidth": 610,
       "position": [65, 96]
@@ -42,7 +42,7 @@ export default {
     },
     "monsterDesc": {
       "splitMode": "cn",
-      "font": "jp",
+      "font": "jp-notation",
       "fontSize": 24,
       "lbFontSize": 22,
       "position": [66, 942],
@@ -54,7 +54,7 @@ export default {
     },
     "spellDesc": {
       "splitMode": "cn",
-      "font": "jp",
+      "font": "jp-notation",
       "fontSize": 24,
       "position": [66, 915],
       "lineHeight": 24,
@@ -62,13 +62,13 @@ export default {
       "maxWidth": 683
     },
     "race": {
-      "font": "jp",
+      "font": "jp-notation",
       "fontSize": 26,
       "position": [53, 915],
       "maxWidth": 610
     },
     "type": {
-      "font": "jp",
+      "font": "jp-notation",
       "fontSize": 48,
       "position": [765, 185],
       "icon": [662, 147],

@@ -225,6 +225,8 @@ export default class CardFile {
       await cardPicCache[url];
     }
 
+    this.admin.clearFlash();
+
     return true;
   }
 
