@@ -54,7 +54,7 @@ export default {
       "lbFontSize": 22,
       "position": [66, 950],
       "lbPosition": [130, 773],
-      "lineHeight": 26,
+      "lineHeight": 25,
       "lbLineHeight": 24.5,
       "maxLines": 6,
       "maxWidth": 683
