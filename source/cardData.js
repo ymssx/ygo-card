@@ -162,7 +162,7 @@ export default class CardData {
         this.draw(["pic"]);
       },
     });
-
+    
     Object.defineProperty(this, "color", {
       get() {
         if (!color) {
@@ -172,7 +172,14 @@ export default class CardData {
       },
       set(value) {
         color = value;
-        this.draw();
+        this.draw(["text"]);
+      },
+    });
+    
+    Object.defineProperty(this, "outlineColor", {
+      set(value) {
+        outlineColor = value;
+        this.draw["text"];
       },
     });
 

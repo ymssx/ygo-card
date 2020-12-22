@@ -297,6 +297,26 @@ export default class CardDrawer {
         config.name.position[1] * r,
         config.name.maxWidth * r
       );
+      
+      let outlineColor = cardData.outlineColor;
+      let outlineWidth = cardData.outlineWidth;
+      // 当为同调怪兽且为银/金色卡名时，默认带上灰色描边
+      if (cardData.type2 === 'tt' && ['#fff', '#ffffff', 'white', '#fbd705'].includes(cardData.color)) {
+        outlineColor = outlineColor || '#888';
+        outlineWidth = outlineWidth || 1.2;
+      }
+
+      if (outlineColor && outlineWidth) {
+        c.strokeStyle = outlineColor;
+        c.lineWidth = outlineWidth * r;
+        c.strokeText(
+          cardData.name,
+          config.name.position[0] * r,
+          config.name.position[1] * r,
+          config.name.maxWidth * r
+        );
+      }
+
       c.restore();
     }
 
