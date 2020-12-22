@@ -321,14 +321,14 @@ export default class CardData {
       for(const i in MARKER_POSITIONS) {
           link.push((linkInt & MARKER_POSITIONS[i]) === MARKER_POSITIONS[i]);
       }
-
-      this.link_num = link.reduce((num, item) => {
-        num += item ? 1 : 0;
-        return num;
-      }, 0);
-
-      return link;
     }
+
+    this.link_num = link.reduce((num, item) => {
+      num += item ? 1 : 0;
+      return num;
+    }, 0);
+
+    return link;
   }
 
   get defaultColor() {
