@@ -32,7 +32,7 @@ export default {
       "font": "en_name",
       "fontSize": 65,
       "maxWidth": 610,
-      "position": [65, 96]
+      "position": [65, 102]
     },
     "pic": {
       "position": [101, 220, 614, 616],
@@ -49,6 +49,7 @@ export default {
     },
     "monsterDesc": {
       "splitMode": "en",
+      "italic": true,
       "font": "en",
       "fontSize": 24,
       "lbFontSize": 22,
@@ -61,6 +62,7 @@ export default {
     },
     "spellDesc": {
       "splitMode": "en",
+      "italic": true,
       "font": "en",
       "fontSize": 24,
       "position": [66, 915],
@@ -76,10 +78,10 @@ export default {
       "maxWidth": 610
     },
     "type": {
-      "font": "cn",
+      "font": "race",
       "fontSize": 48,
-      "position": [750, 185],
-      "icon": [667, 147],
+      "position": [737, 185],
+      "icon": [675, 147],
       "iconSize": [46, 46]
     },
     "ATK": {
@@ -135,8 +137,8 @@ export default {
       "tc": 'normal', "xg": 'effect', "ys": 'ritual', "rh": 'fusion', "tk": 'fusion', "tt": 'synchro', "cl": 'xyz', "lb": 'pendulum', "lj": 'link', "ec": 'gemini', "tz": 'tuner', "tm": 'union', "kt": 'toon', "lh": 'spirit', "fz": 'flip effect', "ts": 'special summon', "zb": 'equip', "sg": 'quick-play', "cd": 'field', "fj": 'counter', "yx": 'continuous'
     },
     "raceList": ["Dragon", "Warrior", "Fiend", "Spellcaster", "Fairy", "Zombie", "Rock", "Plant", "Insect", "Aqua", "Pyro", "Thunder", "Fish", "Sea Serpent", "Wyrm", "Dinosaur", "Reptile", "Machine", "Beast", "Winged Beast", "Beast-Warrior", "Psychic", "Cyberse", "Divine-Beast", "Divine"],
-    "spell": "Spell",
-    "tragic": "Trap",
+    "spell": "Spell Card",
+    "tragic": "Trap Card",
     "brackets": ['[' , ']']
   }
 }

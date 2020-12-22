@@ -408,7 +408,7 @@ export default class CardDrawer {
     }
 
     if (this.fontMap(descConfig.font)) {
-      var descParts;
+      let descParts;
       if (descConfig.splitMode === "cn") {
         descParts = this.descSplit(
           cardData._desc_,
@@ -426,7 +426,8 @@ export default class CardDrawer {
       }
 
       c.fillStyle = "#000";
-      c.font = descConfig.fontSize * r + "px " + descConfig.font + fontPlus;
+      const italic = descConfig.italic ? 'italic ' : '';
+      c.font = italic + descConfig.fontSize * r + "px " + descConfig.font + fontPlus;
 
       if (descConfig.splitMode === "cn") {
         this.drawDesc(descParts, descConfig, r);
