@@ -217,8 +217,8 @@ export default class CardData {
         let temp = desc.split("→")[1];
         if (!temp) return desc;
 
-        var lb_desc = temp.split("【")[0];
-        var desc_ = temp.split("】")[1];
+        var lb_desc = temp.split("【")[0].trim();
+        var desc_ = temp.split("】")[1].trim();
         this._lb_num = lb_num;
         this._lb_desc = lb_desc;
       } catch (err) {

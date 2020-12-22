@@ -10,24 +10,12 @@ const getData = function(dbPath, id) {
   const db = dbMap[dbPath];
 
   return new Promise((resolve, reject) => {
-    let res = {};
-
-    db.get("SELECT name, desc from texts where id='" + id + "'", function (err, row) {
+    db.get("SELECT t.id, t.name, t.desc, d.atk, d.def, d.race, d.type, d.level, d.attribute from texts t, datas d where t.id = d.id and t.id='" + id + "'", function (err, row) {
       if (err) {
         reject(err);
         return;
       } else {
-        res = Object.assign(res, row);
-      }      
-    });
-
-    db.get("SELECT id, atk, def, race, type, level, attribute from datas where id='" + id + "'", function (err, row) {
-      if (err) {
-        reject(err);
-        return;
-      } else {
-        res = Object.assign(res, row);
-        resolve(res);
+        resolve(row);
       }      
     });
   })
@@ -37,9 +25,9 @@ const getData = function(dbPath, id) {
 const getMultiData = function(dbPath, ids) {
   if (typeof ids === 'string') ids = JSON.parse(ids);
 
-  return ids.map(id => {
+  return Promise.all(ids.map(id => {
     return getData(dbPath, id);
-  })
+  }));
 };
 
 module.exports = {
