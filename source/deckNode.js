@@ -5,7 +5,7 @@ const A4_W = 2480, A4_H = 3508;
 const CARD_W = 697, CARD_H = 1016;
 const INIT_X = 193, INIT_Y = 229;
 
-export async function renderDeckPDF(cards) 
+export async function renderDeckPDF(cards) {
     const pdfCanvas = createCanvas(A4_W, A4_H, 'pdf');
     const ctx = pdfCanvas.getContext('2d');
     for (const i in cards) {
