@@ -76,76 +76,67 @@ export default class CardDrawer {
   }
 
   descSplitEn(desc, fontSize, font, maxLines = 6, maxWidth = 683) {
-    let words = desc.split(" ");
+    if (!desc) return [];
+
     const c = this.canvas;
     c.font = fontSize + "px " + font;
-    let width = maxWidth;
-    let orignWidth = c.measureText(desc).width;
-    if (orignWidth > maxWidth * maxLines) {
-      width = orignWidth / maxLines;
+    const descList = desc.split("\n");
+
+    // 当初始分段数超过最大行数时，将多出部分直接压入最后一行
+    while (descList.length > maxLines) {
+      const resPara = descList.pop();
+      descList[maxLines - 1] += resPara;
     }
+
+    // 评估当前实际是否超出最大行数
+
+    // 根据缩放比例获取实际行数
+    const getCurrentLines = (scale) => {
+      return descList.reduce((lines, para) => {
+        lines += Math.ceil((scale * c.measureText(para).width) / maxWidth);
+        return lines;
+      }, 0);
+    };
+
+    // 缩放比例从1逐渐降为0
+    let scale = 1;
+    while (getCurrentLines(scale) > maxLines && scale > 0) {
+      scale -= 0.01;
+    }
+
     let res = [];
-    let temp = [];
+    for (const para of descList) {
+      const oneLineWidth = scale * c.measureText(para).width;
+      const needLines = Math.ceil(oneLineWidth / maxWidth);
+      const oneLineMaxWidth = Math.max(
+        scale * maxWidth,
+        oneLineWidth / needLines
+      );
 
-    let lastWidth = 0;
-    for (let w of words) {
-      temp.push(w);
-      let thisWidth = c.measureText(temp.join(" ")).width;
-      if (thisWidth >= width) {
-        if (thisWidth + lastWidth - 2 * width > 0) {
-          temp.pop();
-          res.push(temp);
-          temp = [w];
-        } else {
-          res.push(temp);
-          temp = [];
+      const currentRes = [];
+      let currentLine = [];
+      for (const word of para.split(' ')) {
+        currentLine.push(word);
+
+        const currentLineWidth = c.measureText(currentLine.join(' ')).width;
+        if (scale * currentLineWidth >= oneLineMaxWidth) {
+          if (scale * currentLineWidth - oneLineMaxWidth > c.measureText(" " + word).width / 2) {
+            currentLine.pop();
+            currentRes.push(currentLine);
+            currentLine = [word];
+          } else {
+            currentRes.push(currentLine);
+            currentLine = [];
+          }
         }
       }
+      if (currentLine.length) {
+        currentRes.push(currentLine);
+      }
+      res = res.concat(currentRes);
     }
 
-    if (temp.length > 0) {
-      if (res.length < maxLines) {
-        res.push(temp);
-      } else {
-        res[res.length - 1].concat(temp);
-      }
-    }
-
-    let finalWidth = 0;
-    for (let line of res) {
-      let thisWidth = c.measureText(line.join(" ")).width;
-      if (thisWidth > finalWidth) {
-        finalWidth = thisWidth;
-      }
-    }
-    let rate = maxWidth / finalWidth;
-
-    let result = [];
-    temp = [];
-    let lastD = 0;
-    for (let index in res) {
-      let line = res[index];
-      let wordsWidth = c.measureText(line.join("")).width;
-      let factWidth = c.measureText(line.join(" ")).width;
-      let d = lastD;
-      if (index < res.length - 1 || factWidth > width) {
-        if (line.length > 0) {
-          d = (finalWidth - wordsWidth) / (line.length - 1);
-        }
-      }
-
-      let tempWidth = 0;
-      for (let w of line) {
-        let thisWidth = rate * c.measureText(w).width;
-        temp.push([tempWidth, thisWidth, w]);
-        tempWidth += rate * d + thisWidth;
-      }
-      result.push(temp);
-      temp = [];
-      lastD = d;
-    }
-
-    return result;
+    return res;
   }
 
   drawDesc(descParts, descConfig, r) {
@@ -182,13 +173,7 @@ export default class CardDrawer {
       let start = descConfig.position[0];
       let top = descConfig.position[1] + index * descConfig.lineHeight;
 
-      for (let w of descPart) {
-        let left = start + w[0];
-        let width = w[1];
-        let word = w[2];
-
-        c.fillText(word, left * r, top * r, width * r);
-      }
+      c.fillText(descPart.join(' '), start * r, top * r, descConfig.maxWidth * r);
     }
   }
 
