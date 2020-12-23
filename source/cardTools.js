@@ -6,4 +6,3 @@ export { variation, transType } from './lib/variation';
 export { translate } from './lib/translate';
 export { getData, getMultiData } from './lib/readDB';
 export { renderDeckPDF } from './deckNode';
-export * from './lib/defaultData';
