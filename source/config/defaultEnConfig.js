@@ -60,8 +60,8 @@ export default {
   translate: {
     attribute: {
       light: "光",
-      dark: "暗",
-      wind: "风",
+      dark: "闇",
+      wind: "風",
       water: "水",
       fire: "炎",
       earth: "地",
