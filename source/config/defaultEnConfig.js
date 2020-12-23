@@ -1,5 +1,7 @@
+import commonStyle from './common.js';
+
 export default {
-  moldName: "default",
+  moldName: "default-en",
   fonts: {
     en_name: {
       name: "en_name.ttf",
@@ -26,109 +28,35 @@ export default {
       type: "relative",
     },
   },
-  style: {
-    moldSize: [813, 1185],
+  style: Object.assign(JSON.parse(commonStyle), {
+    fontMap: {
+      name: "en_name",
+      desc: "en",
+      race: "race",
+      attack: "number",
+      link: "link",
+      password: "password",
+      type: "race",
+      lbNum: "number",
+    },
     name: {
-      font: "en_name",
+      font: "name",
       fontSize: 65,
       maxWidth: 610,
-      position: [65, 102],
-    },
-    pic: {
-      position: [101, 220, 614, 616],
-      position_lb: [57, 213, 702, 528],
-    },
-    attribute: {
-      position: [680, 57, 75, 75],
-      size: [66, 66],
-    },
-    level: {
-      position: [686, 145],
-      size: [50, 50],
-      distance: 55,
-    },
-    monsterDesc: {
-      splitMode: "en",
-      italic: true,
-      font: "en",
-      fontSize: 24,
-      lbFontSize: 22,
-      position: [66, 950],
-      lbPosition: [130, 773],
-      lineHeight: 25,
-      lbLineHeight: 24.5,
-      maxLines: 6,
-      maxWidth: 683,
-    },
-    spellDesc: {
-      splitMode: "en",
-      italic: true,
-      font: "en",
-      fontSize: 24,
-      position: [66, 915],
-      lineHeight: 24,
-      maxLines: 9,
-      maxWidth: 683,
+      position: [65, 100],
     },
     race: {
       font: "race",
-      fontSize: 32,
-      fontWieght: "bold",
-      position: [64, 920],
+      fontSize: 26,
+      position: [64, 915],
       maxWidth: 610,
     },
-    type: {
-      font: "race",
-      fontSize: 48,
-      position: [737, 185],
-      icon: [675, 147],
-      iconSize: [46, 46],
+    copyright: {
+      font: 'password',
+      fontSize: 18,
+      position: [730, 1147],
     },
-    ATK: {
-      font: "number",
-      fontSize: 36,
-      position: [585, 1107],
-    },
-    DEF: {
-      font: "link",
-      fontSize: 36,
-      position: [750, 1107],
-    },
-    pendulumNumber: {
-      font: "number",
-      fontSize: 52,
-      positonLeft: [88, 854],
-      positonRight: [730, 854],
-      pendulumPosition: [66, 1102],
-    },
-    linkArrows: {
-      center: [408, 528],
-      arrow1: {
-        size: [140, 41],
-        position: [-70, 308],
-      },
-      arrow2: {
-        size: [70, 70],
-        position: [-336, 267],
-      },
-    },
-    cardbag: {
-      font: "password",
-      fontSize: 24,
-      position: [728, 871],
-      linkPosition: [665, 872],
-      pendulumPosition: [66, 1104],
-    },
-    password: {
-      font: "password",
-      fontSize: 23,
-      position: [40, 1149],
-    },
-    holo: {
-      position: [743, 1115],
-      size: [42, 42],
-    },
-  },
+  }),
   translate: {
     attribute: {
       light: "光",
@@ -144,7 +72,7 @@ export default {
       xg: "effect",
       ys: "ritual",
       rh: "fusion",
-      tk: "fusion",
+      tk: "token",
       tt: "synchro",
       cl: "xyz",
       lb: "pendulum",

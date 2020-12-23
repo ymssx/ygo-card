@@ -1,6 +1,6 @@
 {
   "name": "ygo-card",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "This is a Yu-Gi-Oh card rendering tool.",
   "main": "card.js",
   "directories": {

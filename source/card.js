@@ -32,6 +32,7 @@ export class Card {
     loaded = defaultEvent,
     recover = false,
     holo = true,
+    copyright = "ⓒ高桥和希 スタジオ・ダイス/集英社",
     cardbagSwitch = false,
     passwordSwitch = false,
     translate = false,
@@ -74,6 +75,7 @@ export class Card {
     this.imgStatus = false;
     this.db_id = null;
     this.flashImg = null;
+    this.copyright = copyright;
     this.holo = holo;
     this.cardbagSwitch = cardbagSwitch;
     this.passwordSwitch = passwordSwitch;

@@ -142,6 +142,30 @@ export default class CardData {
       },
     });
 
+    Object.defineProperty(this, "lang", {
+      get() {
+        return this.admin.lang;
+      },
+      set(value) {
+        this.admin.lang = value;
+        this.draw(["attribute"]);
+      },
+    });
+
+    Object.defineProperty(this, "copyright", {
+      get() {
+        if (dbData.copyright) {
+          return dbData.copyright;
+        }
+        return this.admin.copyright;
+      },
+      set(value) {
+        this.admin.copyright = value;
+        dbData.copyright = value;
+        this.draw(["text"]);
+      },
+    });
+
     Object.defineProperty(this, "link", {
       get() {
         return this._link_;

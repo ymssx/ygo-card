@@ -28,7 +28,7 @@ exports["default"] = {
       position: [65, 96],
     },
     pic: {
-      position: [101, 220, 614, 616],
+      position: [100, 219, 614, 616],
       position_lb: [57, 213, 702, 528],
     },
     attribute: {
@@ -46,7 +46,7 @@ exports["default"] = {
       fontSize: 24,
       lbFontSize: 22,
       position: [66, 942],
-      lbPosition: [130, 773],
+      lbPosition: [128, 770],
       lineHeight: 26,
       lbLineHeight: 24.5,
       maxLines: 6,
@@ -74,15 +74,29 @@ exports["default"] = {
       icon: [667, 147],
       iconSize: [46, 46],
     },
+    line: {
+      position: [64, 1079],
+      width: 683,
+      lineWidth: 2,
+    },
     ATK: {
       font: "number",
       fontSize: 36,
       position: [585, 1107],
+      maxWidth: 72,
+      label: "ATK/",
+      labelPosition: [513, 1107],
     },
     DEF: {
       font: "link",
       fontSize: 36,
+      linkFontSize: 30,
       position: [750, 1107],
+      maxWidth: 72,
+      label: "DEF/",
+      linkLabel: 'LINK-',
+      labelPosition: [678, 1107],
+      linkLabelPosition: [716, 1107],
     },
     pendulumNumber: {
       font: "number",
@@ -111,7 +125,7 @@ exports["default"] = {
     password: {
       font: "password",
       fontSize: 23,
-      position: [40, 1149],
+      position: [40, 1147],
     },
     holo: {
       position: [743, 1115],

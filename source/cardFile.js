@@ -2,6 +2,8 @@ import { Cloud } from "./lib/ajax.js";
 
 const YGOCARDDATA = "__YGOCARDDATA__";
 
+const MOLD_VERSION = '1.0';
+
 export default class CardFile {
   constructor(admin) {
     this.admin = admin;
@@ -109,7 +111,7 @@ export default class CardFile {
         res.arrow2_1 = path + "arrow/arrow2_1.png";
       }
 
-      res.attribute = path + "attribute/" + data.attribute + ".png";
+      res.attribute = `${path}/attribute/${data.lang}/${data.attribute}.png`;;
       if (data.type2 === "cl") {
         res.level = path + "star/rank.png";
       } else {
@@ -117,7 +119,7 @@ export default class CardFile {
       }
     } else {
       res.mold = path + "frame/" + data.type + ".jpg";
-      res.attribute = path + "attribute/" + data.type + ".png";
+      res.attribute = `${path}/attribute/${data.lang}/${data.type}.png`;
       if (["cd", "fj", "sg", "ys", "yx", "zb"].includes(data.type2)) {
         res.icon = path + "icon/" + data.type2 + ".png";
       }
@@ -132,6 +134,12 @@ export default class CardFile {
   }
 
   async fileExist(name) {
+    // 检查本地mold版本，不匹配则直接清空
+    const version = localStorage.getItem('mold-version') || 0;
+    if (Number(MOLD_VERSION) != Number(version)) {
+      localStorage.clear();
+    }
+
     return new Promise((resolve, reject) => {
       let res = localStorage.getItem(name);
       if (res) {
@@ -243,6 +251,8 @@ export default class CardFile {
     let data = canvas.toDataURL("image/png");
     try {
       localStorage.setItem(key, data);
+      // 记录模板版本
+      localStorage.setItem('mold-version', MOLD_VERSION);
       this.log(key, "successful save the image");
     } catch (e) {
       this.log("Storage failed: " + e);
