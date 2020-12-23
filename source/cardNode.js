@@ -56,6 +56,7 @@ export class CardFile {
 
   getFileContent() {
     let fileList = this.getFileList();
+    const path = this.admin.moldPath;
     this.fileContent = {};
     let filePromise = [];
   
@@ -63,6 +64,11 @@ export class CardFile {
       let url = fileList[file];
       filePromise.push(loadImage(url).then((image) => {
         this.fileContent[file] = image;
+      }).catch((e) => {
+        console.error(`cannot load image ${url} because of error: [${e.message}], use default image instead.`);
+        return loadImage(`${path}pic.jpg`).then(image => {
+          this.fileContent[file] = image;
+        });
       }))
     }
   
