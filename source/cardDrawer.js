@@ -733,8 +733,15 @@ export default class CardDrawer {
       "px " +
       this.getFontName(config.copyright.font, config);
     c.fillStyle = "#000000";
+    if (cardData.type2 === "cl" && cardData.type3 !== "lb") {
+      c.fillStyle = "#ffffff";
+    }
     c.textAlign = "right";
-    c.fillText(cardData.copyright, config.copyright.position[0] * r, config.copyright.position[1] * r);
+    c.fillText(
+      cardData.copyright,
+      config.copyright.position[0] * r,
+      config.copyright.position[1] * r
+    );
     c.restore();
 
     // save to caches
