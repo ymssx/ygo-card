@@ -111,9 +111,9 @@ const config = {
     iconSize: [46, 46],
   },
   copyright: {
-    font: '微软雅黑',
+    font: 'copyright',
     fontSize: 18,
-    position: [730, 1147],
+    position: [730, 1146],
   },
 };
 

@@ -157,7 +157,7 @@ export default class CardData {
         if (dbData.copyright) {
           return dbData.copyright;
         }
-        return this.admin.copyright;
+        return this.admin.copyright || '';
       },
       set(value) {
         this.admin.copyright = value;

@@ -32,11 +32,7 @@ export default {
       password: "password",
       type: "cn-simplify",
       lbNum: "number",
-    },
-    copyright: {
-      font: 'password',
-      fontSize: 18,
-      position: [730, 1147],
+      copyright: "password",
     },
   }),
   translate: {
