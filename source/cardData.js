@@ -324,7 +324,7 @@ export default class CardData {
     }
 
     if (["cd", "fj", "sg", "ys", "yx", "zb"].includes(this.type2)) {
-      type += this.type === "monster" ? "   " : "     " + brackets[1];
+      type += (this.lang === "en" ? "     " : "   ") + brackets[1];
     } else {
       type += brackets[1];
     }

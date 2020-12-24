@@ -37,6 +37,13 @@ export default {
       lbNum: "number",
       copyright: "copyright, 微软雅黑",
     },
+    type: {
+      font: "type",
+      fontSize: 48,
+      position: [760, 187],
+      icon: [667, 147],
+      iconSize: [46, 46],
+    },
   }),
   translate: {
     attribute: {

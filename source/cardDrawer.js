@@ -517,18 +517,18 @@ export default class CardDrawer {
 
     // draw ATK/DEF
     if (this.fontMap(this.getFontName(config.ATK.font, config))) {
-      // draw line
-      c.lineWidth = config.line.lineWidth * r;
-      c.beginPath();
-      c.moveTo(config.line.position[0] * r, config.line.position[1] * r);
-      c.lineTo(
-        (config.line.position[0] + config.line.width) * r,
-        config.line.position[1] * r
-      );
-      c.stroke();
-
-      c.save();
       if (cardData.type === "monster") {
+        // draw line
+        c.lineWidth = config.line.lineWidth * r;
+        c.beginPath();
+        c.moveTo(config.line.position[0] * r, config.line.position[1] * r);
+        c.lineTo(
+          (config.line.position[0] + config.line.width) * r,
+          config.line.position[1] * r
+        );
+        c.stroke();
+        c.save();
+
         c.fillStyle = "#000000";
         c.font =
           config.ATK.fontSize * r +
