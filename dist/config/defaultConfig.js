@@ -32,6 +32,7 @@ export default {
       password: "password",
       type: "cn",
       lbNum: "number",
+      copyright: "微软雅黑",
     },
   }),
   translate: {

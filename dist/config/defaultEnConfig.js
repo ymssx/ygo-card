@@ -38,6 +38,7 @@ export default {
       password: "password",
       type: "race",
       lbNum: "number",
+      copyright: "password",
     },
     name: {
       font: "name",
@@ -50,11 +51,6 @@ export default {
       fontSize: 26,
       position: [64, 915],
       maxWidth: 610,
-    },
-    copyright: {
-      font: 'password',
-      fontSize: 18,
-      position: [730, 1147],
     },
   }),
   translate: {
