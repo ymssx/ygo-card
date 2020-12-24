@@ -1,0 +1,32 @@
+.attribute-box {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 8px;
+  // border-radius: 24px;
+  color: #fff;
+  background-color: #f7f7f7;
+
+  li {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    // border-radius: 16px;
+    margin-right: 8px;
+    text-align: center;
+    transition: opacity 0.3s;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .select {
+    opacity: 1;
+  }
+
+  .unselect {
+    opacity: 0.3;
+  }
+}

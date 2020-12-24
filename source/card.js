@@ -5,6 +5,7 @@ import { variation, transType } from "./lib/variation.js";
 import { translate } from "./lib/translate.js";
 import { readYDK } from "./lib/readYDK.js";
 import { getPicFromCose } from "./lib/getPic.js";
+import defaultCopyright from "./lib/copyright.js";
 
 // configs
 import defaultConfig from "./config/defaultConfig.js";
@@ -32,7 +33,7 @@ export class Card {
     loaded = defaultEvent,
     recover = false,
     holo = true,
-    copyright = "ⓒ高桥和希 スタジオ・ダイス/集英社",
+    copyright = defaultCopyright.jp,
     cardbagSwitch = false,
     passwordSwitch = false,
     translate = false,
