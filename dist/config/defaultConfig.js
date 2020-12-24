@@ -43,7 +43,7 @@ export default {
     attribute: {
       light: "光",
       dark: "暗",
-      wind: "风",
+      wind: "風",
       water: "水",
       fire: "炎",
       earth: "地",

@@ -34,6 +34,13 @@ export default {
       lbNum: "number",
       copyright: "password",
     },
+    type: {
+      font: "type",
+      fontSize: 44,
+      position: [753, 187],
+      icon: [668, 147],
+      iconSize: [46, 46],
+    },
   }),
   translate: {
     attribute: {
