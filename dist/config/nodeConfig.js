@@ -19,6 +19,10 @@ export default {
       name: "password.ttf",
       type: "relative",
     },
+    copyright: {
+      name: "copyright.ttf",
+      type: "relative",
+    },
   },
   style: Object.assign(JSON.parse(commonStyle), {
     fontMap: {
@@ -30,7 +34,7 @@ export default {
       password: "password",
       type: "cn",
       lbNum: "number",
-      copyright: "微软雅黑,Sans",
+      copyright: "copyright, 微软雅黑",
     },
   }),
   translate: {
