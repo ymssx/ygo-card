@@ -7,7 +7,7 @@ export default class CardDrawer {
   isPunctuation(char) {
     const reg = new RegExp("[\u0000-\u00ff]");
     const reg2 = new RegExp("[\uff00-\uffff]");
-    const punctuationMap = ["。", "，", "：", "【", "】"];
+    const punctuationMap = ["。", "，", "：", "【", "】", "「", "」"];
     return reg.test(char) || reg2.test(char) || punctuationMap.includes(char);
   }
 
