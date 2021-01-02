@@ -91,7 +91,7 @@ const MAP = {
         return num;
     } else {
       const binNum = num.toString(2);
-      return binNum.substr(binNum.length - 4, binNum.length - 1);
+      return parseInt(binNum.substr(binNum.length - 4, binNum.length - 1), 2);
     }
   }
 }
