@@ -719,7 +719,7 @@ export default class CardDrawer {
         "px " +
         this.getFontName(config.password.font, config);
       c.fillText(
-        cardData._id,
+        `00000000${cardData._id}`.slice(-8),
         config.password.position[0] * r,
         config.password.position[1] * r
       );
