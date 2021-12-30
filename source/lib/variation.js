@@ -60,31 +60,31 @@ const MAP = {
     64: "divine"
   },
   race: {
-    16: "不死族",
-    8: "恶魔族",
-    32768: "兽战士族",
-    256: "岩石族",
-    2: "魔法师族",
-    1: "战士族",
-    512: "鸟兽族",
-    16384: "兽族",
-    32: "机械族",
-    4: "天使族",
-    16777216: "电子界族",
-    131072: "鱼族",
-    4096: "雷族",
-    128: "炎族",
-    262144: "海龙族",
-    64: "水族",
-    1024: "植物族",
-    8192: "龙族",
-    524288: "爬虫族",
-    1048576: "念动力族",
-    2048: "昆虫族",
-    65536: "恐龙族",
-    8388608: "幻龙族",
-    2097152: "幻神兽族",
-    4194304: "创造神族"
+    16: "zombie",
+    8: "fiend",
+    32768: "beastwarrior",
+    256: "rock",
+    2: "spellcaster",
+    1: "warrior",
+    512: "wingedbeast",
+    16384: "beast",
+    32: "machine",
+    4: "fairy",
+    16777216: "cyberse",
+    131072: "fish",
+    4096: "thunder",
+    128: "pyro",
+    262144: "seaserpent",
+    64: "aqua",
+    1024: "plant",
+    8192: "dragon",
+    524288: "reptile",
+    1048576: "psychic",
+    2048: "insect",
+    65536: "dinosaur",
+    8388608: "wyrm",
+    2097152: "divinebeast",
+    4194304: "divine"
   },
   level(num) {
     if (num < 13) {
@@ -152,7 +152,6 @@ export const variation = function(data) {
     desc
   }
 }
-
 
 export const transSingleType = function(type) {
   if (typeMap[type]) {

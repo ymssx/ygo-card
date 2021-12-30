@@ -1,9 +1,22 @@
 import { createCanvas, loadImage, registerFont } from 'canvas';
-import nodeConfig from './config/nodeConfig.js';
 import { variation, transType } from "./lib/variation.js";
 import CardData from './cardData.js';
 import CardDrawer from './cardDrawer.js';
 import defaultCopyright from './lib/copyright.js';
+
+import defaultConfig from "./config/defaultConfig.js";
+import cnSimplifyConfig from "./config/cnSimplifyConfig.js";
+import defaultJpConfig from './config/defaultJpConfig.js';
+import jpWitchNotationConfig from './config/jpWithNotationConfig.js';
+import defaultEnConfig from './config/defaultEnConfig.js';
+
+const configs = {
+  cn: defaultConfig,
+  cnSimplify: cnSimplifyConfig,
+  jp: defaultJpConfig,
+  jpNotation: jpWitchNotationConfig,
+  en: defaultEnConfig,
+};
 
 export class CardFile {
   constructor(admin) {
@@ -96,7 +109,6 @@ export class Card {
   constructor({
     data,
     size = 813,
-    config = nodeConfig,
     picPath,
     moldPath = './mold/',
     lang = 'cn',
@@ -107,10 +119,9 @@ export class Card {
     translate = false,
   }) {
     this.size = [size, size * 1185 / 813];
-    this.config = config;
     this.moldPath = moldPath;
     this.picPath = picPath;
-
+    this.config = configs[lang];
     this.lang = lang;
     this.copyright = copyright;
     this.cardbagSwitch = cardbagSwitch;
