@@ -15,10 +15,10 @@ const getData = function(dbPath, id) {
         reject(err);
         return;
       } else {
-        resolve(row);
+        resolve(row ? {...row, desc: row.desc.replace(/\r?\n/g, '')} : row);
       }      
     });
-  }).map(data => ({...data, desc: data.desc.replace(/\r?\n/g, '')}))
+  });
 };
 
 
