@@ -6,7 +6,8 @@
 
 这是一个游戏王卡片渲染工具，你只需要在你的网站引入card.js，就可以轻松地渲染出标准的游戏王卡图！
 
-<a href="http://blog.yami.love/2020/12/16/cardjs/">使用文档</a>
+<a href="http://blog.yami.love/2020/12/16/cardjs/">使用文档（被封了，正在搬迁到Github）</a>
+<a href="https://ymssxx.coding.net/public/cardjs/cardjs/git/files">临时使用</a>
 
 ## 为什么使用card.js
 
@@ -41,4 +42,5 @@
 
 ## 使用
 
-<a href="http://blog.yami.love/2020/12/16/cardjs/">查看文档</a>
+<a href="http://blog.yami.love/2020/12/16/cardjs/">查看文档（被封了，正在搬迁到Github）</a>
+<a href="https://ymssxx.coding.net/public/cardjs/cardjs/git/files">临时使用</a>
