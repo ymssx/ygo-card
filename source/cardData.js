@@ -266,16 +266,17 @@ export default class CardData {
   }
 
   get _ifm_() {
-    const race = this.race;
     const trans = this.admin.config.translate;
-
     let tc = trans.type.tc;
     let xg = trans.type.xg;
     let lb = trans.type.lb;
+    let rc = trans.race;
     let brackets = trans.brackets;
 
+    const race = this.race;
+
     if (this.type === "monster") {
-      var txt = brackets[0] + race;
+      var txt = brackets[0] + rc[race];
       if (!["tc", "xg", "tk"].includes(this.type2)) {
         txt += "/" + trans.type[this.type2];
       }
