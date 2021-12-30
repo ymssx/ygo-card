@@ -1,4 +1,5 @@
-export { Card } from './cardNode';
+export { Card } from './card';
+export { Card as CardNode } from './cardNode';
 export { getCard } from './getCard';
 export { saveCard } from './saveCard';
 export { readYDK, getIdSetFromYDK } from './lib/readYDK';

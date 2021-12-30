@@ -7,8 +7,7 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
   entry: {
-    card: './source/card.js',
-    cardNode: './source/cardTools.js',
+    index: './source/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
