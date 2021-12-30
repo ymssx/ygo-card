@@ -18,7 +18,7 @@ const getData = function(dbPath, id) {
         resolve(row);
       }      
     });
-  })
+  }).map(data => ({...data, desc: data.desc.replace(/\r?\n/g, '')}))
 };
 
 
