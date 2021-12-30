@@ -42,5 +42,5 @@
 
 ## 使用
 
-<a href="http://blog.yami.love/2020/12/16/cardjs/">查看文档（被封了，正在搬迁到Github）</a>
-<a href="https://ymssxx.coding.net/public/cardjs/cardjs/git/files">临时使用</a>
+<a href="http://blog.yami.love/2020/12/16/cardjs/">查看文档</a>
+<a href="https://gitee.com/ymssx/cardjs/tree/master/DOC.md">备用文档</a>
