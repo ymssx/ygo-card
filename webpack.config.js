@@ -36,13 +36,17 @@ const config = {
           from: __dirname + '/source/config',
           to: __dirname + '/dist/config'
         },
+        {
+          from: __dirname + '/source/types',
+          to: __dirname + '/dist/types'
+        },
       ]
     }),
-    new HtmlWebpackPlugin({
-      filename: 'dev.html',
-      template: 'dev.html',
-      inject: true
-    })
+    // new HtmlWebpackPlugin({
+    //   filename: 'dev.html',
+    //   template: 'dev.html',
+    //   inject: true
+    // })
   ]
 }
 
