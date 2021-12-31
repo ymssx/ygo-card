@@ -133,6 +133,7 @@ export const variation = function(data) {
   attribute = MAP.attribute[attribute];
   race = MAP.race[race];
   level = MAP.level(level);
+  desc = desc.replace(/(.*?\r?\n)/g, (line, _, pos) => ['rh', 'tt', 'cl', 'lj'].includes(type2) && pos == 0 ? line : line.trim())
 
   atk = (atk === -2) ? '?' : atk;
   def = (def === -2) ? '?' : def;
