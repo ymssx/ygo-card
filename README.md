@@ -10,12 +10,9 @@ This is a javascript SDK for rendering YU-GI-OH card. Import `ygo-card` in your 
 
 <a href="https://github.com/ymssx/ygo-card/wiki">DOCUMENT</a>
 
-<img src="https://github.com/ymssx/ygo-card/blob/master/demo/幽鬼兔.jpg" width="16%" max-width="150" />
-<img src="https://github.com/ymssx/ygo-card/blob/master/demo/浮幽櫻.jpg" width="16%" max-width="150" />
-<img src="https://github.com/ymssx/ygo-card/blob/master/demo/灰流麗.jpg" width="16%" max-width="150" />
-<img src="https://github.com/ymssx/ygo-card/blob/master/demo/屋敷童.jpg" width="16%" max-width="150" />
-<img src="https://github.com/ymssx/ygo-card/blob/master/demo/儚無水木.jpg" width="16%" max-width="150" />
-<img src="https://github.com/ymssx/ygo-card/blob/master/demo/朔夜時雨.jpg" width="16%" max-width="150" />
+<div align=left>
+  <img src="https://github.com/ymssx/ygo-card/blob/master/demo/幽鬼兔.jpg" width="16%" max-width="150" /><img src="https://github.com/ymssx/ygo-card/blob/master/demo/浮幽櫻.jpg" width="16%" max-width="150" /><img src="https://github.com/ymssx/ygo-card/blob/master/demo/灰流麗.jpg" width="16%" max-width="150" /><img src="https://github.com/ymssx/ygo-card/blob/master/demo/屋敷童.jpg" width="16%" max-width="150" /><img src="https://github.com/ymssx/ygo-card/blob/master/demo/儚無水木.jpg" width="16%" max-width="150" /><img src="https://github.com/ymssx/ygo-card/blob/master/demo/朔夜時雨.jpg" width="16%" max-width="150" />
+</div>
 
 <br/>
 
