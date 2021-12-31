@@ -1,6 +1,8 @@
 # ygo-card
 
-<img src="https://img.shields.io/npm/v/ygo-card"/><img src="https://img.shields.io/npm/l/ygo-card"/>
+<a href="https://www.npmjs.com/package/ygo-card">
+  <img src="https://img.shields.io/npm/v/ygo-card"/>
+</a>
 
 <a href="README_CN.md">中文</a>
 

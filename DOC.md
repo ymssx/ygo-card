@@ -1,6 +1,8 @@
 # ygo-card 文档
 
-<img src="https://img.shields.io/npm/v/ygo-card"/>
+<a href="https://www.npmjs.com/package/ygo-card">
+  <img src="https://img.shields.io/npm/v/ygo-card"/>
+</a>
 
 这是一个游戏王卡片渲染工具，你只需要在你的网站引入ygo-card，就可以轻松地渲染出标准的游戏王卡图！
 
