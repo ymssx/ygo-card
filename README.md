@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/npm/v/ygo-card"/>
 </a>
 
-<a href="README_CN.md">中文</a>
+<a href="https://gitee.com/ymssx/cardjs">中文</a>
 
 This is a javascript SDK for rendering YU-GI-OH card. Import `ygo-card` in your website, you can easily paint the standard YU-GI-OH cards!
 
@@ -36,7 +36,7 @@ const data = {
   type: 'monster',
   type2: 'effect',
   type3: 'tuner',
-  attribute: 'dark',
+  attribute: 'light',
   level: 3,
   race: 'Psychic',
   desc: 'When a monster on the field activates its effect, or when a Spell/Trap that is already face-up on the field activates its effect (Quick Effect): You can send this card from your hand or field to the GY; destroy that card on the field. You can only use this effect of "Ghost Ogre & Snow Rabbit" once per turn',
@@ -60,6 +60,6 @@ card.render();
 
 [🔗 DIY ONLINE  #yami](https://ymssx.github.io/ygo/)
 
-[🔗 Yu-Gi-Oh WIKI #yami](http://ocg.wiki/#59438930)
+[🔗 Render Deck PDF #yami](https://github.com/msk86/ygo-card-print)
 
 <br/>
