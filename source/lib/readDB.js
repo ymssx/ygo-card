@@ -15,7 +15,7 @@ const getData = function(dbPath, id) {
         reject(err);
         return;
       } else {
-        resolve(row ? {...row, desc: row.desc.replace(/\r?\n/g, '')} : row);
+        resolve(row);
       }      
     });
   });
