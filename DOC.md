@@ -197,7 +197,7 @@ const data = {
 
 这里收录了绝大多数游戏王卡图，不定期更新。
 
-<Link title="游戏王卡图库" url="https://gitee.com/ymssx/pics" img="https://gitee.com/ymssx/pics/raw/master/500/62015408.jpg" />
+<a href="https://gitee.com/ymssx/pics">游戏王卡图库</a>
 
 
 <a href="http://ocg.wiki/#21844576" target="blank"><img src="https://gitee.com/ymssx/pics/raw/master/500/21844576.jpg" height="120" /></a>
