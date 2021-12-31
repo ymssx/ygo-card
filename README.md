@@ -6,32 +6,38 @@
 
 <a href="README_CN.md">中文</a>
 
-<a href="https://github.com/ymssx/ygo-card/wiki">DOCUMENT</a>
-
 This is a javascript SDK for rendering YU-GI-OH card. import `ygo-card` in your website, you can easily paint the standard YU-GI-OH cards!
+
+<a href="https://github.com/ymssx/ygo-card/wiki">DOCUMENT</a>
 
 <br/>
 
 ## Usage
+
+```shell
+$ yarn add ygo-card
+
+# or
+
+$ npm i ygo-card -D --save
+```
 
 ```typescript
 import { Card } from 'ygo-card';
 
 const canvas = document.getElementById('card');
 const data = {
-  name: '幽鬼兔',
+  name: 'Ghost Ogre & Snow Rabbit',
   _id: '59438930',
   type: 'monster',
-  type2: 'xg',
-  type3: 'tz',
-  type4: '',
+  type2: 'effect',
+  type3: 'tuner',
+  attribute: 'dark',
+  level: 3,
+  race: 'Psychic',
+  desc: 'When a monster on the field activates its effect, or when a Spell/Trap that is already face-up on the field activates its effect (Quick Effect): You can send this card from your hand or field to the GY; destroy that card on the field. You can only use this effect of "Ghost Ogre & Snow Rabbit" once per turn',
   attack: 0,
   defend: 1800,
-  level: 3,
-  desc: '「浮幽櫻」的效果1回合只能使用1次。\n' +
-    '①：對方場上的怪獸數量比自己場上的怪獸多的場合，把這張卡從手卡丟棄才能發動。選自己的額外卡組1張卡給雙方確認。那之後，把對方的額外卡組確認，有選的卡的同名卡的場合，那些對方的同名卡全部除外。這個效果在對方回合也能發動。',
-  race: '不死族',
-  attribute: 'dark'
 };
 
 const card = new Card({ data, canvas, moldPath: './dist/mold'});
