@@ -130,10 +130,19 @@ export const variation = function(data) {
 
   let {id, atk, def, race, type, level, attribute, name, desc} = data;
   let [type1, type2, type3, type4] = MAP.type[type];
+  let lb_num, lb_desc;
   attribute = MAP.attribute[attribute];
   race = MAP.race[race];
   level = MAP.level(level);
-  desc = desc.replace(/(.*?\r?\n)/g, (line, _, pos) => ['rh', 'tt', 'cl', 'lj'].includes(type2) && pos == 0 ? line : line.trim())
+  if (type3 === "lb") {
+    lb_num = parseInt(desc.substr(1));
+    let temp = desc.split("→")[1];
+    if (temp) {
+      lb_desc = temp.split("【")[0].trim().replace(/\r?\n/g, '');;
+      desc = temp.split("】")[1].trim();
+    }
+  }
+  desc = desc.replace(/(.*?\r?\n)/g, (line, _, pos) => ['rh', 'tt', 'cl', 'lj'].includes(type2) && pos === 0 ? line : line.trim());
 
   atk = (atk === -2) ? '?' : atk;
   def = (def === -2) ? '?' : def;
@@ -150,7 +159,9 @@ export const variation = function(data) {
     race,
     level,
     attribute,
-    desc
+    desc,
+    lb_num,
+    lb_desc
   }
 }
 
