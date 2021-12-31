@@ -130,7 +130,7 @@ export class Card {
 
     this.translate = translate;
 
-    this.data = new CardData(data, this);
+    this.data = new CardData(transType(data), this);
     this.cardFile = new CardFile(this);
     this.canvas = createCanvas(this.size[0], this.size[1]);
     this.cardDrawer = new CardDrawer(this);

@@ -163,7 +163,18 @@ export const transSingleType = function(type) {
 }
 
 
-export const transType = function(data) {
+export const transType = function(originData) {
+  const data = {
+    ...originData,
+  };
+
+  if (Array.isArray(data.types)) {
+    data.type = data.types[0];
+    data.type2 = data.types[1];
+    data.type3 = data.types[2];
+    data.type4 = data.types[3];
+  }
+
   if (data.type2) {
     if (typeMap[data.type2]) {
       data.type2 = typeMap[data.type2];
