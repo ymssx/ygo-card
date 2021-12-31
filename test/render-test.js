@@ -157,7 +157,6 @@ const testData = [
 ]
 
 async function renderCanvasToImageFile(canvas, file) {
-    console.log(`creating ${file}`);
     return new Promise((resolve ,reject) => {
         const out = fs.createWriteStream(file);
         const stream = canvas.createJPEGStream();
