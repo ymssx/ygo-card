@@ -421,14 +421,14 @@ export default class CardDrawer {
       let descParts;
       if (cardData.lang !== "en") {
         descParts = this.descSplit(
-          cardData._desc_,
+          cardData.desc,
           descConfig.fontSize,
           this.getFontName(descConfig.font, config),
           descConfig.maxLines
         );
       } else {
         descParts = this.descSplitEn(
-          cardData._desc_,
+          cardData.desc,
           descConfig.fontSize,
           this.getFontName(descConfig.font, config),
           descConfig.maxLines
