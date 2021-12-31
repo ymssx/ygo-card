@@ -240,27 +240,6 @@ export default class CardData {
     return trans.attribute[attribute];
   }
 
-  get _desc_() {
-    const desc = this.desc;
-    if (this.type3 === "lb") {
-      try {
-        var lb_num = parseInt(desc.substr(1));
-        let temp = desc.split("→")[1];
-        if (!temp) return desc;
-
-        var lb_desc = temp.split("【")[0].trim();
-        var desc_ = temp.split("】")[1].trim();
-        this._lb_num = lb_num;
-        this._lb_desc = lb_desc;
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      var desc_ = desc;
-    }
-    return desc_;
-  }
-
   get isSpecialMonster() {
     return ["rh", "ys", "rh", "tt", "cl", "lj"].includes(this.type2);
   }
@@ -276,7 +255,7 @@ export default class CardData {
     const race = this.race;
 
     if (this.type === "monster") {
-      var txt = brackets[0] + rc[race];
+      var txt = brackets[0] + (rc[race] || race);
       if (!["tc", "xg", "tk"].includes(this.type2)) {
         txt += "/" + trans.type[this.type2];
       }
