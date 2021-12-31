@@ -11,7 +11,7 @@
 <a href="https://gitee.com/ymssx/cardjs/wikis/HOME?sort_id=5044200">使用文档</a>
 
 <div align=left>
-  <img src="https://gitee.com/ymssx/cardjs/blob/master/demo/黑魔术少女.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/blob/master/demo/黑魔术师.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/blob/master/demo/死者苏生.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/blob/master/demo/神圣防护罩 -反射镜力-.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/blob/master/demo/元素英雄 神·新宇侠.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/blob/master/demo/流天类星龙.jpg" width="16%" max-width="150" />
+  <img src="https://gitee.com/ymssx/cardjs/raw/master/demo/黑魔术少女.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/黑魔术师.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/死者苏生.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/神圣防护罩 -反射镜力-.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/元素英雄 神·新宇侠.jpg" width="16%" max-width="150" /><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/流天类星龙.jpg" width="16%" max-width="150" />
 </div>
 
 <br/>
