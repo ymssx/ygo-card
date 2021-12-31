@@ -31,12 +31,12 @@
 
 欢迎向我自荐你的基于card.js的作品，邮箱：ymssx@qq.com
 
-<a href="http://ocg.wiki/#59438930" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" /></a>
-<a href="http://ocg.wiki/#62015408" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" /></a>
-<a href="http://ocg.wiki/#14558127" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/灰流麗.jpg" height="200" /></a>
-<a href="http://ocg.wiki/#73642296" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/屋敷童.jpg" height="200" /></a>
-<a href="http://ocg.wiki/#60643553" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/儚無水木.jpg" height="200" /></a>
-<a href="http://ocg.wiki/#52038441" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/朔夜時雨.jpg" height="200" /></a>
+<img src="https://github.com/ymssx/ygo-card/blob/master/demo/幽鬼兔.jpg" width="16%" max-width="150" />
+<img src="https://github.com/ymssx/ygo-card/blob/master/demo/浮幽櫻.jpg" width="16%" max-width="150" />
+<img src="https://github.com/ymssx/ygo-card/blob/master/demo/灰流麗.jpg" width="16%" max-width="150" />
+<img src="https://github.com/ymssx/ygo-card/blob/master/demo/屋敷童.jpg" width="16%" max-width="150" />
+<img src="https://github.com/ymssx/ygo-card/blob/master/demo/儚無水木.jpg" width="16%" max-width="150" />
+<img src="https://github.com/ymssx/ygo-card/blob/master/demo/朔夜時雨.jpg" width="16%" max-width="150" />
 
 <br/>
 
