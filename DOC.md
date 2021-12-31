@@ -2,32 +2,30 @@
 
 <img src="https://img.shields.io/npm/v/ygo-card"/>
 
-这是一个游戏王卡片渲染工具，你只需要在你的网站引入card.js，就可以轻松地渲染出标准的游戏王卡图！
+这是一个游戏王卡片渲染工具，你只需要在你的网站引入ygo-card，就可以轻松地渲染出标准的游戏王卡图！
 
-<a href="https://github.com/ymssx/yugioh-card">github</a> | 
+<a href="https://github.com/ymssx/ygo-card">github</a> | 
 <a href="https://gitee.com/ymssx/cardjs">gitee</a>
 
-## 为什么使用card.js
+## 为什么使用ygo-card
 
-你的网站需要大量的游戏王卡图，但是网上的卡图资源参差不齐？不妨试试card.js，只需要一次的加载，就可以使用大量、标准、高清的游戏王卡图。
+你的网站需要展示游戏王卡图，但是网上的图片资源质量参差不齐？ygo-card可以方便的渲染出标准、高清的游戏王卡图。
 
-* 响应式。Card会自动响应数据的变动，同时更新卡图，这在与表单交互场景十分有用。同时，对于大量的更新请求，内部只会进行一次绘制，因此你不用过多的担心性能问题。
+* 响应式。我们会自动响应数据的变动，同时更新卡图，这在与表单交互场景十分有用。
 
-* 十分容易使用。你只需要短短的几行代码，就能将一张canvas画布变成一张游戏王高清卡图！另外，card.js可以自由的更改模板样式，在config文件中你可以随心所欲地进行创作！
+* 交互式。你可以实现各种交互动效，比如SR面闪特效、烫金字等。同时允许实时修改卡片信息、自由定制卡片。
 
-* 交互式。你可以轻松实现各种交互动效，比如SR面闪特效、烫金字等。同时允许实时修改卡片信息、自由定制卡片。
-
-* 动态尺寸。Card渲染的卡图非常清晰，你可以直接保存到本地进行打印。同时Card会自动监听canvas的尺寸变化，同时会自动重绘。从显示器到纸张上，它是一张永远都不会模糊的图片。
+* 高质量。ygo-card生成的卡图足够清晰，可以直接用于打印。我们的卡图排版会严格和官方保持一致。
 
 <br/>
 
 ## 作品
 
-<Link title="游戏王在线制卡器" url="https://ymssx.gitee.io/ygo" img="https://gitee.com/ymssx/pics/raw/master/500/62015408.jpg" />
+- <a href="https://ymssx.gitee.io/ygo">游戏王在线制卡器<a>
 
-<Link title="游戏王WIKI" url="http://ocg.wiki/#59438930" img="https://gitee.com/ymssx/pics/raw/master/500/59438930.jpg" />
+- <a href="https://github.com/msk86/ygo-card-print">一次性打印卡组</a>
 
-欢迎向我自荐你的基于card.js的作品，邮箱：ymssx@qq.com
+欢迎向我自荐你的基于ygo-card的作品，邮箱：ymssx@qq.com
 
 <a href="http://ocg.wiki/#59438930" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/幽鬼兔.jpg" height="200" /></a>
 <a href="http://ocg.wiki/#62015408" target="blank"><img src="https://gitee.com/ymssx/cardjs/raw/master/demo/浮幽櫻.jpg" height="200" /></a>
@@ -46,6 +44,12 @@
 $ npm i ygo-card -D --save
 ```
 
+或者使用yarn
+
+```sh
+$ yarn add ygo-card
+```
+
 在项目中引用
 
 ```js
@@ -55,22 +59,21 @@ const { Card } = require('ygo-card');
 import { Card } from 'ygo-card';
 ```
 
-:::warning
-你需要手动复制node_modules/ygo-card/dist/mold文件夹到你的静态资源处，并在后续指定mold的路径
-:::
+
+**你可以手动复制node_modules/ygo-card/dist/mold文件夹到你的静态资源处，并在后续指定mold的路径**
 
 * ### 手动引入
 
 ```shell
-$ git clone https://gitee.com/ymssx/cardjs.git
+$ git clone https://github.com/ymssx/ygo-card
 ```
 
-将`dist`文件夹的内容放在合适的位置，使用`<script>`引入card.js
+将`dist`文件夹的内容放在合适的位置，使用`<script>`引入index.js
 
 ``` html
 <canvas id="card"></canvas>
 ...
-<script src="xxx/card.js"></script>
+<script src="xxx/index.js"></script>
 ```
 
 #### 目录结构
@@ -83,7 +86,7 @@ $ git clone https://gitee.com/ymssx/cardjs.git
 
 这里自带了几份常用的配置文件
 
-* `card.js`
+* `index.js`
 
 手动引入它就可以使用Card啦
 
@@ -91,7 +94,7 @@ $ git clone https://gitee.com/ymssx/cardjs.git
 
 ## 基本使用
 
-传入一个卡片数据和canvas对象，然后使用render方法就可以渲染啦
+传入一个卡片数据和canvas元素，然后使用render方法就可以渲染啦
 
 ```javascript
 // canvas的dom节点
@@ -119,17 +122,13 @@ card.render();
 
 恭喜你，一张青眼白龙就渲染出来啦
 
-:::warning
-注意，当card.js不在根目录时，你可能需要在moldPath手动指定mold文件夹的路径。
-:::
+**注意，当mold文件夹不在根目录时，你可能需要在moldPath手动指定mold文件夹的路径。或者直接设置 ```moldPath: './node_modules/ygo-card/dist/mold'```**
 
 ```javascript
-const card = new Card({ data, canvas, moldPath: './source/mold' });
+const card = new Card({ data, canvas, moldPath: './assets/mold' });
 ```
 
-:::tip
-事实上，一个完整的中文/日文字体可能需要耗费大量的加载时间，导致网站初始加载变慢。所以我强烈推荐使用font-spider或者fontmin根据需要进行字体压缩。
-:::
+  *事实上，一个完整的中文/日文字体可能需要耗费大量的加载时间，导致网站初始加载变慢。所以我强烈推荐使用font-spider或者fontmin根据需要进行字体压缩。*
 
 <br/>
 
