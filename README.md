@@ -60,6 +60,6 @@ card.render();
 
 [🔗 DIY ONLINE  #yami](https://ymssx.github.io/ygo/)
 
-[🔗 Render Deck PDF #yami](https://github.com/msk86/ygo-card-print)
+[🔗 Render Deck PDF #msk86](https://github.com/msk86/ygo-card-print)
 
 <br/>

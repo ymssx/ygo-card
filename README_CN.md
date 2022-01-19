@@ -61,6 +61,6 @@ card.render();
 
 [🔗 游戏王在线制卡器  #yami](https://ymssx.github.io/ygo/)
 
-[🔗 一次性生成卡组PDF #yami](https://github.com/msk86/ygo-card-print)
+[🔗 一次性生成卡组PDF #msk86](https://github.com/msk86/ygo-card-print)
 
 <br/>
