@@ -498,14 +498,22 @@ const BlueEyes = () => <YgoCard data={ name: '青眼白龙', attack: 3000 } />;
 
 ### 使用方式
 
-参考 <a href="#安装">#安装</a>
-
-区别是引入的文件不同
+适用于node版本的npm包名有所变化。
 
 #### npm安装
 
+```sh
+$ npm i ygo-card-node -D --save
+```
+
+或者使用yarn
+
+```sh
+$ yarn add ygo-card-node
+```
+
 ```js
-import { CardNode, getCard } from 'ygo-card';
+import { Card, getCard } from 'ygo-card-node';
 ```
 
 #### 使用
