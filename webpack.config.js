@@ -7,11 +7,12 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
   entry: {
-    index: './source/index.js',
+    browser: './source/index.js',
+    node: './source/index-node.js',
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    path: path.resolve(__dirname, 'packages'),
+    filename: '[name]/dist/index.js',
     globalObject: 'this',
     libraryTarget: 'umd'
   },
@@ -29,15 +30,31 @@ const config = {
       patterns: [
         {
           from: __dirname + '/source/mold',
-          to: __dirname + '/dist/mold'
+          to: __dirname + '/packages/browser/dist/mold'
         },
         {
           from: __dirname + '/source/config',
-          to: __dirname + '/dist/config'
+          to: __dirname + '/packages/browser/dist/config'
         },
         {
           from: __dirname + '/source/types',
-          to: __dirname + '/dist/types'
+          to: __dirname + '/packages/browser/dist/types'
+        },
+      ]
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: __dirname + '/source/mold',
+          to: __dirname + '/packages/node/dist/mold'
+        },
+        {
+          from: __dirname + '/source/config',
+          to: __dirname + '/packages/node/dist/config'
+        },
+        {
+          from: __dirname + '/source/types',
+          to: __dirname + '/packages/node/dist/types'
         },
       ]
     }),
