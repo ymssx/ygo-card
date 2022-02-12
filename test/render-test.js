@@ -1,9 +1,9 @@
-const { CardNode } = require('../dist/index.js');
+const { Card } = require('../packages/node/dist/index.js');
 const fs = require('fs');
 
 const DEFAULT_IMAGE_BASE = 'https://gitee.com/ymssx/pics/raw/master/500';
 const OUTPUT_PATH = './demo';
-const MOLD_PATH = './dist/mold';
+const MOLD_PATH = './packages/node/dist/mold';
 const lang = 'cn';
 const testData = [
     {
@@ -168,8 +168,8 @@ async function renderCanvasToImageFile(canvas, file) {
 
 async function renderTest() {
     testData
-        .map(data => new CardNode({
-            data: CardNode.transData(data),
+        .map(data => new Card({
+            data: Card.transData(data),
             lang: lang,
             moldPath: `${MOLD_PATH}/`, 
             picPath: `${DEFAULT_IMAGE_BASE}/${data.id}.jpg`
