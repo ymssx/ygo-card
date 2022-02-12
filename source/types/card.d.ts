@@ -78,7 +78,7 @@ export class Card {
 
   save: (saveName: string, size: [number, number]) => Promise<void>;
 
-  feedData: (data: { [key: string]: string | number }) => {};
+  feedData: (data: CardData) => {};
 
   feedFlash: (img: HTMLImageElement) => void;
 
