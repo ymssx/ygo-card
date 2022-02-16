@@ -1,9 +1,9 @@
 {
   "name": "ygo-card-node",
-  "version": "1.3.4",
+  "version": "1.4.0",
   "description": "This is a Yu-Gi-Oh card rendering SDK for Nodejs.",
   "main": "dist/index.js",
-  "types": "dist/types/card.d.ts",
+  "types": "dist/types/node.d.ts",
   "directories": {
     "lib": "lib"
   },

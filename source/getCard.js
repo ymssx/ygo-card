@@ -13,8 +13,8 @@ const getCard = async (data, {
     moldPath,
   });
 
-  let canvas = await card.render();
-  return  canvas.toBuffer(type);
+  const canvas = await card.render();
+  return canvas.toBuffer(type);
 };
 
 module.exports.getCard = getCard;
