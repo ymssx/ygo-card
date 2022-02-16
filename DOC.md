@@ -498,7 +498,7 @@ const BlueEyes = () => <YgoCard data={ name: '青眼白龙', attack: 3000 } />;
 
 ### 使用方式
 
-适用于node版本的npm包名有所变化。
+安装的npm包名字不同，为`ygo-card-node`.
 
 #### npm安装
 
