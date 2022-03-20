@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3');
 
 const dbMap = {};
 
-const getData = function(dbPath, id) {
+const queryData = function(dbPath, sql) {
   if (!dbMap[dbPath]) {
     dbMap[dbPath] = new sqlite3.Database(dbPath);
   }
@@ -10,7 +10,7 @@ const getData = function(dbPath, id) {
   const db = dbMap[dbPath];
 
   return new Promise((resolve, reject) => {
-    db.get("SELECT t.id, t.name, t.desc, d.atk, d.def, d.race, d.type, d.level, d.attribute from texts t, datas d where t.id = d.id and t.id='" + id + "'", function (err, row) {
+    db.get(sql, function (err, row) {
       if (err) {
         reject(err);
         return;
@@ -19,6 +19,32 @@ const getData = function(dbPath, id) {
       }      
     });
   });
+}
+
+const queryDataList = function(dbPath, sql) {
+  if (!dbMap[dbPath]) {
+    dbMap[dbPath] = new sqlite3.Database(dbPath);
+  }
+
+  const db = dbMap[dbPath];
+
+  return new Promise((resolve, reject) => {
+    db.all(sql, function (err, row) {
+      if (err) {
+        reject(err);
+        return;
+      } else {
+        resolve(row);
+      }      
+    });
+  });
+}
+
+const getData = function(dbPath, id) {
+  return queryData(
+    dbPath,
+    `SELECT t.id, t.name, t.desc, d.atk, d.def, d.race, d.type, d.level, d.attribute FROM texts t, datas d WHERE t.id = d.id AND t.id = '${id}'`,
+  );
 };
 
 
@@ -31,6 +57,8 @@ const getMultiData = function(dbPath, ids) {
 };
 
 module.exports = {
+  queryData,
   getData,
+  queryDataList,
   getMultiData
 };
