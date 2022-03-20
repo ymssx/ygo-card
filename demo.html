@@ -7,28 +7,32 @@
 <body>
   <canvas id="card" style="height: 90vh;"></canvas>
 </body>
-<script src="./dist/index.js"></script>
+<script src="./packages/browser/dist/index.js"></script>
 <script>
   const canvas = document.getElementById('card');
   const data = {
-  _id: '35952884',
-  name: '流天类星龙',
-  type: 'monster',
-  type2: 'tt',
-  type3: '',
-  type4: '',
-  attack: 4000,
-  defend: 4000,
-  race: 'dragon',
-  level: 12,
-  attribute: 'light',
-  desc: '同调怪兽调整＋调整以外的同调怪兽2只以上\r\n' +
-    '这张卡不用同调召唤不能特殊召唤。①：这张卡在同1次的战斗阶段中可以作出最多有那些作为同调素材的怪兽之内除调整以外的怪兽数量的攻击。②：1回合1次，魔法·陷阱·怪兽的效果发动时才能发动。那个发动无效并破坏。③：表侧表示的这张卡从场上离开时才能发动。从额外卡组把1只「流星龙」特殊召唤。',
-  lb_num: undefined,
-  lb_desc: undefined
-};
+    _id: '35952884',
+    name: '流天类星龙',
+    type: 'monster',
+    type2: 'tt',
+    type3: '',
+    type4: '',
+    attack: 4000,
+    defend: 4000,
+    race: 'dragon',
+    level: 12,
+    attribute: 'light',
+    desc: '同调怪兽调整＋调整以外的同调怪兽2只以上\r\n' +
+      '这张卡不用同调召唤不能特殊召唤。①：这张卡在同1次的战斗阶段中可以作出最多有那些作为同调素材的怪兽之内除调整以外的怪兽数量的攻击。②：1回合1次，魔法·陷阱·怪兽的效果发动时才能发动。那个发动无效并破坏。③：表侧表示的这张卡从场上离开时才能发动。从额外卡组把1只「流星龙」特殊召唤。',
+    lb_num: undefined,
+    lb_desc: undefined
+  };
 
-  const card = new Card({ data, canvas, moldPath: './dist/mold'});
+  const card = new Card({
+    data, canvas,
+    moldPath: './packages/browser/dist/mold',
+    config: configs.cnWeb,
+  });
   
   card.render();
 </script>

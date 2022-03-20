@@ -10,6 +10,7 @@ import defaultCopyright from "./lib/copyright.js";
 // configs
 import defaultConfig from "./config/defaultConfig.js";
 import cnSimplifyConfig from "./config/cnSimplifyConfig.js";
+import cnWebConfig from "./config/cnWebConfig.js";
 import defaultJpConfig from './config/defaultJpConfig.js';
 import jpWitchNotationConfig from './config/jpWithNotationConfig.js';
 import defaultEnConfig from './config/defaultEnConfig.js';
@@ -315,6 +316,7 @@ export const config = defaultConfig;
 export const configs = {
   cn: defaultConfig,
   cnSimplify: cnSimplifyConfig,
+  cnWeb: cnWebConfig,
   jp: defaultJpConfig,
   jpNotation: jpWitchNotationConfig,
   en: defaultEnConfig,
