@@ -497,7 +497,7 @@ export default class CardDrawer {
     }
 
     // pendulum number
-    if (cardData.type3 === "lb" && cardData.lb_num) {
+    if (cardData.type3 === "lb" && (cardData.lb_num !== undefined && cardData.lb_num !== null)) {
       c.fillStyle = "#000000";
       c.font =
         config.pendulumNumber.fontSize * r +
