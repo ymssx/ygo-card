@@ -4,6 +4,8 @@
   <img src="https://img.shields.io/npm/v/ygo-card"/>
 </a>
 
+![](https://visitor-badge.glitch.me/badge?page_id=ymssx.ygo-card)
+
 <a href="https://gitee.com/ymssx/cardjs">中文</a>
 
 This is a javascript SDK for rendering YU-GI-OH card. Import `ygo-card` in your website, you can easily paint the standard YU-GI-OH cards!
