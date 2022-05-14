@@ -88,3 +88,6 @@ export class Card {
 
   readYDK: (ydk: string) => [string[], string[], string[]];
 }
+
+function readYDK (ydk: string): [string[], string[], string[]];
+function getIdSetFromYDK (ydk: string): string[];

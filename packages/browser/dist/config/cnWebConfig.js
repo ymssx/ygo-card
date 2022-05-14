@@ -20,13 +20,13 @@ export default {
   },
   style: Object.assign(JSON.parse(commonStyle), {
     fontMap: {
-      name: "楷体, serif",
-      desc: "楷体, serif",
-      race: "楷体, serif",
+      name: "STKaiti, BiauKai, KaiTi, 楷体, serif",
+      desc: "STKaiti, BiauKai, KaiTi, 楷体, serif",
+      race: "STKaiti, BiauKai, KaiTi, 楷体, serif",
       attack: "number",
       link: "link",
       password: "password",
-      type: "楷体, serif",
+      type: "STKaiti, BiauKai, KaiTi, 楷体, serif",
       lbNum: "number",
       copyright: "password",
     },
