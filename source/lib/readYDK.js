@@ -1,18 +1,16 @@
 export const readYDK = (text) => {
   const newText = text.split('\r').join('');
-  let temp = newText.split("#main")[1].split("#extra");
-  let mainText = temp[0].trim();
-  let temp2 = temp[1].split("!side");
-  let exText = temp2[0].trim();
-  let sideText = temp2[1].trim();
+  const [_, afterMain = ''] = newText.split('#main');
+  const [mainText, afterExtra = ''] = afterMain.split('#extra');
+  const [extraText, sideText = ''] = afterExtra.split('!side');
 
-  let main = mainText ? mainText.split("\n") : [];
-  let ex = exText ? exText.split("\n"): [];
-  let side = sideText ? sideText.split("\n") : [];
-  return [main, ex, side];
+  const main = mainText ? mainText.trim().split('\n') : [];
+  const extra = extraText ? extraText.trim().split('\n'): [];
+  const side = sideText ? sideText.trim().split('\n') : [];
+  return [main, extra, side];
 };
 
 export const getIdSetFromYDK = (text) => {
-  const [main, ex, side] = readYDK(text);
-  return Array.from(new Set(main.concat(ex).concat(side)));
+  const [main, extra, side] = readYDK(text);
+  return Array.from(new Set(main.concat(extra).concat(side)));
 };
