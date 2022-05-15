@@ -4,6 +4,14 @@ import commonStyle from './common.js';
 
 export default {
   moldName: "cn-web",
+  devicePixelRatio: {
+    1: {
+      file: { frame: '250/' },
+    },
+    2: {
+      file: { frame: '500/' },
+    },
+  },
   fonts: {
     number: {
       name: "number.ttf",

@@ -2,7 +2,18 @@ import { Cloud } from "./lib/ajax.js";
 
 const YGOCARDDATA = "__YGOCARDDATA__";
 
-const MOLD_VERSION = '1.0';
+const MOLD_VERSION = '1.1';
+
+const getPixelRatioConfig = (config) => {
+  const PR = devicePixelRatio || 1;
+  let res = 1;
+  for (const r in config) {
+    if (r >= PR && r <= res) {
+      res = r;
+    }
+  }
+  return config[res];
+}
 
 export default class CardFile {
   constructor(admin) {
@@ -94,14 +105,19 @@ export default class CardFile {
   get fileList() {
     const path = this.admin.moldPath + "/";
     const data = this.admin.data;
+    const config = this.admin.config;
 
     let res = {};
     if (data.type === "monster") {
+      let prPrefix = '';
+      if (config.devicePixelRatio) {
+        prPrefix = getPixelRatioConfig(config.devicePixelRatio).file.frame || '';
+      }
       if (data.type3 !== "lb") {
-        res.mold = path + "frame/" + data.type + "_" + data.type2 + ".jpg";
+        res.mold = path + prPrefix + "frame/" + data.type + "_" + data.type2 + ".jpg";
       } else {
         res.mold =
-          path + "frame/" + data.type + "_" + data.type2 + "_" + "lb" + ".jpg";
+          path + prPrefix + "frame/" + data.type + "_" + data.type2 + "_" + "lb" + ".jpg";
       }
 
       if (data.type2 === "lj") {
