@@ -1,10 +1,11 @@
-import { translate } from "./lib/translate.js";
 import { transSingleType } from "./lib/variation.js";
 
 export default class CardData {
   constructor(dbData, admin, color) {
     this.dbData = dbData;
     this.admin = admin;
+
+    const translate = this.admin.translateText || function() {};
 
     if (admin.recover) {
       for (let key in dbData) {

@@ -6,13 +6,10 @@ const MOLD_VERSION = '1.1';
 
 const getPixelRatioConfig = (config) => {
   const PR = devicePixelRatio || 1;
-  let res = 1;
-  for (const r in config) {
-    if (r >= PR && r <= res) {
-      res = r;
-    }
+  if (config[PR]) {
+    return config[PR];
   }
-  return config[res];
+  return config[1];
 }
 
 export default class CardFile {
@@ -108,16 +105,16 @@ export default class CardFile {
     const config = this.admin.config;
 
     let res = {};
+    let prPrefix = '';
+    if (config.devicePixelRatio) {
+      prPrefix = getPixelRatioConfig(config.devicePixelRatio).file.frame || '';
+    }
     if (data.type === "monster") {
-      let prPrefix = '';
-      if (config.devicePixelRatio) {
-        prPrefix = getPixelRatioConfig(config.devicePixelRatio).file.frame || '';
-      }
       if (data.type3 !== "lb") {
-        res.mold = path + prPrefix + "frame/" + data.type + "_" + data.type2 + ".jpg";
+        res.mold = path + "frame/" + prPrefix + data.type + "_" + data.type2 + ".jpg";
       } else {
         res.mold =
-          path + prPrefix + "frame/" + data.type + "_" + data.type2 + "_" + "lb" + ".jpg";
+          path + "frame/" + prPrefix + data.type + "_" + data.type2 + "_" + "lb" + ".jpg";
       }
 
       if (data.type2 === "lj") {
@@ -134,7 +131,7 @@ export default class CardFile {
         res.level = path + "star/level.png";
       }
     } else {
-      res.mold = path + "frame/" + data.type + ".jpg";
+      res.mold = path + "frame/" + prPrefix + data.type + ".jpg";
       res.attribute = `${path}attribute/${data.lang}/${data.type}.png`;
       if (["cd", "fj", "sg", "ys", "yx", "zb"].includes(data.type2)) {
         res.icon = path + "icon/" + data.type2 + ".png";

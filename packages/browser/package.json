@@ -1,6 +1,6 @@
 {
   "name": "ygo-card",
-  "version": "1.4.0",
+  "version": "1.4.1-4",
   "description": "This is a Yu-Gi-Oh card rendering SDK.",
   "main": "dist/index.js",
   "types": "dist/types/card.d.ts",

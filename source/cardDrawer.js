@@ -222,10 +222,6 @@ export default class CardDrawer {
           fileContent.mold,
           0,
           0,
-          config.moldSize[0],
-          config.moldSize[1],
-          0,
-          0,
           size[0],
           size[1]
         );

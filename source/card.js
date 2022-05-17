@@ -2,7 +2,6 @@ import CardDrawer from "./cardDrawer.js";
 import CardData from "./cardData.js";
 import CardFile from "./cardFile.js";
 import { variation, transType } from "./lib/variation.js";
-import { translate } from "./lib/translate.js";
 import { readYDK } from "./lib/readYDK.js";
 import { getPicFromCose } from "./lib/getPic.js";
 import defaultCopyright from "./lib/copyright.js";
@@ -40,6 +39,7 @@ export class Card {
     translate = false,
     verbose = false,
     autoResize = true,
+    translateFunction = function() {},
   }) {
     this.RATE = 1185 / 813;
     if (!window.hasOwnProperty("__YGOCARDDATA__"))
@@ -82,6 +82,7 @@ export class Card {
     this.cardbagSwitch = cardbagSwitch;
     this.passwordSwitch = passwordSwitch;
     this.translate = translate;
+    this.translateFunction = translateFunction;
     this.verbose = verbose;
     this.autoResize = autoResize;
     this.renderState = false;
@@ -299,9 +300,9 @@ export class Card {
     return variation(data);
   }
 
-  static complex(text) {
-    return translate(text);
-  }
+  // static complex(text) {
+  //   return translate(text);
+  // }
 
   static readYDK(text) {
     return readYDK(text);
